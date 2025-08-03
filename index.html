@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منتجي - منتجات الأسرة العمانية</title>
+    <!-- Bootstrap RTL CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .hero-section {
+            background: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center;
+            background-size: cover;
+            height: 400px;
+            position: relative;
+        }
+        .hero-overlay {
+            background-color: rgba(0, 0, 0, 0.5);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .product-card {
+            transition: transform 0.3s;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        .cart-icon {
+            position: relative;
+        }
+        .cart-count {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: #dc3545;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- شريط التنقل مع سلة التسوق -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+        <div class="container">
+            <a class="navbar-brand" href="#">منتجي</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">الرئيسية</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                            المنتجات
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">الوجبات الغذائية</a></li>
+                            <li><a class="dropdown-item" href="#">المأكولات التقليدية</a></li>
+                            <li><a class="dropdown-item" href="#">المشروبات</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">عن الأسرة</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">اتصل بنا</a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <a href="cart.html" class="btn btn-light cart-icon me-3">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">3</span>
+                    </a>
+                    <a href="login.html" class="btn btn-outline-light me-2">تسجيل الدخول</a>
+                    <a href="register.html" class="btn btn-light">تسجيل جديد</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- قسم البطل -->
+    <div class="hero-section mb-5">
+        <div class="hero-overlay d-flex align-items-center justify-content-center">
+            <div class="text-center text-white">
+                <h1 class="display-4 fw-bold">منتجات الأسرة العمانية الأصيلة</h1>
+                <p class="lead">جودة عالية ونكهة لا تقاوم</p>
+                <a href="#products" class="btn btn-warning btn-lg mt-3">تسوق الآن</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- المنتجات المميزة -->
+    <div class="container mb-5" id="products">
+        <h2 class="text-center mb-4">منتجاتنا المميزة</h2>
+        <div class="row">
+            <!-- منتج 1 -->
+            <div class="col-md-4 mb-4">
+                <div class="card product-card h-100">
+                    <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="وجبة عمانية">
+                    <div class="card-body">
+                        <h5 class="card-title">وجبة عمانية تقليدية</h5>
+                        <p class="card-text">وجبة كاملة من الأرز واللحم مع الخضار والتوابل العمانية الخاصة.</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="fw-bold text-success">5.00 ر.ع</span>
+                            <button class="btn btn-sm btn-outline-success add-to-cart" data-product="وجبة عمانية تقليدية" data-price="5.00">
+                                <i class="fas fa-shopping-cart"></i> أضف للسلة
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- منتج 2 -->
+            <div class="col-md-4 mb-4">
+                <div class="card product-card h-100">
+                    <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="سلطة عمانية">
+                    <div class="card-body">
+                        <h5 class="card-title">سلطة عمانية</h5>
+                        <p class="card-text">سلطة طازجة مكونة من خضروات موسمية مع تتبيلة عمانية سرية.</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="fw-bold text-success">3.50 ر.ع</span>
+                            <button class="btn btn-sm btn-outline-success add-to-cart" data-product="سلطة عمانية" data-price="3.50">
+                                <i class="fas fa-shopping-cart"></i> أضف للسلة
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- منتج 3 -->
+            <div class="col-md-4 mb-4">
+                <div class="card product-card h-100">
+                    <img src="https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="حلويات عمانية">
+                    <div class="card-body">
+                        <h5 class="card-title">حلويات عمانية</h5>
+                        <p class="card-text">تشكيلة من الحلويات العمانية التقليدية المصنوعة يدوياً.</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="fw-bold text-success">4.00 ر.ع</span>
+                            <button class="btn btn-sm btn-outline-success add-to-cart" data-product="حلويات عمانية" data-price="4.00">
+                                <i class="fas fa-shopping-cart"></i> أضف للسلة
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-3">
+            <a href="#" class="btn btn-success">عرض جميع المنتجات</a>
+        </div>
+    </div>
+
+    <!-- فوتر -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <h5>منتجي</h5>
+                    <p>منصة لعرض وبيع منتجات الأسرة العمانية المتميزة وخاصة الوجبات الغذائية التقليدية.</p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>روابط سريعة</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white">الرئيسية</a></li>
+                        <li><a href="#" class="text-white">المنتجات</a></li>
+                        <li><a href="#" class="text-white">عن الأسرة</a></li>
+                        <li><a href="#" class="text-white">اتصل بنا</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>تواصل معنا</h5>
+                    <p><i class="fas fa-phone me-2"></i> +968 1234 5678</p>
+                    <p><i class="fas fa-envelope me-2"></i> info@montaji.com</p>
+                    <div class="social-icons">
+                        <a href="#" class="text-white me-2"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white me-2"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white me-2"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="text-center">
+                <p class="mb-0">&copy; 2023 منتجي. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // دالة لإضافة منتج إلى السلة
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                const productName = this.getAttribute('data-product');
+                const productPrice = this.getAttribute('data-price');
+                
+                // هنا يمكنك إضافة الكود لحفظ المنتج في localStorage أو إرساله إلى الخادم
+                alert(`تمت إضافة ${productName} إلى سلة التسوق بسعر ${productPrice} ر.ع`);
+                
+                // توجيه المستخدم إلى صفحة السلة
+                window.location.href = "cart.html";
+            });
+        });
+
+        // تحديث عداد السلة (يمكن استبداله بقيمة حقيقية من localStorage)
+        function updateCartCount() {
+            const cartCount = document.querySelector('.cart-count');
+            // هنا يمكنك جلب عدد المنتجات من localStorage
+            const count = 3; // قيمة افتراضية
+            cartCount.textContent = count;
+        }
+
+        // تحديث العداد عند تحميل الصفحة
+        updateCartCount();
+    </script>
+</body>
+</html>
