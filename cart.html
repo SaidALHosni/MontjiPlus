@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +11,7 @@
         body {
             background-color: #f8f9fa;
         }
+
         .cart-container {
             max-width: 800px;
             margin: 30px auto;
@@ -18,15 +20,18 @@
             border-radius: 10px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
         }
+
         .product-img {
             width: 80px;
             height: 80px;
             object-fit: cover;
             border-radius: 5px;
         }
+
         .cart-icon {
             position: relative;
         }
+
         .cart-count {
             position: absolute;
             top: -10px;
@@ -43,6 +48,7 @@
         }
     </style>
 </head>
+
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-success">
         <div class="container">
@@ -60,12 +66,12 @@
     <div class="container">
         <div class="cart-container">
             <h2 class="mb-4"><i class="fas fa-shopping-cart me-2"></i>سلة التسوق</h2>
-            
+
             <div class="alert alert-success">
-                <i class="fas fa-check-circle me-2"></i> 
+                <i class="fas fa-check-circle me-2"></i>
                 تمت إضافة المنتجات بنجاح إلى سلة التسوق
             </div>
-            
+
             <div class="table-responsive">
                 <table class="table">
                     <thead>
@@ -81,9 +87,8 @@
                         <tr>
                             <td>
                                 <div class="d-flex align-items-center">
-                                    <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&h=100&q=80" 
-                                         class="product-img me-3" 
-                                         alt="وجبة عمانية">
+                                    <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&h=100&q=80"
+                                        class="product-img me-3" alt="وجبة عمانية">
                                     <div>
                                         <h6 class="mb-1">وجبة عمانية تقليدية</h6>
                                         <small class="text-muted">الرقم: #PROD001</small>
@@ -108,9 +113,8 @@
                         <tr>
                             <td>
                                 <div class="d-flex align-items-center">
-                                    <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&h=100&q=80" 
-                                         class="product-img me-3" 
-                                         alt="سلطة عمانية">
+                                    <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&h=100&q=80"
+                                        class="product-img me-3" alt="سلطة عمانية">
                                     <div>
                                         <h6 class="mb-1">سلطة عمانية</h6>
                                         <small class="text-muted">الرقم: #PROD002</small>
@@ -135,7 +139,7 @@
                     </tbody>
                 </table>
             </div>
-            
+
             <div class="row">
                 <div class="col-md-6">
                     <div class="card mb-3">
@@ -198,23 +202,23 @@
 
         // زيادة ونقصان الكمية
         document.querySelectorAll('.input-group button').forEach(button => {
-            button.addEventListener('click', function() {
+            button.addEventListener('click', function () {
                 const input = this.parentElement.querySelector('input');
                 let value = parseInt(input.value);
-                
+
                 if (this.textContent === '+' && value < 10) {
                     input.value = value + 1;
                 } else if (this.textContent === '-' && value > 1) {
                     input.value = value - 1;
                 }
-                
+
                 // هنا يمكنك تحديث السعر الإجمالي
             });
         });
 
         // حذف المنتج
         document.querySelectorAll('.btn-outline-danger').forEach(button => {
-            button.addEventListener('click', function() {
+            button.addEventListener('click', function () {
                 if (confirm('هل أنت متأكد من حذف هذا المنتج من السلة؟')) {
                     this.closest('tr').remove();
                     // هنا يمكنك تحديث localStorage
@@ -223,4 +227,5 @@
         });
     </script>
 </body>
+
 </html>

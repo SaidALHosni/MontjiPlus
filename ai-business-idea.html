@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مخطط الأعمال الذكي - منتجي</title>
+    <!-- Bootstrap RTL CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .ai-container {
+            max-width: 900px;
+            margin: 30px auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+        .ai-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        .section-card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            margin-bottom: 20px;
+            transition: transform 0.3s;
+        }
+        .section-card:hover {
+            transform: translateY(-5px);
+        }
+        .option-card {
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            height: 100%;
+        }
+        .option-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.15);
+        }
+        .option-card.selected {
+            border-color: #667eea;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+        }
+        .form-control:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 0.25rem rgba(102, 126, 234, 0.25);
+        }
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 300px;
+        }
+        .result-section {
+            border-right: 4px solid #667eea;
+            padding-right: 15px;
+            margin-bottom: 30px;
+        }
+        .print-button {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 1000;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        @media print {
+            .print-button, .no-print { display: none !important; }
+            .ai-header { background: #667eea !important; }
+        }
+    </style>
+</head>
+<body>
+    <!-- شريط التنقل -->
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-robot me-2"></i>منتجي AI
+            </a>
+            <div class="d-flex align-items-center">
+                <a href="index.html" class="btn btn-outline-light me-2">
+                    <i class="fas fa-home me-1"></i> الرئيسية
+                </a>
+                <a href="dashboard.html" class="btn btn-light">
+                    <i class="fas fa-tachometer-alt me-1"></i> لوحة التحكم
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- نموذج الذكاء الاصطناعي -->
+    <div class="ai-container animate__animated animate__fadeIn">
+        <!-- Header -->
+        <div class="ai-header">
+            <h1 class="display-5 fw-bold mb-3">
+                <i class="fas fa-robot me-2"></i>مخطط الأعمال الذكي
+            </h1>
+            <p class="lead mb-0">احصل على خطة عمل متكاملة لمشروعك باستخدام الذكاء الاصطناعي</p>
+        </div>
+
+        <!-- النموذج -->
+        <div class="p-4 p-md-5">
+            <div id="formSection">
+                <!-- معلومات المشروع الأساسية -->
+                <div class="card section-card">
+                    <div class="card-body">
+                        <h3 class="card-title mb-4 text-primary">
+                            <i class="fas fa-clipboard-list me-2"></i>معلومات المشروع الأساسية
+                        </h3>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="businessName" class="form-label fw-bold">اسم المشروع</label>
+                                <input type="text" class="form-control" id="businessName" 
+                                       placeholder="أدخل اسم مشروعك" required>
+                                <div class="invalid-feedback">الرجاء إدخال اسم المشروع</div>
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label for="location" class="form-label fw-bold">موقع المشروع</label>
+                                <input type="text" class="form-control" id="location" 
+                                       placeholder="مثال: مسقط - الخوير" required>
+                                <div class="invalid-feedback">الرجاء إدخال الموقع</div>
+                            </div>
+                            
+                            <div class="col-12 mb-3">
+                                <label for="businessIdea" class="form-label fw-bold">وصف فكرة المشروع</label>
+                                <textarea class="form-control" id="businessIdea" rows="4" 
+                                          placeholder="اشرح فكرة مشروعك بالتفصيل..." required></textarea>
+                                <div class="invalid-feedback">الرجاء وصف فكرة المشروع</div>
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label for="businessType" class="form-label fw-bold">نوع المشروع</label>
+                                <select class="form-select" id="businessType" required>
+                                    <option value="">اختر نوع المشروع</option>
+                                    <option value="products">منتجات</option>
+                                    <option value="services">خدمات</option>
+                                    <option value="both">منتجات وخدمات</option>
+                                </select>
+                                <div class="invalid-feedback">الرجاء اختيار نوع المشروع</div>
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label for="businessField" class="form-label fw-bold">مجال المشروع</label>
+                                <input type="text" class="form-control" id="businessField" 
+                                       placeholder="مثال: الأطعمة المنزلية، التكنولوجيا، التعليم..." required>
+                                <div class="invalid-feedback">الرجاء إدخال مجال المشروع</div>
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label for="targetMarket" class="form-label fw-bold">السوق المستهدف</label>
+                                <input type="text" class="form-control" id="targetMarket" 
+                                       placeholder="مثال: العائلات، الشباب، الشركات...">
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label for="initialBudget" class="form-label fw-bold">الميزانية الأولية (ريال عماني)</label>
+                                <input type="number" class="form-control" id="initialBudget" 
+                                       min="0" value="1000">
+                            </div>
+                            
+                            <div class="col-12 mb-3">
+                                <label for="additionalNotes" class="form-label fw-bold">ملاحظات إضافية</label>
+                                <textarea class="form-control" id="additionalNotes" rows="3" 
+                                          placeholder="أي معلومات إضافية تريد إضافتها..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- خيارات الخطة -->
+                <div class="card section-card">
+                    <div class="card-body">
+                        <h3 class="card-title mb-4 text-primary">
+                            <i class="fas fa-bullseye me-2"></i>اختر ما تحتاجه في خطة عملك
+                        </h3>
+                        <p class="text-muted mb-4">يمكنك اختيار عنصر واحد أو أكثر</p>
+                        
+                        <div class="row" id="optionsContainer">
+                            <!-- سيتم إضافة الخيارات ديناميكياً -->
+                        </div>
+                        
+                        <div class="alert alert-warning mt-3 d-none" id="optionsWarning">
+                            <i class="fas fa-exclamation-triangle me-2"></i>
+                            الرجاء اختيار عنصر واحد على الأقل من خطة العمل
+                        </div>
+                    </div>
+                </div>
+
+                <!-- أزرار الإجراءات -->
+                <div class="text-center mt-4">
+                    <button class="btn btn-primary btn-lg px-5 me-3" id="generateBtn">
+                        <i class="fas fa-robot me-2"></i>إنشاء خطة العمل
+                    </button>
+                    <button class="btn btn-outline-secondary btn-lg" id="resetBtn">
+                        <i class="fas fa-redo me-2"></i>إعادة تعيين
+                    </button>
+                </div>
+            </div>
+
+            <!-- قسم النتائج -->
+            <div id="resultSection" class="d-none">
+                <!-- سيتم عرض النتائج هنا -->
+            </div>
+            
+            <!-- قسم التحميل -->
+            <div id="loadingSection" class="loading d-none">
+                <div class="text-center">
+                    <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                        <span class="visually-hidden">جاري التحميل...</span>
+                    </div>
+                    <h4 class="mt-4 text-primary">جاري إنشاء خطة عملك باستخدام الذكاء الاصطناعي...</h4>
+                    <p class="text-muted">هذا قد يستغرق بضع ثوانٍ</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <script>
+        // بيانات الخيارات
+        const planOptions = [
+            {
+                value: 'logo',
+                title: 'تصميم الشعار',
+                description: 'أفكار واقتراحات للشعار',
+                icon: 'fas fa-palette'
+            },
+            {
+                value: 'vision',
+                title: 'الرؤية والرسالة',
+                description: 'صياغة الرؤية والرسالة',
+                icon: 'fas fa-eye'
+            },
+            {
+                value: 'strategy',
+                title: 'الخطة الاستراتيجية',
+                description: 'استراتيجية النمو والتطور',
+                icon: 'fas fa-chart-line'
+            },
+            {
+                value: 'marketing',
+                title: 'الخطة التسويقية',
+                description: 'استراتيجيات التسويق والترويج',
+                icon: 'fas fa-bullhorn'
+            },
+            {
+                value: 'financial',
+                title: 'الخطة المالية',
+                description: 'التوقعات والميزانيات',
+                icon: 'fas fa-chart-pie'
+            },
+            {
+                value: 'competitors',
+                title: 'تحليل المنافسين',
+                description: 'دراسة السوق والمنافسين',
+                icon: 'fas fa-users'
+            },
+            {
+                value: 'swot',
+                title: 'تحليل SWOT',
+                description: 'نقاط القوة والضعف والفرص',
+                icon: 'fas fa-balance-scale'
+            }
+        ];
+
+        // الحالة الحالية
+        let selectedOptions = new Set();
+        let businessData = null;
+
+        // تهيئة الصفحة
+        document.addEventListener('DOMContentLoaded', function() {
+            initOptions();
+            setupEventListeners();
+        });
+
+        // تهيئة خيارات الخطة
+        function initOptions() {
+            const container = document.getElementById('optionsContainer');
+            container.innerHTML = '';
+            
+            planOptions.forEach(option => {
+                const col = document.createElement('div');
+                col.className = 'col-md-4 mb-3';
+                
+                col.innerHTML = `
+                    <div class="card option-card p-3" data-value="${option.value}">
+                        <div class="d-flex align-items-center">
+                            <div class="me-3">
+                                <i class="${option.icon} fa-2x text-primary"></i>
+                            </div>
+                            <div>
+                                <h5 class="mb-1">${option.title}</h5>
+                                <p class="text-muted mb-0 small">${option.description}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                container.appendChild(col);
+            });
+        }
+
+        // إعداد مستمعي الأحداث
+        function setupEventListeners() {
+            // اختيار/إلغاء اختيار الخيارات
+            document.querySelectorAll('.option-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const value = this.getAttribute('data-value');
+                    toggleOption(value, this);
+                });
+            });
+
+            // زر الإنشاء
+            document.getElementById('generateBtn').addEventListener('click', generatePlan);
+            
+            // زر إعادة التعيين
+            document.getElementById('resetBtn').addEventListener('click', resetForm);
+            
+            // طباعة التقرير
+            document.addEventListener('click', function(e) {
+                if (e.target.id === 'printReport') {
+                    window.print();
+                }
+                if (e.target.id === 'newPlan') {
+                    showForm();
+                }
+            });
+        }
+
+        // تبديل اختيار الخيار
+        function toggleOption(value, element) {
+            if (selectedOptions.has(value)) {
+                selectedOptions.delete(value);
+                element.classList.remove('selected');
+            } else {
+                selectedOptions.add(value);
+                element.classList.add('selected');
+            }
+            
+            // إخفاء/إظهار التحذير
+            const warning = document.getElementById('optionsWarning');
+            if (selectedOptions.size === 0) {
+                warning.classList.remove('d-none');
+            } else {
+                warning.classList.add('d-none');
+            }
+        }
+
+        // إنشاء خطة العمل
+        async function generatePlan() {
+            // التحقق من صحة النموذج
+            if (!validateForm()) return;
+            
+            // جمع البيانات
+            businessData = {
+                businessName: document.getElementById('businessName').value,
+                location: document.getElementById('location').value,
+                businessIdea: document.getElementById('businessIdea').value,
+                businessType: document.getElementById('businessType').value,
+                businessField: document.getElementById('businessField').value,
+                targetMarket: document.getElementById('targetMarket').value,
+                initialBudget: document.getElementById('initialBudget').value,
+                additionalNotes: document.getElementById('additionalNotes').value,
+                selectedOptions: Array.from(selectedOptions),
+                generatedDate: new Date().toLocaleDateString('ar-OM')
+            };
+            
+            // عرض قسم التحميل
+            showLoading();
+            
+            // محاكاة طلب الذكاء الاصطناعي (يمكن استبداله بطلب حقيقي)
+            setTimeout(() => {
+                const result = generateMockAIResult(businessData);
+                showResults(result);
+            }, 2000);
+        }
+
+        // التحقق من صحة النموذج
+        function validateForm() {
+            let isValid = true;
+            
+            // التحقق من الحقول المطلوبة
+            const requiredFields = ['businessName', 'location', 'businessIdea', 'businessType', 'businessField'];
+            requiredFields.forEach(fieldId => {
+                const field = document.getElementById(fieldId);
+                if (!field.value.trim()) {
+                    field.classList.add('is-invalid');
+                    isValid = false;
+                } else {
+                    field.classList.remove('is-invalid');
+                }
+            });
+            
+            // التحقق من اختيار خيار واحد على الأقل
+            if (selectedOptions.size === 0) {
+                document.getElementById('optionsWarning').classList.remove('d-none');
+                isValid = false;
+            }
+            
+            return isValid;
+        }
+
+        // توليد نتائج تجريبية
+        function generateMockAIResult(data) {
+            const results = {
+                businessName: data.businessName,
+                generatedDate: data.generatedDate,
+                logo: data.selectedOptions.includes('logo') ? generateLogoIdeas() : null,
+                vision: data.selectedOptions.includes('vision') ? generateVisionMission() : null,
+                mission: data.selectedOptions.includes('vision') ? "تقديم منتجات عالية الجودة تلبي احتياجات السوق العماني بأسعار مناسبة." : null,
+                strategy: data.selectedOptions.includes('strategy') ? generateStrategy() : null,
+                marketing: data.selectedOptions.includes('marketing') ? generateMarketing() : null,
+                financial: data.selectedOptions.includes('financial') ? generateFinancial() : null,
+                competitors: data.selectedOptions.includes('competitors') ? generateCompetitors() : null,
+                swot: data.selectedOptions.includes('swot') ? generateSWOT() : null
+            };
+            
+            return results;
+        }
+
+        // وظائف توليد النتائج التجريبية
+        function generateLogoIdeas() {
+            return `1. شعار يجمع بين الرموز العمانية التقليدية والتصميم العصري
+2. ألوان: الأخضر (الخصوبة)، الأزرق (الثقة)، الذهبي (الجودة)
+3. خطوط: خطوط عربية أنيقة مع خطوط لاتينية بسيطة`;
+        }
+        
+        function generateVisionMission() {
+            return "أن نكون الرائدين في تقديم منتجات عالية الجودة تحافظ على الأصالة العمانية وتواكب العصر الحديث.";
+        }
+        
+        function generateStrategy() {
+            return `1. البدء بمتجر إلكتروني للوصول لأكبر شريحة
+2. التركيز على التسويق عبر وسائل التواصل الاجتماعي
+3. التوسع تدريجياً ليشمل تقديم خدمات إضافية`;
+        }
+        
+        function generateMarketing() {
+            return `1. إنشاء صفحات على إنستجرام وفيسبوك
+2. التعاون مع المؤثرين المحليين
+3. عروض خاصة لأول 100 عميل
+4. برنامج ولاء للعملاء الدائمين`;
+        }
+        
+        function generateFinancial() {
+            return `التكاليف الأولية: ${document.getElementById('initialBudget').value} ر.ع
+التكاليف الشهرية: 500 ر.ع
+الإيرادات المتوقعة (السنة الأولى): 15,000 ر.ع
+نقطة التعادل: بعد 6 أشهر`;
+        }
+        
+        function generateCompetitors() {
+            return `المنافسون المباشرون: عددهم محدود في المنطقة
+نقاط قوتهم: خبرة طويلة، عملاء دائمون
+نقاط ضعفهم: أسعار مرتفعة، خدمات إلكترونية محدودة`;
+        }
+        
+        function generateSWOT() {
+            return `نقاط القوة: جودة المنتج، الخبرة، السعر التنافسي
+نقاط الضعف: محدودية رأس المال، قلة الخبرة التسويقية
+الفرص: نمو السوق الإلكتروني، دعم الحكومة للمشاريع الصغيرة
+التهديدات: منافسة كبيرة، تقلبات السوق`;
+        }
+
+        // عرض قسم التحميل
+        function showLoading() {
+            document.getElementById('formSection').classList.add('d-none');
+            document.getElementById('loadingSection').classList.remove('d-none');
+        }
+
+        // عرض النتائج
+        function showResults(result) {
+            document.getElementById('loadingSection').classList.add('d-none');
+            
+            const resultSection = document.getElementById('resultSection');
+            resultSection.classList.remove('d-none');
+            
+            // بناء واجهة النتائج
+            let html = `
+                <!-- Header -->
+                <div class="ai-header mb-4" style="border-radius: 15px;">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h2 class="mb-2"><i class="fas fa-chart-bar me-2"></i>خطة عمل: ${result.businessName}</h2>
+                            <p class="mb-0">تم الإنشاء بتاريخ: ${result.generatedDate}</p>
+                        </div>
+                        <button class="btn btn-light no-print" id="printReport">
+                            <i class="fas fa-print me-1"></i>طباعة
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            // إضافة الأقسام المختارة
+            if (result.logo) {
+                html += buildSection('🎨 تصميم الشعار', result.logo);
+            }
+            if (result.vision) {
+                html += buildSection('👁️ الرؤية والرسالة', 
+                    `<strong>الرؤية:</strong><br>${result.vision}<br><br>
+                     <strong>الرسالة:</strong><br>${result.mission}`);
+            }
+            if (result.strategy) {
+                html += buildSection('📈 الخطة الاستراتيجية', result.strategy);
+            }
+            if (result.marketing) {
+                html += buildSection('📢 الخطة التسويقية', result.marketing);
+            }
+            if (result.financial) {
+                html += buildSection('💰 الخطة المالية', result.financial);
+            }
+            if (result.competitors) {
+                html += buildSection('🔍 تحليل المنافسين', result.competitors);
+            }
+            if (result.swot) {
+                html += buildSection('📊 تحليل SWOT', result.swot);
+            }
+            
+            // أزرار الإجراءات
+            html += `
+                <div class="text-center mt-5 no-print">
+                    <button class="btn btn-primary btn-lg px-5 me-3" id="newPlan">
+                        <i class="fas fa-plus me-2"></i>إنشاء خطة جديدة
+                    </button>
+                    <a href="dashboard.html" class="btn btn-success btn-lg px-5">
+                        <i class="fas fa-tachometer-alt me-2"></i>الذهاب للوحة التحكم
+                    </a>
+                </div>
+                
+                <!-- زر الطباعة الثابت -->
+                <button class="btn btn-primary print-button" id="printReportFixed">
+                    <i class="fas fa-print me-1"></i>طباعة التقرير
+                </button>
+            `;
+            
+            resultSection.innerHTML = html;
+            
+            // إضافة مستمعي الأحداث للعناصر الجديدة
+            document.querySelectorAll('#printReport, #printReportFixed').forEach(btn => {
+                btn.addEventListener('click', () => window.print());
+            });
+            document.getElementById('newPlan').addEventListener('click', showForm);
+        }
+
+        // بناء قسم النتائج
+        function buildSection(title, content) {
+            return `
+                <div class="result-section">
+                    <h3 class="text-primary mb-3">${title}</h3>
+                    <div class="p-3 bg-light rounded" style="white-space: pre-line;">${content}</div>
+                </div>
+            `;
+        }
+
+        // إعادة تعيين النموذج
+        function resetForm() {
+            // إعادة تعيين الحقول
+            document.querySelectorAll('input, select, textarea').forEach(field => {
+                field.value = '';
+                field.classList.remove('is-invalid');
+            });
+            
+            // إعادة تعيين الخيارات
+            selectedOptions.clear();
+            document.querySelectorAll('.option-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            // إخفاء التحذيرات
+            document.getElementById('optionsWarning').classList.add('d-none');
+            
+            // إظهار النموذج
+            showForm();
+        }
+
+        // إظهار النموذج
+        function showForm() {
+            document.getElementById('formSection').classList.remove('d-none');
+            document.getElementById('resultSection').classList.add('d-none');
+            document.getElementById('loadingSection').classList.add('d-none');
+        }
+    </script>
+</body>
+</html>

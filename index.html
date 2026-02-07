@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,6 +16,7 @@
             height: 400px;
             position: relative;
         }
+
         .hero-overlay {
             background-color: rgba(0, 0, 0, 0.5);
             position: absolute;
@@ -23,15 +25,19 @@
             width: 100%;
             height: 100%;
         }
+
         .product-card {
             transition: transform 0.3s;
         }
+
         .product-card:hover {
             transform: translateY(-5px);
         }
+
         .cart-icon {
             position: relative;
         }
+
         .cart-count {
             position: absolute;
             top: -10px;
@@ -48,6 +54,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- شريط التنقل مع سلة التسوق -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-success">
@@ -62,7 +69,8 @@
                         <a class="nav-link active" href="#">الرئيسية</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown">
                             المنتجات
                         </a>
                         <ul class="dropdown-menu">
@@ -71,6 +79,7 @@
                             <li><a class="dropdown-item" href="#">المشروبات</a></li>
                         </ul>
                     </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="#">عن الأسرة</a>
                     </li>
@@ -78,6 +87,16 @@
                         <a class="nav-link" href="#">اتصل بنا</a>
                     </li>
                 </ul>
+                <div class="col-md-4 mb-4">
+                    <div class="card feature-card">
+                        <div class="card-body text-center">
+                            <i class="fas fa-robot fa-3x text-primary mb-3"></i>
+                            <h5>مخطط الأعمال الذكي</h5>
+                            <p>احصل على خطة عمل متكاملة باستخدام الذكاء الاصطناعي</p>
+                            <a href="ai-business-idea.html" class="btn btn-primary">جرب الآن</a>
+                        </div>
+                    </div>
+                </div>
                 <div class="d-flex align-items-center">
                     <a href="cart.html" class="btn btn-light cart-icon me-3">
                         <i class="fas fa-shopping-cart"></i>
@@ -108,47 +127,53 @@
             <!-- منتج 1 -->
             <div class="col-md-4 mb-4">
                 <div class="card product-card h-100">
-                    <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="وجبة عمانية">
+                    <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                        class="card-img-top" alt="وجبة عمانية">
                     <div class="card-body">
                         <h5 class="card-title">وجبة عمانية تقليدية</h5>
                         <p class="card-text">وجبة كاملة من الأرز واللحم مع الخضار والتوابل العمانية الخاصة.</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <span class="fw-bold text-success">5.00 ر.ع</span>
-                            <button class="btn btn-sm btn-outline-success add-to-cart" data-product="وجبة عمانية تقليدية" data-price="5.00">
+                            <button class="btn btn-sm btn-outline-success add-to-cart"
+                                data-product="وجبة عمانية تقليدية" data-price="5.00">
                                 <i class="fas fa-shopping-cart"></i> أضف للسلة
                             </button>
                         </div>
                     </div>
                 </div>
             </div>
-            
+
             <!-- منتج 2 -->
             <div class="col-md-4 mb-4">
                 <div class="card product-card h-100">
-                    <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="سلطة عمانية">
+                    <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                        class="card-img-top" alt="سلطة عمانية">
                     <div class="card-body">
                         <h5 class="card-title">سلطة عمانية</h5>
                         <p class="card-text">سلطة طازجة مكونة من خضروات موسمية مع تتبيلة عمانية سرية.</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <span class="fw-bold text-success">3.50 ر.ع</span>
-                            <button class="btn btn-sm btn-outline-success add-to-cart" data-product="سلطة عمانية" data-price="3.50">
+                            <button class="btn btn-sm btn-outline-success add-to-cart" data-product="سلطة عمانية"
+                                data-price="3.50">
                                 <i class="fas fa-shopping-cart"></i> أضف للسلة
                             </button>
                         </div>
                     </div>
                 </div>
             </div>
-            
+
             <!-- منتج 3 -->
             <div class="col-md-4 mb-4">
                 <div class="card product-card h-100">
-                    <img src="https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="حلويات عمانية">
+                    <img src="https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                        class="card-img-top" alt="حلويات عمانية">
                     <div class="card-body">
                         <h5 class="card-title">حلويات عمانية</h5>
                         <p class="card-text">تشكيلة من الحلويات العمانية التقليدية المصنوعة يدوياً.</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <span class="fw-bold text-success">4.00 ر.ع</span>
-                            <button class="btn btn-sm btn-outline-success add-to-cart" data-product="حلويات عمانية" data-price="4.00">
+                            <button class="btn btn-sm btn-outline-success add-to-cart" data-product="حلويات عمانية"
+                                data-price="4.00">
                                 <i class="fas fa-shopping-cart"></i> أضف للسلة
                             </button>
                         </div>
@@ -156,7 +181,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="text-center mt-3">
             <a href="#" class="btn btn-success">عرض جميع المنتجات</a>
         </div>
@@ -199,17 +224,17 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
+
     <script>
         // دالة لإضافة منتج إلى السلة
         document.querySelectorAll('.add-to-cart').forEach(button => {
-            button.addEventListener('click', function() {
+            button.addEventListener('click', function () {
                 const productName = this.getAttribute('data-product');
                 const productPrice = this.getAttribute('data-price');
-                
+
                 // هنا يمكنك إضافة الكود لحفظ المنتج في localStorage أو إرساله إلى الخادم
                 alert(`تمت إضافة ${productName} إلى سلة التسوق بسعر ${productPrice} ر.ع`);
-                
+
                 // توجيه المستخدم إلى صفحة السلة
                 window.location.href = "cart.html";
             });
@@ -227,4 +252,5 @@
         updateCartCount();
     </script>
 </body>
+
 </html>

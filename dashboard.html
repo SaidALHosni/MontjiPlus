@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,22 +13,28 @@
             min-height: 100vh;
             background-color: #2c3e50;
         }
+
         .sidebar .nav-link {
             color: rgba(255, 255, 255, 0.8);
             padding: 0.75rem 1rem;
             border-radius: 0.25rem;
             margin-bottom: 0.25rem;
         }
-        .sidebar .nav-link:hover, .sidebar .nav-link.active {
+
+        .sidebar .nav-link:hover,
+        .sidebar .nav-link.active {
             background-color: rgba(255, 255, 255, 0.1);
             color: white;
         }
+
         .sidebar .nav-link i {
             margin-left: 0.5rem;
         }
+
         .main-content {
             background-color: #f8f9fa;
         }
+
         .card {
             border: none;
             border-radius: 10px;
@@ -35,6 +42,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="d-flex">
         <!-- الشريط الجانبي -->
@@ -86,18 +94,36 @@
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h2>لوحة التحكم</h2>
                 <div class="dropdown">
-                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown">
+                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                        data-bs-toggle="dropdown">
                         <i class="fas fa-user-circle me-1"></i> البائع
                     </button>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="#">الملف الشخصي</a></li>
                         <li><a class="dropdown-item" href="#">الإعدادات</a></li>
-                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
                         <li><a class="dropdown-item" href="#">تسجيل الخروج</a></li>
                     </ul>
                 </div>
             </div>
-
+            <div class="col-md-3 mb-3">
+                <div class="card bg-info text-white">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <h6 class="card-title">مساعد الذكاء الاصطناعي</h6>
+                                <h3 class="card-text">جديد</h3>
+                            </div>
+                            <i class="fas fa-robot fa-3x opacity-50"></i>
+                        </div>
+                        <a href="ai-business-idea.html" class="btn btn-light btn-sm mt-2 w-100">
+                            تجربة الأداة
+                        </a>
+                    </div>
+                </div>
+            </div>
             <!-- بطاقات الإحصائيات -->
             <div class="row mb-4">
                 <div class="col-md-3 mb-3">
@@ -237,38 +263,47 @@
                             <tbody>
                                 <tr>
                                     <td>1</td>
-                                    <td><img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&auto=format&fit=crop&w=50&h=50&q=80" class="rounded" alt="وجبة عمانية"></td>
+                                    <td><img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&auto=format&fit=crop&w=50&h=50&q=80"
+                                            class="rounded" alt="وجبة عمانية"></td>
                                     <td>وجبة عمانية تقليدية</td>
                                     <td>5.00 ر.ع</td>
                                     <td>15</td>
                                     <td><span class="badge bg-success">متوفر</span></td>
                                     <td>
-                                        <button class="btn btn-sm btn-outline-primary"><i class="fas fa-edit"></i></button>
-                                        <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
+                                        <button class="btn btn-sm btn-outline-primary"><i
+                                                class="fas fa-edit"></i></button>
+                                        <button class="btn btn-sm btn-outline-danger"><i
+                                                class="fas fa-trash"></i></button>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>2</td>
-                                    <td><img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&auto=format&fit=crop&w=50&h=50&q=80" class="rounded" alt="سلطة عمانية"></td>
+                                    <td><img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&auto=format&fit=crop&w=50&h=50&q=80"
+                                            class="rounded" alt="سلطة عمانية"></td>
                                     <td>سلطة عمانية</td>
                                     <td>3.50 ر.ع</td>
                                     <td>8</td>
                                     <td><span class="badge bg-success">متوفر</span></td>
                                     <td>
-                                        <button class="btn btn-sm btn-outline-primary"><i class="fas fa-edit"></i></button>
-                                        <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
+                                        <button class="btn btn-sm btn-outline-primary"><i
+                                                class="fas fa-edit"></i></button>
+                                        <button class="btn btn-sm btn-outline-danger"><i
+                                                class="fas fa-trash"></i></button>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>3</td>
-                                    <td><img src="https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?ixlib=rb-1.2.1&auto=format&fit=crop&w=50&h=50&q=80" class="rounded" alt="حلويات عمانية"></td>
+                                    <td><img src="https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?ixlib=rb-1.2.1&auto=format&fit=crop&w=50&h=50&q=80"
+                                            class="rounded" alt="حلويات عمانية"></td>
                                     <td>حلويات عمانية</td>
                                     <td>4.00 ر.ع</td>
                                     <td>0</td>
                                     <td><span class="badge bg-danger">غير متوفر</span></td>
                                     <td>
-                                        <button class="btn btn-sm btn-outline-primary"><i class="fas fa-edit"></i></button>
-                                        <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
+                                        <button class="btn btn-sm btn-outline-primary"><i
+                                                class="fas fa-edit"></i></button>
+                                        <button class="btn btn-sm btn-outline-danger"><i
+                                                class="fas fa-trash"></i></button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -315,4 +350,5 @@
         });
     </script>
 </body>
+
 </html>
