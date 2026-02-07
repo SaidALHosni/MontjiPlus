@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تقارير المبيعات - منتجي</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .reports-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+        .report-card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+        }
+        .report-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        .filter-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0;
+        }
+        .stat-change {
+            font-size: 0.9rem;
+        }
+        .table-hover tbody tr:hover {
+            background-color: rgba(0,0,0,0.02);
+        }
+        .export-btn {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 1000;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .time-filter {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 10px;
+        }
+        .time-filter .btn-group {
+            width: 100%;
+        }
+        .time-filter .btn {
+            flex: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- شريط التنقل -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-leaf me-2"></i>منتجي
+            </a>
+            <div class="d-flex align-items-center">
+                <div class="dropdown me-3">
+                    <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                        <i class="fas fa-chart-line me-1"></i>التقارير
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="sales-reports.html">تقارير المبيعات</a></li>
+                        <li><a class="dropdown-item" href="customer-analytics.html">تحليل العملاء</a></li>
+                        <li><a class="dropdown-item" href="inventory-reports.html">تقارير المخزون</a></li>
+                        <li><a class="dropdown-item" href="hr-reports.html">تقارير الموارد البشرية</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="reports-dashboard.html">لوحة التقارير</a></li>
+                    </ul>
+                </div>
+                <a href="dashboard.html" class="btn btn-outline-light">
+                    <i class="fas fa-tachometer-alt me-1"></i>لوحة التحكم
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- عنوان الصفحة -->
+    <section class="reports-header">
+        <div class="container">
+            <h1 class="display-4 fw-bold mb-3">تقارير المبيعات</h1>
+            <p class="lead mb-0">تحليلات شاملة ومفصلة لأداء مبيعات متجرك</p>
+        </div>
+    </section>
+
+    <!-- محتوى الصفحة -->
+    <section class="py-5">
+        <div class="container">
+            <!-- بطاقات الإحصائيات -->
+            <div class="row mb-4">
+                <div class="col-md-3 mb-3">
+                    <div class="report-card">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <div>
+                                    <p class="text-muted mb-1">إجمالي المبيعات</p>
+                                    <h2 class="stat-number text-success">2,458 ر.ع</h2>
+                                    <span class="stat-change text-success">
+                                        <i class="fas fa-arrow-up me-1"></i>15% عن الشهر الماضي
+                                    </span>
+                                </div>
+                                <div class="feature-icon bg-success text-white rounded-circle p-3">
+                                    <i class="fas fa-shopping-cart fa-2x"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="report-card">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <div>
+                                    <p class="text-muted mb-1">عدد الطلبات</p>
+                                    <h2 class="stat-number text-primary">124</h2>
+                                    <span class="stat-change text-primary">
+                                        <i class="fas fa-arrow-up me-1"></i>8% عن الشهر الماضي
+                                    </span>
+                                </div>
+                                <div class="feature-icon bg-primary text-white rounded-circle p-3">
+                                    <i class="fas fa-clipboard-list fa-2x"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="report-card">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <div>
+                                    <p class="text-muted mb-1">متوسط قيمة الطلب</p>
+                                    <h2 class="stat-number text-warning">19.8 ر.ع</h2>
+                                    <span class="stat-change text-warning">
+                                        <i class="fas fa-arrow-up me-1"></i>12% عن الشهر الماضي
+                                    </span>
+                                </div>
+                                <div class="feature-icon bg-warning text-white rounded-circle p-3">
+                                    <i class="fas fa-money-bill-wave fa-2x"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="report-card">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <div>
+                                    <p class="text-muted mb-1">العملاء الجدد</p>
+                                    <h2 class="stat-number text-info">48</h2>
+                                    <span class="stat-change text-danger">
+                                        <i class="fas fa-arrow-down me-1"></i>5% عن الشهر الماضي
+                                    </span>
+                                </div>
+                                <div class="feature-icon bg-info text-white rounded-circle p-3">
+                                    <i class="fas fa-user-plus fa-2x"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- الفلاتر والرسوم البيانية -->
+            <div class="row">
+                <!-- الفلاتر -->
+                <div class="col-lg-4 mb-4">
+                    <div class="filter-card sticky-top" style="top: 20px;">
+                        <h5 class="mb-4">تصفية التقارير</h5>
+                        
+                        <!-- الفترة الزمنية -->
+                        <div class="mb-4">
+                            <h6 class="mb-3">الفترة الزمنية</h6>
+                            <div class="time-filter">
+                                <div class="btn-group btn-group-sm" role="group">
+                                    <button type="button" class="btn btn-outline-primary active">اليوم</button>
+                                    <button type="button" class="btn btn-outline-primary">الأسبوع</button>
+                                    <button type="button" class="btn btn-outline-primary">الشهر</button>
+                                    <button type="button" class="btn btn-outline-primary">السنة</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- التاريخ المخصص -->
+                        <div class="mb-4">
+                            <h6 class="mb-3">تاريخ مخصص</h6>
+                            <div class="row g-2">
+                                <div class="col-6">
+                                    <label class="form-label small">من تاريخ</label>
+                                    <input type="date" class="form-control form-control-sm">
+                                </div>
+                                <div class="col-6">
+                                    <label class="form-label small">إلى تاريخ</label>
+                                    <input type="date" class="form-control form-control-sm">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- فئة المنتج -->
+                        <div class="mb-4">
+                            <h6 class="mb-3">فئة المنتج</h6>
+                            <select class="form-select form-select-sm" multiple>
+                                <option value="all">جميع الفئات</option>
+                                <option value="electronics">الإلكترونيات</option>
+                                <option value="furniture">الأثاث</option>
+                                <option value="handicrafts">المشغولات اليدوية</option>
+                                <option value="food">المنتجات الغذائية</option>
+                            </select>
+                            <small class="text-muted">اضغط Ctrl/Command لاختيار أكثر من فئة</small>
+                        </div>
+                        
+                        <!-- البائع -->
+                        <div class="mb-4">
+                            <h6 class="mb-3">رائد الأعمال</h6>
+                            <select class="form-select form-select-sm">
+                                <option value="">جميع البائعين</option>
+                                <option value="1">شركة التقنية العمانية</option>
+                                <option value="2">إلكترونيات النخبة</option>
+                                <option value="3">تكنو عمان</option>
+                            </select>
+                        </div>
+                        
+                        <button class="btn btn-success w-100" onclick="applyReportFilters()">
+                            <i class="fas fa-filter me-2"></i>تطبيق التصفية
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- الرسوم البيانية -->
+                <div class="col-lg-8">
+                    <!-- رسم بياني للمبيعات -->
+                    <div class="report-card mb-4">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h5 class="mb-0">تطور المبيعات الشهرية</h5>
+                                <div class="dropdown">
+                                    <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                        <i class="fas fa-download me-1"></i>تصدير
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#" onclick="exportChart('salesChart', 'PNG')">صورة PNG</a></li>
+                                        <li><a class="dropdown-item" href="#" onclick="exportChart('salesChart', 'JPEG')">صورة JPEG</a></li>
+                                        <li><a class="dropdown-item" href="#" onclick="exportChartData('sales')">بيانات CSV</a></li>
+                                        <li><a class="dropdown-item" href="#" onclick="exportChartData('sales', 'PDF')">ملف PDF</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <canvas id="salesChart" height="250"></canvas>
+                        </div>
+                    </div>
+                    
+                    <!-- رسم بياني للمنتجات -->
+                    <div class="report-card mb-4">
+                        <div class="card-body">
+                            <h5 class="mb-4">أفضل المنتجات مبيعاً</h5>
+                            <canvas id="productsChart" height="250"></canvas>
+                        </div>
+                    </div>
+                    
+                    <!-- جدول الطلبات الأخيرة -->
+                    <div class="report-card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h5 class="mb-0">الطلبات الأخيرة</h5>
+                                <a href="#" class="btn btn-sm btn-outline-primary">عرض الكل</a>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>رقم الطلب</th>
+                                            <th>التاريخ</th>
+                                            <th>العميل</th>
+                                            <th>المبلغ</th>
+                                            <th>الحالة</th>
+                                            <th>الإجراءات</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>#1001</td>
+                                            <td>15/10/2023</td>
+                                            <td>أحمد سالم</td>
+                                            <td>45 ر.ع</td>
+                                            <td><span class="badge bg-success">مكتمل</span></td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-info" data-bs-toggle="modal" data-bs-target="#orderDetailsModal">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>#1000</td>
+                                            <td>14/10/2023</td>
+                                            <td>فاطمة النوفلية</td>
+                                            <td>120 ر.ع</td>
+                                            <td><span class="badge bg-primary">تم الشحن</span></td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-info" data-bs-toggle="modal" data-bs-target="#orderDetailsModal">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>#999</td>
+                                            <td>13/10/2023</td>
+                                            <td>محمد البلوشي</td>
+                                            <td>25 ر.ع</td>
+                                            <td><span class="badge bg-warning text-dark">قيد التجهيز</span></td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-info" data-bs-toggle="modal" data-bs-target="#orderDetailsModal">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>#998</td>
+                                            <td>12/10/2023</td>
+                                            <td>سالم الشقصي</td>
+                                            <td>35 ر.ع</td>
+                                            <td><span class="badge bg-success">مكتمل</span></td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-info" data-bs-toggle="modal" data-bs-target="#orderDetailsModal">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>#997</td>
+                                            <td>11/10/2023</td>
+                                            <td>نورة الفارسية</td>
+                                            <td>55 ر.ع</td>
+                                            <td><span class="badge bg-danger">ملغى</span></td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-info" data-bs-toggle="modal" data-bs-target="#orderDetailsModal">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- زر التصدير الثابت -->
+    <button class="btn btn-primary export-btn rounded-circle p-3" data-bs-toggle="dropdown">
+        <i class="fas fa-file-export fa-2x"></i>
+    </button>
+    <ul class="dropdown-menu">
+        <li><h6 class="dropdown-header">تصدير التقرير</h6></li>
+        <li><a class="dropdown-item" href="#" onclick="exportReport('PDF')"><i class="fas fa-file-pdf me-2"></i>ملف PDF</a></li>
+        <li><a class="dropdown-item" href="#" onclick="exportReport('EXCEL')"><i class="fas fa-file-excel me-2"></i>ملف Excel</a></li>
+        <li><a class="dropdown-item" href="#" onclick="exportReport('CSV')"><i class="fas fa-file-csv me-2"></i>ملف CSV</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="#" onclick="printReport()"><i class="fas fa-print me-2"></i>طباعة التقرير</a></li>
+    </ul>
+
+    <!-- مودال تفاصيل الطلب -->
+    <div class="modal fade" id="orderDetailsModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">تفاصيل الطلب #1001</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6>معلومات العميل</h6>
+                            <p><strong>الاسم:</strong> أحمد سالم</p>
+                            <p><strong>الهاتف:</strong> +968 9123 4567</p>
+                            <p><strong>البريد:</strong> ahmed@example.com</p>
+                            <p><strong>العنوان:</strong> مسقط - الخوير</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>معلومات الطلب</h6>
+                            <p><strong>التاريخ:</strong> 15/10/2023 10:30</p>
+                            <p><strong>الحالة:</strong> <span class="badge bg-success">مكتمل</span></p>
+                            <p><strong>طريقة الدفع:</strong> بطاقة ائتمان</p>
+                            <p><strong>التوصيل:</strong> توصيل سريع</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <h6>المنتجات</h6>
+                    <div class="table-responsive">
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>المنتج</th>
+                                    <th>الكمية</th>
+                                    <th>السعر</th>
+                                    <th>الإجمالي</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>سماعات لاسلكية بلوتوث</td>
+                                    <td>1</td>
+                                    <td>45 ر.ع</td>
+                                    <td>45 ر.ع</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="3" class="text-end"><strong>الإجمالي:</strong></td>
+                                    <td>45 ر.ع</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+                    <button type="button" class="btn btn-primary">طباعة الفاتورة</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- الفوتر -->
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2023 منتجي. جميع الحقوق محفوظة.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-white-50 text-decoration-none me-3">مساعدة</a>
+                    <a href="#" class="text-white-50 text-decoration-none">اتصل بنا</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- مكتبات JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+    
+    <script>
+        // تهيئة الرسوم البيانية
+        document.addEventListener('DOMContentLoaded', function() {
+            initCharts();
+            setupEventListeners();
+        });
+
+        // الرسوم البيانية
+        let salesChart, productsChart;
+
+        function initCharts() {
+            // رسم بياني للمبيعات
+            const salesCtx = document.getElementById('salesChart').getContext('2d');
+            salesChart = new Chart(salesCtx, {
+                type: 'line',
+                data: {
+                    labels: ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر'],
+                    datasets: [{
+                        label: 'المبيعات الشهرية (ر.ع)',
+                        data: [1200, 1900, 1500, 2100, 1800, 2200, 2000, 2400, 2100, 2458],
+                        borderColor: '#28a745',
+                        backgroundColor: 'rgba(40, 167, 69, 0.1)',
+                        borderWidth: 3,
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return value + ' ر.ع';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // رسم بياني للمنتجات
+            const productsCtx = document.getElementById('productsChart').getContext('2d');
+            productsChart = new Chart(productsCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['سماعات لاسلكية', 'شواحن متنقلة', 'ساعات ذكية', 'لوحات مفاتيح', 'كاميرات ويب'],
+                    datasets: [{
+                        label: 'عدد المبيعات',
+                        data: [48, 36, 62, 41, 28],
+                        backgroundColor: [
+                            '#ff6384',
+                            '#36a2eb',
+                            '#ffce56',
+                            '#4bc0c0',
+                            '#9966ff'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        // إعداد مستمعي الأحداث
+        function setupEventListeners() {
+            // الفلاتر الزمنية
+            document.querySelectorAll('.time-filter .btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.time-filter .btn').forEach(b => {
+                        b.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                    
+                    // تحديث البيانات بناءً على الفترة
+                    updateChartData(this.textContent);
+                });
+            });
+
+            // فلاتر الفئات
+            const categorySelect = document.querySelector('select[multiple]');
+            if (categorySelect) {
+                categorySelect.addEventListener('mousedown', function(e) {
+                    e.preventDefault();
+                    const option = e.target;
+                    if (option.tagName === 'OPTION') {
+                        option.selected = !option.selected;
+                        this.dispatchEvent(new Event('change'));
+                    }
+                });
+                
+                categorySelect.addEventListener('change', function() {
+                    console.log('الفئات المختارة:', Array.from(this.selectedOptions).map(o => o.value));
+                });
+            }
+        }
+
+        // تحديث البيانات
+        function updateChartData(timePeriod) {
+            let data;
+            switch(timePeriod) {
+                case 'اليوم':
+                    data = [45, 120, 25, 35, 55, 45, 30];
+                    break;
+                case 'الأسبوع':
+                    data = [500, 600, 550, 700, 650, 750, 800];
+                    break;
+                case 'الشهر':
+                    data = [1200, 1900, 1500, 2100, 1800, 2200, 2000, 2400, 2100, 2458];
+                    break;
+                case 'السنة':
+                    data = [12000, 19000, 15000, 21000, 18000, 22000, 20000, 24000, 21000, 24580, 25000, 26000];
+                    break;
+            }
+            
+            salesChart.data.datasets[0].data = data;
+            salesChart.update();
+        }
+
+        // تطبيق فلاتر التقارير
+        function applyReportFilters() {
+            alert('تم تطبيق التصفيات بنجاح!');
+            // هنا يمكنك إضافة منطق التصفية الفعلي
+        }
+
+        // تصدير الرسم البياني
+        function exportChart(chartId, format) {
+            const chart = chartId === 'salesChart' ? salesChart : productsChart;
+            const link = document.createElement('a');
+            link.download = `chart_${chartId}_${new Date().getTime()}.${format.toLowerCase()}`;
+            link.href = chart.toBase64Image(`image/${format.toLowerCase()}`, 1);
+            link.click();
+        }
+
+        // تصدير بيانات الرسم البياني
+        function exportChartData(type, format = 'CSV') {
+            let data, filename;
+            
+            if (type === 'sales') {
+                data = "الشهر,المبيعات\n" + 
+                       salesChart.data.labels.map((label, i) => 
+                           `${label},${salesChart.data.datasets[0].data[i]}`
+                       ).join("\n");
+                filename = 'sales_data';
+            }
+            
+            const blob = new Blob([data], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `${filename}_${new Date().getTime()}.${format.toLowerCase()}`;
+            link.click();
+        }
+
+        // تصدير التقرير
+        function exportReport(format) {
+            alert(`سيتم تصدير التقرير بصيغة ${format}`);
+            // هنا يمكنك إضافة منطق التصدير الفعلي
+        }
+
+        // طباعة التقرير
+        function printReport() {
+            window.print();
+        }
+    </script>
+</body>
+</html>

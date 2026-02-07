@@ -52,6 +52,35 @@
             align-items: center;
             justify-content: center;
         }
+
+        .ai-feature-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 15px;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s;
+            margin-bottom: 20px;
+        }
+
+        .ai-feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .dropdown-menu .dropdown-item {
+            padding: 8px 20px;
+        }
+
+        .dropdown-menu .dropdown-item:hover {
+            background-color: #f8f9fa;
+        }
+
+        .nav-link.active {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+        }
     </style>
 </head>
 
@@ -59,51 +88,163 @@
     <!-- شريط التنقل مع سلة التسوق -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-success">
         <div class="container">
-            <a class="navbar-brand" href="#">منتجي</a>
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-leaf me-2"></i>منتجي
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">الرئيسية</a>
+                        <a class="nav-link active" href="index.html">الرئيسية</a>
                     </li>
+
+                    <!-- قائمة المنتجات المنسدلة -->
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        <a class="nav-link dropdown-toggle" href="#" id="productsDropdown" role="button"
                             data-bs-toggle="dropdown">
                             المنتجات
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">الوجبات الغذائية</a></li>
-                            <li><a class="dropdown-item" href="#">المأكولات التقليدية</a></li>
-                            <li><a class="dropdown-item" href="#">المشروبات</a></li>
+                            <li>
+                                <h6 class="dropdown-header">فئات المنتجات</h6>
+                            </li>
+                            <li><a class="dropdown-item" href="electronics.html">
+                                    <i class="fas fa-laptop me-2"></i>الإلكترونيات
+                                </a></li>
+                            <li><a class="dropdown-item" href="furniture.html">
+                                    <i class="fas fa-couch me-2"></i>الأثاث
+                                </a></li>
+                            <li><a class="dropdown-item" href="handicrafts.html">
+                                    <i class="fas fa-hands me-2"></i>المشغولات اليدوية
+                                </a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="food-products.html">
+                                    <i class="fas fa-utensils me-2"></i>المنتجات الغذائية
+                                </a></li>
+                            <li><a class="dropdown-item" href="traditional-products.html">
+                                    <i class="fas fa-mosque me-2"></i>المنتجات التقليدية
+                                </a></li>
+                        </ul>
+                    </li>
+
+                    <!-- قائمة ريادة الأعمال المنسدلة -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="entrepreneurshipDropdown" role="button"
+                            data-bs-toggle="dropdown">
+                            ريادة الأعمال
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <h6 class="dropdown-header">خدمات ريادة الأعمال</h6>
+                            </li>
+                            <li><a class="dropdown-item" href="entrepreneurship-hub.html">
+                                    <i class="fas fa-rocket me-2"></i>مركز ريادة الأعمال
+                                </a></li>
+                            <li><a class="dropdown-item" href="ai-business-idea.html">
+                                    <i class="fas fa-robot me-2"></i>مخطط الأعمال الذكي
+                                </a></li>
+                            <li><a class="dropdown-item" href="training-courses.html">
+                                    <i class="fas fa-graduation-cap me-2"></i>الدورات التدريبية
+                                </a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="register-entrepreneur.html">
+                                    <i class="fas fa-user-plus me-2"></i>انضم كرائد أعمال
+                                </a></li>
+                        </ul>
+                    </li>
+
+                    <!-- قائمة التقارير المنسدلة -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="reportsDropdown" role="button"
+                            data-bs-toggle="dropdown">
+                            التقارير
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <h6 class="dropdown-header">التقارير والإحصائيات</h6>
+                            </li>
+                            <li><a class="dropdown-item" href="sales-reports.html">
+                                    <i class="fas fa-chart-line me-2"></i>تقارير المبيعات
+                                </a></li>
+                            <li><a class="dropdown-item" href="customer-analytics.html">
+                                    <i class="fas fa-users me-2"></i>تحليل العملاء
+                                </a></li>
+                            <li><a class="dropdown-item" href="inventory-reports.html">
+                                    <i class="fas fa-boxes me-2"></i>تقارير المخزون
+                                </a></li>
+                            <li><a class="dropdown-item" href="hr-reports.html">
+                                    <i class="fas fa-user-tie me-2"></i>تقارير الموارد البشرية
+                                </a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="reports-dashboard.html">
+                                    <i class="fas fa-tachometer-alt me-2"></i>لوحة التقارير
+                                </a></li>
+                        </ul>
+                    </li>
+
+                    <!-- قائمة الإدارة المنسدلة -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="managementDropdown" role="button"
+                            data-bs-toggle="dropdown">
+                            الإدارة
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <h6 class="dropdown-header">إدارة العمليات</h6>
+                            </li>
+                            <li><a class="dropdown-item" href="raw-materials.html">
+                                    <i class="fas fa-industry me-2"></i>المواد الخام
+                                </a></li>
+                            <li><a class="dropdown-item" href="inventory-management.html">
+                                    <i class="fas fa-warehouse me-2"></i>إدارة المخزون
+                                </a></li>
+                            <li><a class="dropdown-item" href="hr-management.html">
+                                    <i class="fas fa-user-friends me-2"></i>الموارد البشرية
+                                </a></li>
+                            <li><a class="dropdown-item" href="suppliers.html">
+                                    <i class="fas fa-truck me-2"></i>الموردين
+                                </a></li>
                         </ul>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">عن الأسرة</a>
+                        <a class="nav-link" href="about.html">عن منتجي</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">اتصل بنا</a>
+                        <a class="nav-link" href="contact.html">اتصل بنا</a>
                     </li>
                 </ul>
-                <div class="col-md-4 mb-4">
-                    <div class="card feature-card">
-                        <div class="card-body text-center">
-                            <i class="fas fa-robot fa-3x text-primary mb-3"></i>
-                            <h5>مخطط الأعمال الذكي</h5>
-                            <p>احصل على خطة عمل متكاملة باستخدام الذكاء الاصطناعي</p>
-                            <a href="ai-business-idea.html" class="btn btn-primary">جرب الآن</a>
-                        </div>
+
+                <!-- بطاقة الذكاء الاصطناعي في الشريط -->
+                <div class="d-none d-lg-block me-4">
+                    <div class="ai-feature-card">
+                        <i class="fas fa-robot fa-2x mb-3"></i>
+                        <h6 class="mb-2">مخطط الأعمال الذكي</h6>
+                        <p class="small mb-2">احصل على خطة عمل متكاملة</p>
+                        <a href="ai-business-idea.html" class="btn btn-light btn-sm">جرب الآن</a>
                     </div>
                 </div>
+
+                <!-- أزرار تسجيل الدخول والسلة -->
                 <div class="d-flex align-items-center">
                     <a href="cart.html" class="btn btn-light cart-icon me-3">
                         <i class="fas fa-shopping-cart"></i>
                         <span class="cart-count">3</span>
                     </a>
-                    <a href="login.html" class="btn btn-outline-light me-2">تسجيل الدخول</a>
-                    <a href="register.html" class="btn btn-light">تسجيل جديد</a>
+                    <a href="login.html" class="btn btn-outline-light me-2">
+                        <i class="fas fa-sign-in-alt me-1"></i>تسجيل الدخول
+                    </a>
+                    <a href="register.html" class="btn btn-light">
+                        <i class="fas fa-user-plus me-1"></i>تسجيل جديد
+                    </a>
                 </div>
             </div>
         </div>
@@ -115,7 +256,71 @@
             <div class="text-center text-white">
                 <h1 class="display-4 fw-bold">منتجات الأسرة العمانية الأصيلة</h1>
                 <p class="lead">جودة عالية ونكهة لا تقاوم</p>
-                <a href="#products" class="btn btn-warning btn-lg mt-3">تسوق الآن</a>
+                <a href="#products" class="btn btn-warning btn-lg mt-3">
+                    <i class="fas fa-shopping-bag me-2"></i>تسوق الآن
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- بطاقات الخدمات السريعة -->
+    <div class="container mb-5">
+        <h2 class="text-center mb-4">خدماتنا المتكاملة</h2>
+        <div class="row">
+            <!-- بطاقة المنتجات -->
+            <div class="col-md-3 mb-4">
+                <div class="card text-center h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                        <div class="feature-icon bg-success text-white rounded-circle p-3 d-inline-flex mb-3">
+                            <i class="fas fa-shopping-bag fa-2x"></i>
+                        </div>
+                        <h5>المتجر الإلكتروني</h5>
+                        <p class="text-muted small">منتجات عمانية متنوعة بجودة عالية</p>
+                        <a href="electronics.html" class="btn btn-outline-success btn-sm">تصفح المنتجات</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- بطاقة ريادة الأعمال -->
+            <div class="col-md-3 mb-4">
+                <div class="card text-center h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                        <div class="feature-icon bg-primary text-white rounded-circle p-3 d-inline-flex mb-3">
+                            <i class="fas fa-rocket fa-2x"></i>
+                        </div>
+                        <h5>ريادة الأعمال</h5>
+                        <p class="text-muted small">ابدأ مشروعك الخاص مع منتجي</p>
+                        <a href="entrepreneurship-hub.html" class="btn btn-outline-primary btn-sm">ابدأ الآن</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- بطاقة الذكاء الاصطناعي -->
+            <div class="col-md-3 mb-4">
+                <div class="card text-center h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                        <div class="feature-icon bg-warning text-white rounded-circle p-3 d-inline-flex mb-3">
+                            <i class="fas fa-robot fa-2x"></i>
+                        </div>
+                        <h5>مساعد الذكاء الاصطناعي</h5>
+                        <p class="text-muted small">خطط لمشروعك باستخدام الذكاء الاصطناعي</p>
+                        <a href="ai-business-idea.html" class="btn btn-outline-warning btn-sm">جرب الأداة</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- بطاقة التقارير -->
+            <div class="col-md-3 mb-4">
+                <div class="card text-center h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                        <div class="feature-icon bg-info text-white rounded-circle p-3 d-inline-flex mb-3">
+                            <i class="fas fa-chart-line fa-2x"></i>
+                        </div>
+                        <h5>التقارير والإحصائيات</h5>
+                        <p class="text-muted small">تقارير متقدمة لمتابعة أداء مشروعك</p>
+                        <a href="sales-reports.html" class="btn btn-outline-info btn-sm">عرض التقارير</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -183,41 +388,143 @@
         </div>
 
         <div class="text-center mt-3">
-            <a href="#" class="btn btn-success">عرض جميع المنتجات</a>
+            <a href="food-products.html" class="btn btn-success">
+                <i class="fas fa-arrow-left me-2"></i>عرض جميع المنتجات
+            </a>
+        </div>
+    </div>
+
+    <!-- قسم روابط سريعة -->
+    <div class="container mb-5">
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <i class="fas fa-bullhorn text-primary me-2"></i>
+                            هل تريد بدء مشروعك الخاص؟
+                        </h5>
+                        <p class="card-text">انضم إلى مجتمع رواد الأعمال في منتجي واستفد من خدماتنا المتكاملة:</p>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> متجر إلكتروني مجاني
+                            </li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> دورات تدريبية مجانية
+                            </li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> دعم فني واستشاري</li>
+                            <li><i class="fas fa-check-circle text-success me-2"></i> خدمات لوجستية متكاملة</li>
+                        </ul>
+                        <a href="register-entrepreneur.html" class="btn btn-primary mt-3">
+                            <i class="fas fa-user-plus me-2"></i>سجل كرائد أعمال
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <i class="fas fa-chart-line text-success me-2"></i>
+                            أدوات متقدمة لإدارة مشروعك
+                        </h5>
+                        <p class="card-text">استخدم أدواتنا المتقدمة لمتابعة وتحسين أداء مشروعك:</p>
+                        <div class="row">
+                            <div class="col-6 mb-2">
+                                <a href="sales-reports.html" class="btn btn-outline-success btn-sm w-100 mb-2">
+                                    تقارير المبيعات
+                                </a>
+                            </div>
+                            <div class="col-6 mb-2">
+                                <a href="inventory-reports.html" class="btn btn-outline-success btn-sm w-100 mb-2">
+                                    تقارير المخزون
+                                </a>
+                            </div>
+                            <div class="col-6">
+                                <a href="customer-analytics.html" class="btn btn-outline-success btn-sm w-100">
+                                    تحليل العملاء
+                                </a>
+                            </div>
+                            <div class="col-6">
+                                <a href="hr-reports.html" class="btn btn-outline-success btn-sm w-100">
+                                    الموارد البشرية
+                                </a>
+                            </div>
+                        </div>
+                        <a href="dashboard.html" class="btn btn-success mt-3 w-100">
+                            <i class="fas fa-tachometer-alt me-2"></i>الذهاب إلى لوحة التحكم
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
     <!-- فوتر -->
-    <footer class="bg-dark text-white py-4">
+    <footer class="bg-dark text-white py-5">
         <div class="container">
             <div class="row">
-                <div class="col-md-4 mb-3">
-                    <h5>منتجي</h5>
-                    <p>منصة لعرض وبيع منتجات الأسرة العمانية المتميزة وخاصة الوجبات الغذائية التقليدية.</p>
+                <div class="col-lg-4 mb-4">
+                    <h4 class="mb-4">
+                        <i class="fas fa-leaf me-2"></i>منتجي
+                    </h4>
+                    <p>منصة عمانية متكاملة لدعم ريادة الأعمال والتجارة الإلكترونية. نساعدك في تحويل فكرتك إلى مشروع
+                        ناجح.</p>
+                    <div class="social-icons mt-3">
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook-f fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-twitter fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-instagram fa-lg"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-linkedin-in fa-lg"></i></a>
+                    </div>
                 </div>
-                <div class="col-md-4 mb-3">
-                    <h5>روابط سريعة</h5>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h5 class="mb-4">الخدمات</h5>
                     <ul class="list-unstyled">
-                        <li><a href="#" class="text-white">الرئيسية</a></li>
-                        <li><a href="#" class="text-white">المنتجات</a></li>
-                        <li><a href="#" class="text-white">عن الأسرة</a></li>
-                        <li><a href="#" class="text-white">اتصل بنا</a></li>
+                        <li class="mb-2"><a href="entrepreneurship-hub.html"
+                                class="text-white-50 text-decoration-none">ريادة الأعمال</a></li>
+                        <li class="mb-2"><a href="electronics.html" class="text-white-50 text-decoration-none">المتجر
+                                الإلكتروني</a></li>
+                        <li class="mb-2"><a href="training-courses.html"
+                                class="text-white-50 text-decoration-none">التدريب</a></li>
+                        <li class="mb-2"><a href="consultation.html" class="text-white-50 text-decoration-none">الدعم
+                                الفني</a></li>
+                        <li><a href="logistics.html" class="text-white-50 text-decoration-none">اللوجستيات</a></li>
                     </ul>
                 </div>
-                <div class="col-md-4 mb-3">
-                    <h5>تواصل معنا</h5>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h5 class="mb-4">الفئات</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="electronics.html"
+                                class="text-white-50 text-decoration-none">الإلكترونيات</a></li>
+                        <li class="mb-2"><a href="furniture.html" class="text-white-50 text-decoration-none">الأثاث</a>
+                        </li>
+                        <li class="mb-2"><a href="handicrafts.html" class="text-white-50 text-decoration-none">المشغولات
+                                اليدوية</a></li>
+                        <li class="mb-2"><a href="food-products.html"
+                                class="text-white-50 text-decoration-none">المنتجات الغذائية</a></li>
+                        <li><a href="traditional-products.html" class="text-white-50 text-decoration-none">المنتجات
+                                التقليدية</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h5 class="mb-4">اتصل بنا</h5>
+                    <p><i class="fas fa-map-marker-alt me-2"></i> مسقط، سلطنة عمان</p>
                     <p><i class="fas fa-phone me-2"></i> +968 1234 5678</p>
                     <p><i class="fas fa-envelope me-2"></i> info@montaji.com</p>
-                    <div class="social-icons">
-                        <a href="#" class="text-white me-2"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="text-white me-2"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="text-white me-2"><i class="fab fa-instagram"></i></a>
+                    <div class="input-group mt-3">
+                        <input type="email" class="form-control" placeholder="البريد الإلكتروني">
+                        <button class="btn btn-success" type="button">اشترك</button>
                     </div>
                 </div>
             </div>
-            <hr>
-            <div class="text-center">
-                <p class="mb-0">&copy; 2023 منتجي. جميع الحقوق محفوظة.</p>
+            <hr class="bg-light">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2023 منتجي. جميع الحقوق محفوظة.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="privacy-policy.html" class="text-white-50 text-decoration-none me-3">سياسة الخصوصية</a>
+                    <a href="terms.html" class="text-white-50 text-decoration-none">شروط الاستخدام</a>
+                </div>
             </div>
         </div>
     </footer>
@@ -240,7 +547,7 @@
             });
         });
 
-        // تحديث عداد السلة (يمكن استبداله بقيمة حقيقية من localStorage)
+        // تحديث عداد السلة
         function updateCartCount() {
             const cartCount = document.querySelector('.cart-count');
             // هنا يمكنك جلب عدد المنتجات من localStorage
@@ -250,6 +557,50 @@
 
         // تحديث العداد عند تحميل الصفحة
         updateCartCount();
+
+        // إضافة تأثيرات للبطاقات
+        document.addEventListener('DOMContentLoaded', function () {
+            // تأثير التمرير السلس للروابط
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // إضافة تأثيرات للبطاقات عند التمرير
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // مراقبة البطاقات
+            document.querySelectorAll('.product-card, .card').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(card);
+            });
+        });
     </script>
 </body>
 

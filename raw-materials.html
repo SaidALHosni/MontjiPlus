@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة المواد الخام - منتجي</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .materials-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                        url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        .material-card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            overflow: hidden;
+        }
+        .material-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        .inventory-level {
+            height: 10px;
+            border-radius: 5px;
+            background: #e9ecef;
+            overflow: hidden;
+        }
+        .inventory-level .progress-bar {
+            height: 100%;
+        }
+        .stock-alert {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+        .supplier-card {
+            border-left: 4px solid #28a745;
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 10px;
+        }
+        .order-timeline {
+            position: relative;
+            padding-right: 30px;
+        }
+        .order-timeline::before {
+            content: '';
+            position: absolute;
+            right: 10px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #dee2e6;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #28a745;
+            border: 2px solid white;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- شريط التنقل -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-leaf me-2"></i>منتجي
+            </a>
+            <div class="d-flex align-items-center">
+                <div class="dropdown me-3">
+                    <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                        <i class="fas fa-industry me-1"></i>الإدارة
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="raw-materials.html">المواد الخام</a></li>
+                        <li><a class="dropdown-item" href="inventory-reports.html">المخزون</a></li>
+                        <li><a class="dropdown-item" href="hr-reports.html">الموارد البشرية</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="dashboard.html">لوحة التحكم الرئيسية</a></li>
+                    </ul>
+                </div>
+                <a href="entrepreneurship-hub.html" class="btn btn-outline-light">
+                    <i class="fas fa-rocket me-1"></i>ريادة الأعمال
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- عنوان الصفحة -->
+    <section class="materials-header">
+        <div class="container">
+            <h1 class="display-4 fw-bold mb-3">إدارة المواد الخام</h1>
+            <p class="lead mb-0">نظام متكامل لإدارة وتتبع المواد الخام والمستلزمات</p>
+        </div>
+    </section>
+
+    <!-- محتوى الصفحة -->
+    <section class="py-5">
+        <div class="container">
+            <!-- بطاقات الإحصائيات -->
+            <div class="row mb-4">
+                <div class="col-md-3 mb-3">
+                    <div class="material-card">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <div>
+                                    <p class="text-muted mb-1">إجمالي المواد</p>
+                                    <h2 class="stat-number text-primary">24</h2>
+                                    <span class="stat-change text-primary">
+                                        <i class="fas fa-box me-1"></i>3 مواد جديدة
+                                    </span>
+                                </div>
+                                <div class="feature-icon bg-primary text-white rounded-circle p-3">
+                                    <i class="fas fa-cubes fa-2x"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="material-card">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <div>
+                                    <p class="text-muted mb-1">قيمة المخزون</p>
+                                    <h2 class="stat-number text-success">5,240 ر.ع</h2>
+                                    <span class="stat-change text-success">
+                                        <i class="fas fa-arrow-up me-1"></i>12% عن الشهر
+                                    </span>
+                                </div>
+                                <div class="feature-icon bg-success text-white rounded-circle p-3">
+                                    <i class="fas fa-money-bill-wave fa-2x"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="material-card">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <div>
+                                    <p class="text-muted mb-1">طلبات الشراء</p>
+                                    <h2 class="stat-number text-warning">8</h2>
+                                    <span class="stat-change text-warning">
+                                        <i class="fas fa-clock me-1"></i>2 قيد الانتظار
+                                    </span>
+                                </div>
+                                <div class="feature-icon bg-warning text-white rounded-circle p-3">
+                                    <i class="fas fa-shopping-cart fa-2x"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="material-card">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <div>
+                                    <p class="text-muted mb-1">الموردين النشطين</p>
+                                    <h2 class="stat-number text-info">12</h2>
+                                    <span class="stat-change text-info">
+                                        <i class="fas fa-handshake me-1"></i>4 موردين جدد
+                                    </span>
+                                </div>
+                                <div class="feature-icon bg-info text-white rounded-circle p-3">
+                                    <i class="fas fa-truck fa-2x"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- المواد الخام -->
+            <div class="row">
+                <div class="col-lg-8">
+                    <!-- قائمة المواد -->
+                    <div class="material-card mb-4">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h5 class="mb-0">المواد الخام</h5>
+                                <div>
+                                    <button class="btn btn-sm btn-success me-2" data-bs-toggle="modal" data-bs-target="#addMaterialModal">
+                                        <i class="fas fa-plus me-1"></i>إضافة مادة
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-primary" onclick="exportMaterials()">
+                                        <i class="fas fa-download me-1"></i>تصدير
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- شريط البحث -->
+                            <div class="row mb-4">
+                                <div class="col-md-6">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="ابحث عن مادة خام...">
+                                        <button class="btn btn-success" type="button">
+                                            <i class="fas fa-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <select class="form-select">
+                                        <option value="">جميع الفئات</option>
+                                        <option value="textiles">المنسوجات</option>
+                                        <option value="wood">الخشب</option>
+                                        <option value="metal">المعادن</option>
+                                        <option value="food">المواد الغذائية</option>
+                                        <option value="electronics">مكونات إلكترونية</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <!-- جدول المواد -->
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>المادة</th>
+                                            <th>الكود</th>
+                                            <th>الفئة</th>
+                                            <th>الكمية</th>
+                                            <th>نقطة إعادة الطلب</th>
+                                            <th>الحالة</th>
+                                            <th>الإجراءات</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="me-3">
+                                                        <div class="bg-primary text-white rounded-circle p-2">
+                                                            <i class="fas fa-tshirt"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <strong>قماش قطني</strong>
+                                                        <div class="text-muted small">خامة قطنية عالية الجودة</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>MAT-001</td>
+                                            <td><span class="badge bg-info">منسوجات</span></td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div style="width: 100px;" class="me-2">
+                                                        <div class="inventory-level">
+                                                            <div class="progress-bar bg-success" style="width: 85%"></div>
+                                                        </div>
+                                                    </div>
+                                                    <span>85/100 ياردة</span>
+                                                </div>
+                                            </td>
+                                            <td>20 ياردة</td>
+                                            <td>
+                                                <span class="badge bg-success">متوفر</span>
+                                            </td>
+                                            <td>
+                                                <div class="btn-group btn-group-sm">
+                                                    <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editMaterialModal">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                    <button class="btn btn-outline-success" onclick="reorderMaterial('MAT-001')">
+                                                        <i class="fas fa-sync"></i>
+                                                    </button>
+                                                    <button class="btn btn-outline-danger">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="me-3">
+                                                        <div class="bg-warning text-white rounded-circle p-2">
+                                                            <i class="fas fa-tree"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <strong>خشب زان</strong>
+                                                        <div class="text-muted small">خشب زان عالي الجودة</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>MAT-002</td>
+                                            <td><span class="badge bg-warning text-dark">خشب</span></td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div style="width: 100px;" class="me-2">
+                                                        <div class="inventory-level">
+                                                            <div class="progress-bar bg-warning" style="width: 45%"></div>
+                                                        </div>
+                                                    </div>
+                                                    <span>45/100 لوح</span>
+                                                </div>
+                                            </td>
+                                            <td>30 لوح</td>
+                                            <td>
+                                                <span class="badge bg-warning stock-alert">تحت المراقبة</span>
+                                            </td>
+                                            <td>
+                                                <div class="btn-group btn-group-sm">
+                                                    <button class="btn btn-outline-primary">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                    <button class="btn btn-outline-success" onclick="reorderMaterial('MAT-002')">
+                                                        <i class="fas fa-sync"></i>
+                                                    </button>
+                                                    <button class="btn btn-outline-danger">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="me-3">
+                                                        <div class="bg-danger text-white rounded-circle p-2">
+                                                            <i class="fas fa-bolt"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <strong>أسلاك نحاسية</strong>
+                                                        <div class="text-muted small">أسلاك نحاسية مختلفة المقاييس</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>MAT-003</td>
+                                            <td><span class="badge bg-danger">مكونات إلكترونية</span></td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div style="width: 100px;" class="me-2">
+                                                        <div class="inventory-level">
+                                                            <div class="progress-bar bg-danger" style="width: 15%"></div>
+                                                        </div>
+                                                    </div>
+                                                    <span>15/100 رول</span>
+                                                </div>
+                                            </td>
+                                            <td>25 رول</td>
+                                            <td>
+                                                <span class="badge bg-danger stock-alert">ناقص</span>
+                                            </td>
+                                            <td>
+                                                <div class="btn-group btn-group-sm">
+                                                    <button class="btn btn-outline-primary">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                    <button class="btn btn-outline-success" onclick="reorderMaterial('MAT-003')">
+                                                        <i class="fas fa-sync"></i>
+                                                    </button>
+                                                    <button class="btn btn-outline-danger">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="me-3">
+                                                        <div class="bg-success text-white rounded-circle p-2">
+                                                            <i class="fas fa-seedling"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <strong>تمر مجدول</strong>
+                                                        <div class="text-muted small">تمر عماني مجدول عالي الجودة</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>MAT-004</td>
+                                            <td><span class="badge bg-success">مواد غذائية</span></td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div style="width: 100px;" class="me-2">
+                                                        <div class="inventory-level">
+                                                            <div class="progress-bar bg-success" style="width: 75%"></div>
+                                                        </div>
+                                                    </div>
+                                                    <span>75/100 كيلو</span>
+                                                </div>
+                                            </td>
+                                            <td>20 كيلو</td>
+                                            <td>
+                                                <span class="badge bg-success">متوفر</span>
+                                            </td>
+                                            <td>
+                                                <div class="btn-group btn-group-sm">
+                                                    <button class="btn btn-outline-primary">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                    <button class="btn btn-outline-success" onclick="reorderMaterial('MAT-004')">
+                                                        <i class="fas fa-sync"></i>
+                                                    </button>
+                                                    <button class="btn btn-outline-danger">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="me-3">
+                                                        <div class="bg-secondary text-white rounded-circle p-2">
+                                                            <i class="fas fa-cube"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <strong>ألوان أكريليك</strong>
+                                                        <div class="text-muted small">مجموعة ألوان أكريليك للرسم</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>MAT-005</td>
+                                            <td><span class="badge bg-secondary">مواد فنية</span></td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div style="width: 100px;" class="me-2">
+                                                        <div class="inventory-level">
+                                                            <div class="progress-bar bg-success" style="width: 90%"></div>
+                                                        </div>
+                                                    </div>
+                                                    <span>90/100 مجموعة</span>
+                                                </div>
+                                            </td>
+                                            <td>15 مجموعة</td>
+                                            <td>
+                                                <span class="badge bg-success">متوفر</span>
+                                            </td>
+                                            <td>
+                                                <div class="btn-group btn-group-sm">
+                                                    <button class="btn btn-outline-primary">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                    <button class="btn btn-outline-success" onclick="reorderMaterial('MAT-005')">
+                                                        <i class="fas fa-sync"></i>
+                                                    </button>
+                                                    <button class="btn btn-outline-danger">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- طلبات الشراء -->
+                    <div class="material-card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h5 class="mb-0">طلبات الشراء</h5>
+                                <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#newOrderModal">
+                                    <i class="fas fa-plus me-1"></i>طلب جديد
+                                </button>
+                            </div>
+                            <div class="order-timeline">
+                                <div class="timeline-item">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="d-flex justify-content-between align-items-start">
+                                                <div>
+                                                    <h6 class="mb-1">طلب #ORD-001</h6>
+                                                    <p class="text-muted mb-1">أسلاك نحاسية - 50 رول</p>
+                                                    <small class="text-muted">من المورد: شركة النحاس العمانية</small>
+                                                </div>
+                                                <div>
+                                                    <span class="badge bg-warning text-dark">قيد الانتظار</span>
+                                                    <div class="text-end mt-2">
+                                                        <small>تاريخ الطلب: 15/10/2023</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="timeline-item">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="d-flex justify-content-between align-items-start">
+                                                <div>
+                                                    <h6 class="mb-1">طلب #ORD-002</h6>
+                                                    <p class="text-muted mb-1">خشب زان - 30 لوح</p>
+                                                    <small class="text-muted">من المورد: مؤسسة الخشب الفاخر</small>
+                                                </div>
+                                                <div>
+                                                    <span class="badge bg-success">تم التسليم</span>
+                                                    <div class="text-end mt-2">
+                                                        <small>تاريخ التسليم: 14/10/2023</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="timeline-item">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="d-flex justify-content-between align-items-start">
+                                                <div>
+                                                    <h6 class="mb-1">طلب #ORD-003</h6>
+                                                    <p class="text-muted mb-1">قماش قطني - 100 ياردة</p>
+                                                    <small class="text-muted">من المورد: مصنع النسيج الوطني</small>
+                                                </div>
+                                                <div>
+                                                    <span class="badge bg-primary">قيد الشحن</span>
+                                                    <div class="text-end mt-2">
+                                                        <small>تاريخ الشحن: 13/10/2023</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- الشريط الجانبي -->
+                <div class="col-lg-4">
+                    <!-- تنبيهات المخزون -->
+                    <div class="material-card mb-4">
+                        <div class="card-body">
+                            <h5 class="mb-4">تنبيهات المخزون</h5>
+                            <div class="alert alert-danger">
+                                <div class="d-flex align-items-center">
+                                    <i class="fas fa-exclamation-triangle fa-2x me-3"></i>
+                                    <div>
+                                        <strong>تنبيه: نقص في المخزون</strong>
+                                        <p class="mb-0 small">مادة "أسلاك نحاسية" وصلت إلى 15% من المخزون</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="alert alert-warning">
+                                <div class="d-flex align-items-center">
+                                    <i class="fas fa-exclamation-circle fa-2x me-3"></i>
+                                    <div>
+                                        <strong>تحت المراقبة</strong>
+                                        <p class="mb-0 small">مادة "خشب زان" وصلت إلى 45% من المخزون</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="alert alert-success">
+                                <div class="d-flex align-items-center">
+                                    <i class="fas fa-check-circle fa-2x me-3"></i>
+                                    <div>
+                                        <strong>جميع المواد متوفرة</strong>
+                                        <p class="mb-0 small">3 مواد متوفرة بنسبة أعلى من 70%</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- الموردين -->
+                    <div class="material-card">
+                        <div class="card-body">
+                            <h5 class="mb-4">الموردين المفضلين</h5>
+                            <div class="supplier-card">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="mb-1">شركة النحاس العمانية</h6>
+                                        <small class="text-muted">مواد كهربائية ومعدنية</small>
+                                    </div>
+                                    <span class="badge bg-success">4.8 ★</span>
+                                </div>
+                                <div class="mt-2">
+                                    <button class="btn btn-sm btn-outline-primary w-100" onclick="contactSupplier('شركة النحاس العمانية')">
+                                        <i class="fas fa-phone me-1"></i>اتصال
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="supplier-card">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="mb-1">مصنع النسيج الوطني</h6>
+                                        <small class="text-muted">أقمشة ومواد نسيجية</small>
+                                    </div>
+                                    <span class="badge bg-success">4.6 ★</span>
+                                </div>
+                                <div class="mt-2">
+                                    <button class="btn btn-sm btn-outline-primary w-100" onclick="contactSupplier('مصنع النسيج الوطني')">
+                                        <i class="fas fa-phone me-1"></i>اتصال
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="supplier-card">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="mb-1">مؤسسة الخشب الفاخر</h6>
+                                        <small class="text-muted">أخشاب ومواد بناء</small>
+                                    </div>
+                                    <span class="badge bg-success">4.9 ★</span>
+                                </div>
+                                <div class="mt-2">
+                                    <button class="btn btn-sm btn-outline-primary w-100" onclick="contactSupplier('مؤسسة الخشب الفاخر')">
+                                        <i class="fas fa-phone me-1"></i>اتصال
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="text-center mt-3">
+                                <a href="#" class="btn btn-sm btn-outline-success">
+                                    <i class="fas fa-plus me-1"></i>إضافة مورد جديد
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- مودال إضافة مادة جديدة -->
+    <div class="modal fade" id="addMaterialModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">إضافة مادة خام جديدة</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addMaterialForm">
+                        <div class="mb-3">
+                            <label class="form-label">اسم المادة</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">الكود</label>
+                            <input type="text" class="form-control" placeholder="مثال: MAT-001" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">الفئة</label>
+                            <select class="form-select" required>
+                                <option value="">اختر الفئة</option>
+                                <option value="textiles">المنسوجات</option>
+                                <option value="wood">الخشب</option>
+                                <option value="metal">المعادن</option>
+                                <option value="food">المواد الغذائية</option>
+                                <option value="electronics">مكونات إلكترونية</option>
+                                <option value="art">مواد فنية</option>
+                                <option value="other">أخرى</option>
+                            </select>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">الكمية الحالية</label>
+                                <input type="number" class="form-control" min="0" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">الكمية القصوى</label>
+                                <input type="number" class="form-control" min="0" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">نقطة إعادة الطلب</label>
+                            <input type="number" class="form-control" min="0" required>
+                            <div class="form-text">عند وصول الكمية لهذا الرقم، سيتم إرسال تنبيه لإعادة الطلب</div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">المورد الرئيسي</label>
+                            <input type="text" class="form-control" placeholder="اسم المورد">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">ملاحظات</label>
+                            <textarea class="form-control" rows="3"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+                    <button type="button" class="btn btn-primary" onclick="submitMaterialForm()">إضافة المادة</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- مودال طلب جديد -->
+    <div class="modal fade" id="newOrderModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">طلب مواد جديدة</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="newOrderForm">
+                        <div class="mb-3">
+                            <label class="form-label">المادة</label>
+                            <select class="form-select" required>
+                                <option value="">اختر المادة</option>
+                                <option value="MAT-001">قماش قطني</option>
+                                <option value="MAT-002">خشب زان</option>
+                                <option value="MAT-003">أسلاك نحاسية</option>
+                                <option value="MAT-004">تمر مجدول</option>
+                                <option value="MAT-005">ألوان أكريليك</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">الكمية المطلوبة</label>
+                            <input type="number" class="form-control" min="1" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">المورد</label>
+                            <select class="form-select" required>
+                                <option value="">اختر المورد</option>
+                                <option value="1">شركة النحاس العمانية</option>
+                                <option value="2">مصنع النسيج الوطني</option>
+                                <option value="3">مؤسسة الخشب الفاخر</option>
+                                <option value="4">مورد آخر</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">تاريخ التسليم المتوقع</label>
+                            <input type="date" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">ملاحظات</label>
+                            <textarea class="form-control" rows="3" placeholder="ملاحظات إضافية للطلب..."></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+                    <button type="button" class="btn btn-primary" onclick="submitOrderForm()">إرسال الطلب</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- الفوتر -->
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2023 منتجي. جميع الحقوق محفوظة.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-white-50 text-decoration-none me-3">مساعدة</a>
+                    <a href="#" class="text-white-50 text-decoration-none">اتصل بنا</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- مكتبات JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // إعادة طلب المادة
+        function reorderMaterial(materialCode) {
+            alert(`سيتم إنشاء طلب جديد للمادة ${materialCode}`);
+            // هنا يمكنك إضافة منطق إنشاء طلب جديد
+        }
+
+        // تصدير المواد
+        function exportMaterials() {
+            alert('سيتم تصدير قائمة المواد بصيغة Excel');
+            // هنا يمكنك إضافة منطق التصدير الفعلي
+        }
+
+        // الاتصال بالمورد
+        function contactSupplier(supplierName) {
+            alert(`سيتم الاتصال بالمورد: ${supplierName}`);
+            // هنا يمكنك إضافة منطق الاتصال
+        }
+
+        // إرسال نموذج المادة
+        function submitMaterialForm() {
+            const form = document.getElementById('addMaterialForm');
+            if (form.checkValidity()) {
+                alert('تم إضافة المادة بنجاح!');
+                bootstrap.Modal.getInstance(document.getElementById('addMaterialModal')).hide();
+                form.reset();
+            } else {
+                form.reportValidity();
+            }
+        }
+
+        // إرسال نموذج الطلب
+        function submitOrderForm() {
+            const form = document.getElementById('newOrderForm');
+            if (form.checkValidity()) {
+                alert('تم إرسال الطلب بنجاح!');
+                bootstrap.Modal.getInstance(document.getElementById('newOrderModal')).hide();
+                form.reset();
+            } else {
+                form.reportValidity();
+            }
+        }
+
+        // البحث عن المواد
+        const searchInput = document.querySelector('input[type="text"]');
+        if (searchInput) {
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                const rows = document.querySelectorAll('tbody tr');
+                
+                rows.forEach(row => {
+                    const text = row.textContent.toLowerCase();
+                    if (text.includes(searchTerm)) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+            });
+        }
+
+        // تصفية حسب الفئة
+        const categoryFilter = document.querySelector('select.form-select');
+        if (categoryFilter) {
+            categoryFilter.addEventListener('change', function() {
+                const selectedCategory = this.value;
+                const rows = document.querySelectorAll('tbody tr');
+                
+                rows.forEach(row => {
+                    const categoryCell = row.querySelector('td:nth-child(3)');
+                    if (categoryCell) {
+                        const category = categoryCell.textContent.trim();
+                        if (selectedCategory === '' || category.includes(selectedCategory)) {
+                            row.style.display = '';
+                        } else {
+                            row.style.display = 'none';
+                        }
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+</html>

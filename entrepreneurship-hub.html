@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مركز ريادة الأعمال - منتجي</title>
+    <!-- Bootstrap RTL CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- AOS Animation -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <style>
+        :root {
+            --primary: #28a745;
+            --secondary: #6c757d;
+            --success: #198754;
+            --info: #0dcaf0;
+            --warning: #ffc107;
+            --danger: #dc3545;
+            --light: #f8f9fa;
+            --dark: #212529;
+        }
+        
+        body {
+            font-family: 'Cairo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+        }
+        
+        .entrepreneurship-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                        url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .section-title {
+            position: relative;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 80px;
+            height: 3px;
+            background: var(--primary);
+        }
+        
+        .feature-card {
+            border: none;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            overflow: hidden;
+            height: 100%;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            margin: 0 auto 20px;
+        }
+        
+        .service-step {
+            position: relative;
+            padding: 30px;
+            border-radius: 10px;
+            background: white;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .service-step:hover {
+            background: linear-gradient(135deg, var(--primary), #20c997);
+            color: white;
+        }
+        
+        .service-step:hover * {
+            color: white !important;
+        }
+        
+        .stats-card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .category-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            height: 250px;
+            cursor: pointer;
+        }
+        
+        .category-card img {
+            transition: transform 0.5s;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .category-card:hover img {
+            transform: scale(1.1);
+        }
+        
+        .category-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            display: flex;
+            align-items: flex-end;
+            padding: 20px;
+            color: white;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .testimonial-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            height: 100%;
+        }
+        
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            right: 50%;
+            transform: translateX(50%);
+            width: 2px;
+            height: 100%;
+            background: var(--primary);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            padding-right: 50%;
+        }
+        
+        .timeline-item:nth-child(even) {
+            padding-left: 50%;
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            right: 50%;
+            transform: translateX(50%);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary);
+            border: 3px solid white;
+            z-index: 1;
+        }
+        
+        .modal-xl {
+            max-width: 90%;
+        }
+    </style>
+</head>
+<body>
+    <!-- شريط التنقل -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">
+                <i class="fas fa-leaf me-2"></i>منتجي
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarMain">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">الرئيسية</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="entrepreneurship-hub.html">ريادة الأعمال</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="productsDropdown" data-bs-toggle="dropdown">
+                            المنتجات
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="electronics.html">الإلكترونيات</a></li>
+                            <li><a class="dropdown-item" href="furniture.html">الأثاث</a></li>
+                            <li><a class="dropdown-item" href="handicrafts.html">المشغولات اليدوية</a></li>
+                            <li><a class="dropdown-item" href="food-products.html">المنتجات الغذائية</a></li>
+                            <li><a class="dropdown-item" href="traditional-products.html">المنتجات التقليدية</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="reportsDropdown" data-bs-toggle="dropdown">
+                            التقارير والإحصاءات
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="sales-reports.html">تقارير المبيعات</a></li>
+                            <li><a class="dropdown-item" href="customer-analytics.html">تحليل العملاء</a></li>
+                            <li><a class="dropdown-item" href="inventory-reports.html">تقارير المخزون</a></li>
+                            <li><a class="dropdown-item" href="hr-reports.html">تقارير الموارد البشرية</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="ai-business-idea.html">مساعد الذكاء الاصطناعي</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="resources.html">الموارد</a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <a href="cart.html" class="btn btn-light position-relative me-3">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            3
+                        </span>
+                    </a>
+                    <a href="login.html" class="btn btn-outline-light me-2">تسجيل الدخول</a>
+                    <a href="register-entrepreneur.html" class="btn btn-warning">انضم كرائد أعمال</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- قسم البطل -->
+    <section class="entrepreneurship-hero">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <h1 class="display-3 fw-bold mb-4">مركز ريادة الأعمال</h1>
+                    <p class="lead mb-4">انطلق بمشروعك الخاص من الفكرة إلى النجاح مع منصة "منتجي". نوفر لك كل ما تحتاجه لبدء وتوسيع عملك.</p>
+                    <div class="d-flex justify-content-center gap-3">
+                        <a href="#start-journey" class="btn btn-warning btn-lg px-4">
+                            <i class="fas fa-rocket me-2"></i>ابدأ رحلتك
+                        </a>
+                        <a href="#services" class="btn btn-outline-light btn-lg px-4">
+                            <i class="fas fa-play-circle me-2"></i>شاهد الفيديو التعريفي
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- إحصائيات سريعة -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-3 col-6">
+                    <div class="stats-card">
+                        <h2 class="display-6 text-success fw-bold">2,458+</h2>
+                        <p class="text-muted mb-0">مشروع ناشئ</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stats-card">
+                        <h2 class="display-6 text-primary fw-bold">45,670+</h2>
+                        <p class="text-muted mb-0">طلب مكتمل</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stats-card">
+                        <h2 class="display-6 text-warning fw-bold">15,890+</h2>
+                        <p class="text-muted mb-0">منتج نشط</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stats-card">
+                        <h2 class="display-6 text-danger fw-bold">98%</h2>
+                        <p class="text-muted mb-0">رضا العملاء</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- الخطوات -->
+    <section class="py-5" id="start-journey">
+        <div class="container">
+            <h2 class="section-title text-center mb-5">كيف تبدأ مشروعك في 4 خطوات</h2>
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="service-step">
+                        <div class="feature-icon bg-success text-white mb-3">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h4>فكر في فكرتك</h4>
+                        <p class="text-muted">استخدم مساعد الذكاء الاصطناعي لتطوير فكرة مشروعك</p>
+                        <span class="badge bg-success rounded-circle p-2">1</span>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="service-step">
+                        <div class="feature-icon bg-primary text-white mb-3">
+                            <i class="fas fa-store"></i>
+                        </div>
+                        <h4>أنشئ متجرك</h4>
+                        <p class="text-muted">أنشئ متجرك الإلكتروني في دقائق بدون خبرة تقنية</p>
+                        <span class="badge bg-primary rounded-circle p-2">2</span>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="service-step">
+                        <div class="feature-icon bg-warning text-dark mb-3">
+                            <i class="fas fa-box-open"></i>
+                        </div>
+                        <h4>أضف منتجاتك</h4>
+                        <p class="text-muted">انشر منتجاتك بسهولة مع صور ووصف جذاب</p>
+                        <span class="badge bg-warning rounded-circle p-2">3</span>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="service-step">
+                        <div class="feature-icon bg-danger text-white mb-3">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h4>ابدأ البيع</h4>
+                        <p class="text-muted">استقبل الطلبات واربح من أول يوم</p>
+                        <span class="badge bg-danger rounded-circle p-2">4</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- خدمات ريادة الأعمال -->
+    <section class="py-5 bg-light" id="services">
+        <div class="container">
+            <h2 class="section-title text-center mb-5">خدمات ريادة الأعمال المتكاملة</h2>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card" data-aos="fade-up">
+                        <div class="card-body p-4 text-center">
+                            <div class="feature-icon bg-info text-white mb-4">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <h4 class="mb-3">دورات تدريبية مجانية</h4>
+                            <p class="text-muted mb-4">تعلم أساسيات التجارة الإلكترونية، التسويق الرقمي، إدارة المخزون والمحاسبة</p>
+                            <a href="training-courses.html" class="btn btn-outline-info">استكشف الدورات</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="card-body p-4 text-center">
+                            <div class="feature-icon bg-success text-white mb-4">
+                                <i class="fas fa-handshake"></i>
+                            </div>
+                            <h4 class="mb-3">دعم فني واستشاري</h4>
+                            <p class="text-muted mb-4">فريق متخصص لدعمك في كل مراحل مشروعك مع استشارات مجانية</p>
+                            <a href="consultation.html" class="btn btn-outline-success">احجز استشارة</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="card-body p-4 text-center">
+                            <div class="feature-icon bg-warning text-dark mb-4">
+                                <i class="fas fa-shipping-fast"></i>
+                            </div>
+                            <h4 class="mb-3">خدمات لوجستية متكاملة</h4>
+                            <p class="text-muted mb-4">نوفر لك خدمات التخزين، التغليف، الشحن والتوصيل بأسعار تنافسية</p>
+                            <a href="logistics.html" class="btn btn-outline-warning">اعرف المزيد</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="card-body p-4 text-center">
+                            <div class="feature-icon bg-primary text-white mb-4">
+                                <i class="fas fa-camera"></i>
+                            </div>
+                            <h4 class="mb-3">تصوير منتجات احترافي</h4>
+                            <p class="text-muted mb-4">خدمات تصوير احترافية للمنتجات لزيادة جاذبيتها ورفع المبيعات</p>
+                            <a href="photography.html" class="btn btn-outline-primary">اطلب الخدمة</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+                        <div class="card-body p-4 text-center">
+                            <div class="feature-icon bg-danger text-white mb-4">
+                                <i class="fas fa-chart-pie"></i>
+                            </div>
+                            <h4 class="mb-3">تحليلات وأبحاث السوق</h4>
+                            <p class="text-muted mb-4">تقارير مفصلة عن السوق، المنافسين، واتجاهات المستهلكين</p>
+                            <a href="market-research.html" class="btn btn-outline-danger">اطلب تقرير</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="500">
+                        <div class="card-body p-4 text-center">
+                            <div class="feature-icon bg-secondary text-white mb-4">
+                                <i class="fas fa-money-check-alt"></i>
+                            </div>
+                            <h4 class="mb-3">تمويل وتسهيلات ائتمانية</h4>
+                            <p class="text-muted mb-4">شراكات مع بنوك ومؤسسات تمويل لتقديم قروض وتسهيلات ائتمانية</p>
+                            <a href="funding.html" class="btn btn-outline-secondary">اعرف الشروط</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- فئات المنتجات -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="section-title text-center mb-5">فئات المنتجات المميزة</h2>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="category-card" onclick="window.location.href='electronics.html'">
+                        <img src="https://images.unsplash.com/photo-1498049794561-7780e7231661?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                             alt="الإلكترونيات">
+                        <div class="category-overlay">
+                            <div>
+                                <h3 class="fw-bold">الإلكترونيات</h3>
+                                <p class="mb-0">أحدث الأجهزة والتقنيات</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="category-card" onclick="window.location.href='furniture.html'">
+                        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                             alt="الأثاث">
+                        <div class="category-overlay">
+                            <div>
+                                <h3 class="fw-bold">الأثاث</h3>
+                                <p class="mb-0">تصاميم عصرية وتقليدية</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="category-card" onclick="window.location.href='handicrafts.html'">
+                        <img src="https://images.unsplash.com/photo-1583574924103-3af5d3a2d6fc?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                             alt="المشغولات اليدوية">
+                        <div class="category-overlay">
+                            <div>
+                                <h3 class="fw-bold">المشغولات اليدوية</h3>
+                                <p class="mb-0">إبداعات يدوية فريدة</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- التسجيل كرائد أعمال -->
+    <section class="py-5 gradient-bg">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <h2 class="display-5 fw-bold mb-4">انضم إلينا كرائد أعمال</h2>
+                    <p class="lead mb-4">ابدأ مشروعك الخاص اليوم واستفد من:</p>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-check-circle me-2"></i> متجر إلكتروني مجاني لمدة 6 أشهر</li>
+                        <li class="mb-2"><i class="fas fa-check-circle me-2"></i> تدريب مجاني على التجارة الإلكترونية</li>
+                        <li class="mb-2"><i class="fas fa-check-circle me-2"></i> دعم فني واستشاري متكامل</li>
+                        <li class="mb-2"><i class="fas fa-check-circle me-2"></i> وصول إلى آلاف العملاء المحتملين</li>
+                        <li><i class="fas fa-check-circle me-2"></i> خدمات لوجستية بأسعار مخفضة</li>
+                    </ul>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card shadow-lg">
+                        <div class="card-body p-4">
+                            <h3 class="text-center mb-4">سجل الآن</h3>
+                            <form id="entrepreneurForm">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">الاسم الكامل</label>
+                                        <input type="text" class="form-control" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">رقم الهاتف</label>
+                                        <input type="tel" class="form-control" required>
+                                    </div>
+                                    <div class="col-12 mb-3">
+                                        <label class="form-label">البريد الإلكتروني</label>
+                                        <input type="email" class="form-control" required>
+                                    </div>
+                                    <div class="col-12 mb-3">
+                                        <label class="form-label">فكرة المشروع</label>
+                                        <textarea class="form-control" rows="3" placeholder="اشرح فكرة مشروعك باختصار"></textarea>
+                                    </div>
+                                    <div class="col-12 mb-3">
+                                        <label class="form-label">نوع المنتجات</label>
+                                        <select class="form-select" multiple>
+                                            <option value="electronics">الإلكترونيات</option>
+                                            <option value="furniture">الأثاث</option>
+                                            <option value="handicrafts">المشغولات اليدوية</option>
+                                            <option value="food">المنتجات الغذائية</option>
+                                            <option value="traditional">المنتجات التقليدية</option>
+                                            <option value="clothing">الملابس</option>
+                                            <option value="cosmetics">مستحضرات التجميل</option>
+                                            <option value="other">أخرى</option>
+                                        </select>
+                                        <small class="text-muted">اضغط Ctrl/Command لاختيار أكثر من واحد</small>
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-primary w-100">
+                                            <i class="fas fa-paper-plane me-2"></i>إرسال الطلب
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قصص نجاح -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="section-title text-center mb-5">قصص نجاح رواد أعمال "منتجي"</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="https://randomuser.me/api/portraits/women/32.jpg" 
+                                 class="rounded-circle me-3" width="60" height="60" alt="فاطمة">
+                            <div>
+                                <h5 class="mb-1">فاطمة الشكيلية</h5>
+                                <p class="text-muted mb-0">متجر التمور العمانية</p>
+                            </div>
+                        </div>
+                        <p class="mb-3">"بدأت ببيع التمور من منزلي فقط، والآن لدي مستودع و5 موظفين. مبيعاتي تتجاوز 5000 ريال شهرياً بفضل منصة منتجي."</p>
+                        <div class="d-flex justify-content-between">
+                            <span class="badge bg-success">+250% نمو</span>
+                            <span class="text-warning">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="https://randomuser.me/api/portraits/men/54.jpg" 
+                                 class="rounded-circle me-3" width="60" height="60" alt="أحمد">
+                            <div>
+                                <h5 class="mb-1">أحمد البلوشي</h5>
+                                <p class="text-muted mb-0">ورشة النجارة الفنية</p>
+                            </div>
+                        </div>
+                        <p class="mb-3">"تخصصت في الأثاث العماني التقليدي. من خلال المنصة وصلت لعملاء من دول الخليج وأوروبا. الإيرادات تضاعفت 4 مرات في عامين."</p>
+                        <div class="d-flex justify-content-between">
+                            <span class="badge bg-primary">تصدير 5 دول</span>
+                            <span class="text-warning">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="https://randomuser.me/api/portraits/women/45.jpg" 
+                                 class="rounded-circle me-3" width="60" height="60" alt="سلمى">
+                            <div>
+                                <h5 class="mb-1">سلمى الحبسية</h5>
+                                <p class="text-muted mb-0">حلويات بيتي</p>
+                            </div>
+                        </div>
+                        <p class="mb-3">"بدأت بصنع الحلويات في مطبخ منزلي. الآن لدي مخبز صغير و3 موظفات. زبائني من جميع أنحاء السلطنة بفضل نظام التوصيل."</p>
+                        <div class="d-flex justify-content-between">
+                            <span class="badge bg-warning text-dark">3 موظفين</span>
+                            <span class="text-warning">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- فوتر -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h4 class="mb-4">
+                        <i class="fas fa-leaf me-2"></i>منتجي
+                    </h4>
+                    <p>منصة عمانية متكاملة لدعم ريادة الأعمال والتجارة الإلكترونية. نساعدك في تحويل فكرتك إلى مشروع ناجح.</p>
+                    <div class="social-icons mt-3">
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook-f fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-twitter fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-instagram fa-lg"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-linkedin-in fa-lg"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h5 class="mb-4">الخدمات</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">ريادة الأعمال</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">المتجر الإلكتروني</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">التدريب</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">الدعم الفني</a></li>
+                        <li><a href="#" class="text-white-50 text-decoration-none">اللوجستيات</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h5 class="mb-4">الفئات</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">الإلكترونيات</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">الأثاث</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">المشغولات اليدوية</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">المنتجات الغذائية</a></li>
+                        <li><a href="#" class="text-white-50 text-decoration-none">الملابس</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h5 class="mb-4">اتصل بنا</h5>
+                    <p><i class="fas fa-map-marker-alt me-2"></i> مسقط، سلطنة عمان</p>
+                    <p><i class="fas fa-phone me-2"></i> +968 1234 5678</p>
+                    <p><i class="fas fa-envelope me-2"></i> info@montaji.com</p>
+                    <div class="input-group mt-3">
+                        <input type="email" class="form-control" placeholder="البريد الإلكتروني">
+                        <button class="btn btn-success" type="button">اشترك</button>
+                    </div>
+                </div>
+            </div>
+            <hr class="bg-light">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2023 منتجي. جميع الحقوق محفوظة.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-white-50 text-decoration-none me-3">سياسة الخصوصية</a>
+                    <a href="#" class="text-white-50 text-decoration-none">شروط الاستخدام</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    
+    <script>
+        // تهيئة AOS
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // نموذج التسجيل
+        document.getElementById('entrepreneurForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // هنا يمكنك إرسال البيانات إلى الخادم
+            alert('تم استلام طلبك بنجاح! سنتواصل معك خلال 24 ساعة.');
+            this.reset();
+        });
+
+        // تنشيط أداة اختيار متعددة
+        const multipleSelect = document.querySelector('select[multiple]');
+        if (multipleSelect) {
+            multipleSelect.addEventListener('mousedown', function(e) {
+                e.preventDefault();
+                
+                const option = e.target;
+                if (option.tagName === 'OPTION') {
+                    option.selected = !option.selected;
+                    this.dispatchEvent(new Event('change'));
+                }
+            });
+        }
+
+        // تحديث عداد السلة
+        function updateCartCount(count) {
+            const cartBadge = document.querySelector('.badge.bg-danger');
+            if (cartBadge) {
+                cartBadge.textContent = count;
+            }
+        }
+
+        // محاكاة عدد المنتجات في السلة
+        updateCartCount(3);
+    </script>
+</body>
+</html>

@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تقارير الموارد البشرية - منتجي</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .hr-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                        url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        .employee-card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            overflow: hidden;
+        }
+        .employee-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        .employee-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid white;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+        .attendance-badge {
+            font-size: 0.75rem;
+            padding: 3px 8px;
+            border-radius: 20px;
+        }
+        .performance-meter {
+            height: 8px;
+            border-radius: 4px;
+            background: #e9ecef;
+            overflow: hidden;
+            margin-top: 5px;
+        }
+        .performance-meter .progress-bar {
+            height: 100%;
+        }
+        .leave-card {
+            border-left: 4px solid #dc3545;
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 10px;
+        }
+        .training-card {
+            border-left: 4px solid #28a745;
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 10px;
+        }
+        .stat-card {
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            background: white;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+        .department-tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        .table-hover tbody tr:hover {
+            background-color: rgba(0,0,0,0.02);
+        }
+    </style>
+</head>
+<body>
+    <!-- شريط التنقل -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-leaf me-2"></i>منتجي
+            </a>
+            <div class="d-flex align-items-center">
+                <div class="dropdown me-3">
+                    <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                        <i class="fas fa-users me-1"></i>الموارد البشرية
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item active" href="hr-reports.html">تقارير الموارد البشرية</a></li>
+                        <li><a class="dropdown-item" href="employees.html">إدارة الموظفين</a></li>
+                        <li><a class="dropdown-item" href="attendance.html">الحضور والانصراف</a></li>
+                        <li><a class="dropdown-item" href="payroll.html">كشوف المرتبات</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="training.html">التدريب والتطوير</a></li>
+                    </ul>
+                </div>
+                <a href="dashboard.html" class="btn btn-outline-light">
+                    <i class="fas fa-tachometer-alt me-1"></i>لوحة التحكم
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- عنوان الصفحة -->
+    <section class="hr-header">
+        <div class="container">
+            <h1 class="display-4 fw-bold mb-3">تقارير الموارد البشرية</h1>
+            <p class="lead mb-0">إدارة وتطوير فريق العمل في مشروعك</p>
+        </div>
+    </section>
+
+    <!-- محتوى الصفحة -->
+    <section class="py-5">
+        <div class="container">
+            <!-- بطاقات الإحصائيات -->
+            <div class="row mb-4">
+                <div class="col-md-3 mb-3">
+                    <div class="stat-card">
+                        <div class="feature-icon bg-primary text-white rounded-circle p-3 d-inline-flex mb-3">
+                            <i class="fas fa-users fa-2x"></i>
+                        </div>
+                        <h2 class="stat-number">24</h2>
+                        <p class="text-muted mb-0">إجمالي الموظفين</p>
+                        <small class="text-success">
+                            <i class="fas fa-arrow-up me-1"></i>+3 عن الشهر الماضي
+                        </small>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="stat-card">
+                        <div class="feature-icon bg-success text-white rounded-circle p-3 d-inline-flex mb-3">
+                            <i class="fas fa-user-check fa-2x"></i>
+                        </div>
+                        <h2 class="stat-number">96%</h2>
+                        <p class="text-muted mb-0">معدل الحضور</p>
+                        <small class="text-success">
+                            <i class="fas fa-arrow-up me-1"></i>+2% عن الشهر الماضي
+                        </small>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="stat-card">
+                        <div class="feature-icon bg-warning text-white rounded-circle p-3 d-inline-flex mb-3">
+                            <i class="fas fa-graduation-cap fa-2x"></i>
+                        </div>
+                        <h2 class="stat-number">18</h2>
+                        <p class="text-muted mb-0">دورة تدريبية</p>
+                        <small class="text-primary">
+                            <i class="fas fa-chart-line me-1"></i>5 جارية
+                        </small>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="stat-card">
+                        <div class="feature-icon bg-info text-white rounded-circle p-3 d-inline-flex mb-3">
+                            <i class="fas fa-heart fa-2x"></i>
+                        </div>
+                        <h2 class="stat-number">4.8</h2>
+                        <p class="text-muted mb-0">رضا الموظفين</p>
+                        <small class="text-success">
+                            <i class="fas fa-star me-1"></i>من 5.0
+                        </small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- الموظفون والأقسام -->
+            <div class="row">
+                <div class="col-lg-8">
+                    <!-- قائمة الموظفين -->
+                    <div class="employee-card mb-4">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h5 class="mb-0">الموظفون</h5>
+                                <div>
+                                    <button class="btn btn-sm btn-success me-2" data-bs-toggle="modal" data-bs-target="#addEmployeeModal">
+                                        <i class="fas fa-user-plus me-1"></i>إضافة موظف
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-primary" onclick="exportEmployees()">
+                                        <i class="fas fa-download me-1"></i>تصدير
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- شريط البحث -->
+                            <div class="row mb-4">
+                                <div class="col-md-6">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="ابحث عن موظف...">
+                                        <button class="btn btn-success" type="button">
+                                            <i class="fas fa-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <select class="form-select">
+                                        <option value="">جميع الأقسام</option>
+                                        <option value="sales">المبيعات</option>
+                                        <option value="production">الإنتاج</option>
+                                        <option value="marketing">التسويق</option>
+                                        <option value="customer-service">خدمة العملاء</option>
+                                        <option value="management">الإدارة</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <!-- جدول الموظفين -->
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>الموظف</th>
+                                            <th>القسم</th>
+                                            <th>المنصب</th>
+                                            <th>تاريخ التعيين</th>
+                                            <th>الأداء</th>
+                                            <th>الحالة</th>
+                                            <th>الإجراءات</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <img src="https://randomuser.me/api/portraits/men/32.jpg" 
+                                                         class="employee-avatar me-3" alt="أحمد">
+                                                    <div>
+                                                        <strong>أحمد البلوشي</strong>
+                                                        <div class="text-muted small">ahmed@montaji.com</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <span class="department-tag bg-primary text-white">الإنتاج</span>
+                                            </td>
+                                            <td>مدير إنتاج</td>
+                                            <td>15/03/2022</td>
+                                            <td>
+                                                <div class="performance-meter">
+                                                    <div class="progress-bar bg-success" style="width: 92%"></div>
+                                                </div>
+                                                <small>92%</small>
+                                            </td>
+                                            <td>
+                                                <span class="badge bg-success">نشط</span>
+                                            </td>
+                                            <td>
+                                                <div class="btn-group btn-group-sm">
+                                                    <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#employeeDetailsModal">
+                                                        <i class="fas fa-eye"></i>
+                                                    </button>
+                                                    <button class="btn btn-outline-warning">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                    <button class="btn btn-outline-danger">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <img src="https://randomuser.me/api/portraits/women/45.jpg" 
+                                                         class="employee-avatar me-3" alt="فاطمة">
+                                                    <div>
+                                                        <strong>فاطمة الشكيلية</strong>
+                                                        <div class="text-muted small">fatima@montaji.com</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <span class="department-tag bg-success text-white">المبيعات</span>
+                                            </td>
+                                            <td>مندوبة مبيعات</td>
+                                            <td>20/06/2022</td>
+                                            <td>
+                                                <div class="performance-meter">
+                                                    <div class="progress-bar bg-success" style="width: 88%"></div>
+                                                </div>
+                                                <small>88%</small>
+                                            </td>
+                                            <td>
+                                                <span class="badge bg-success">نشط</span>
+                                            </td>
+                                            <td>
+                                                <div class="btn-group btn-group-sm">
+                                                    <button class="btn btn-outline-primary">
+                                                        <i class="fas fa-eye"></i>
+                                                    </button>
+                                                    <button class="btn btn-outline-warning">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                    <button class="btn btn-outline-danger">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <img src="https://randomuser.me/api/portraits/men/54.jpg" 
+                                                         class="employee-avatar me-3" alt="سالم">
+                                                    <div>
+                                                        <strong>سالم الشقصي</strong>
+                                                        <div class="text-muted small">salem@montaji.com</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <span class="department-tag bg-warning text-dark">التسويق</span>
+                                            </td>
+                                            <td>مسؤول تسويق رقمي</td>
+                                            <td>10/09/2022</td>
+                                            <td>
+                                                <div class="performance-meter">
+                                                    <div class="progress-bar bg-success" style="width: 95%"></div>
+                                                </div>
+                                                <small>95%</small>
+                                            </td>
+                                            <td>
+                                                <span class="badge bg-success">نشط</span>
+                                            </td>
+                                            <td>
+                                                <div class="btn-group btn-group-sm">
+                                                    <button class="btn btn-outline-primary">
+                                                        <i class="fas fa-eye"></i>
+                                                    </button>
+                                                    <button class="btn btn-outline-warning">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                    <button class="btn btn-outline-danger">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <img src="https://randomuser.me/api/portraits/women/32.jpg" 
+                                                         class="employee-avatar me-3" alt="نورة">
+                                                    <div>
+                                                        <strong>نورة الفارسية</strong>
+                                                        <div class="text-muted small">nora@montaji.com</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <span class="department-tag bg-info text-white">خدمة العملاء</span>
+                                            </td>
+                                            <td>ممثلة خدمة عملاء</td>
+                                            <td>05/01/2023</td>
+                                            <td>
+                                                <div class="performance-meter">
+                                                    <div class="progress-bar bg-warning" style="width: 78%"></div>
+                                                </div>
+                                                <small>78%</small>
+                                            </td>
+                                            <td>
+                                                <span class="badge bg-success">نشط</span>
+                                            </td>
+                                            <td>
+                                                <div class="btn-group btn-group-sm">
+                                                    <button class="btn btn-outline-primary">
+                                                        <i class="fas fa-eye"></i>
+                                                    </button>
+                                                    <button class="btn btn-outline-warning">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                    <button class="btn btn-outline-danger">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <img src="https://randomuser.me/api/portraits/men/67.jpg" 
+                                                         class="employee-avatar me-3" alt="محمد">
+                                                    <div>
+                                                        <strong>محمد الحوسني</strong>
+                                                        <div class="text-muted small">mohammed@montaji.com</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <span class="department-tag bg-danger text-white">الإدارة</span>
+                                            </td>
+                                            <td>مدير العمليات</td>
+                                            <td>12/11/2021</td>
+                                            <td>
+                                                <div class="performance-meter">
+                                                    <div class="progress-bar bg-success" style="width: 90%"></div>
+                                                </div>
+                                                <small>90%</small>
+                                            </td>
+                                            <td>
+                                                <span class="badge bg-success">نشط</span>
+                                            </td>
+                                            <td>
+                                                <div class="btn-group btn-group-sm">
+                                                    <button class="btn btn-outline-primary">
+                                                        <i class="fas fa-eye"></i>
+                                                    </button>
+                                                    <button class="btn btn-outline-warning">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                    <button class="btn btn-outline-danger">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- الحضور والانصراف -->
+                    <div class="employee-card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h5 class="mb-0">سجلات الحضور - أكتوبر 2023</h5>
+                                <button class="btn btn-sm btn-outline-primary" onclick="exportAttendance()">
+                                    <i class="fas fa-download me-1"></i>تصدير
+                                </button>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th>الموظف</th>
+                                            <th>1</th>
+                                            <th>2</th>
+                                            <th>3</th>
+                                            <th>4</th>
+                                            <th>5</th>
+                                            <th>6</th>
+                                            <th>7</th>
+                                            <th>8</th>
+                                            <th>9</th>
+                                            <th>10</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>أحمد البلوشي</td>
+                                            <td><span class="attendance-badge bg-success">حاضر</span></td>
+                                            <td><span class="attendance-badge bg-success">حاضر</span></td>
+                                            <td><span class="attendance-badge bg-warning text-dark">متأخر</span></td>
+                                            <td><span class="attendance-badge bg-success">حاضر</span></td>
+                                            <td><span class="attendance-badge bg-success">حاضر</span></td>
+                                            <td><span class="attendance-badge bg-danger">غائب</span></td>
+                                            <td><span class="attendance-badge bg-success">حاضر</span></td>
+                                            <td><span class="attendance-badge bg-success">حاضر</span></td>
+                                            <td><span class="attendance-badge bg-success">حاضر</span></td>
+                                            <td><span class="attendance-badge bg-success">حاضر</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>فاطمة الشكيلية</td>
+                                            <td><span class="attendance-badge bg-success">حاضر</span></td>
+                                            <td><span class="attendance-badge bg-success">حاضر</span></td>
+                                            <td><span class="attendance-badge bg-success">حاضر</span></td>
+                                            <td><span class="attendance-badge bg-success">حاضر</span></td>
+                                            <td><span class="attendance-badge bg-success">حاضر</span></td>
+                                            <td><span class="attendance-badge bg-success">حاضر</span></td>
+                                            <td><span class="attendance-badge bg-success">حاضر</span></td>
+                                            <td><span class="attendance-badge bg-warning text-dark">متأخر</span></td>
+                                            <td><span class="attendance-badge bg-success">حاضر</span></td>
+                                            <td><span class="attendance-badge bg-success">حاضر</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>سالم الشقصي</td>
+                                            <td><span class="attendance-badge bg-success">حاضر</span></td>
+                                            <td><span class="attendance-badge bg-success">حاضر</span></td>
+                                            <td><span class="attendance-badge bg-success">حاضر</span></td>
+                                            <td><span class="attendance-badge bg-danger">غائب</span></td>
+                                            <td><span class="attendance-badge bg-success">حاضر</span></td>
+                                            <td><span class="attendance-badge bg-success">حاضر</span></td>
+                                            <td><span class="attendance-badge bg-success">حاضر</span></td>
+                                            <td><span class="attendance-badge bg-success">حاضر</span></td>
+                                            <td><span class="attendance-badge bg-success">حاضر</span></td>
+                                            <td><span class="attendance-badge bg-success">حاضر</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>نورة الفارسية</td>
+                                            <td><span class="attendance-badge bg-success">حاضر</span></td>
+                                            <td><span class="attendance-badge bg-success">حاضر</span></td>
+                                            <td><span class="attendance-badge bg-success">حاضر</span></td>
+                                            <td><span class="attendance-badge bg-success">حاضر</span></td>
+                                            <td><span class="attendance-badge bg-warning text-dark">متأخر</span></td>
+                                            <td><span class="attendance-badge bg-success">حاضر</span></td>
+                                            <td><span class="attendance-badge bg-success">حاضر</span></td>
+                                            <td><span class="attendance-badge bg-success">حاضر</span></td>
+                                            <td><span class="attendance-badge bg-success">حاضر</span></td>
+                                            <td><span class="attendance-badge bg-success">حاضر</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="text-center mt-3">
+                                <a href="attendance.html" class="btn btn-sm btn-outline-success">عرض جميع السجلات</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- الشريط الجانبي -->
+                <div class="col-lg-4">
+                    <!-- الإجازات -->
+                    <div class="employee-card mb-4">
+                        <div class="card-body">
+                            <h5 class="mb-4">الإجازات الحالية</h5>
+                            <div class="leave-card">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div>
+                                        <h6 class="mb-1">أحمد البلوشي</h6>
+                                        <small class="text-muted">إجازة سنوية</small>
+                                    </div>
+                                    <span class="badge bg-warning text-dark">جارية</span>
+                                </div>
+                                <div class="mt-2">
+                                    <small><i class="fas fa-calendar me-1"></i>من 10/10 إلى 15/10</small>
+                                    <div class="mt-1">
+                                        <small class="text-muted">متبقي: 3 أيام</small>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="leave-card">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div>
+                                        <h6 class="mb-1">فاطمة الشكيلية</h6>
+                                        <small class="text-muted">إجازة مرضية</small>
+                                    </div>
+                                    <span class="badge bg-info">مؤجلة</span>
+                                </div>
+                                <div class="mt-2">
+                                    <small><i class="fas fa-calendar me-1"></i>من 18/10 إلى 20/10</small>
+                                    <div class="mt-1">
+                                        <small class="text-muted">متبقي: لم تبدأ</small>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="leave-card">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div>
+                                        <h6 class="mb-1">سالم الشقصي</h6>
+                                        <small class="text-muted">إجازة عارضة</small>
+                                    </div>
+                                    <span class="badge bg-success">مكتملة</span>
+                                </div>
+                                <div class="mt-2">
+                                    <small><i class="fas fa-calendar me-1"></i>من 05/10 إلى 06/10</small>
+                                    <div class="mt-1">
+                                        <small class="text-muted">انتهت</small>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="text-center mt-3">
+                                <a href="#" class="btn btn-sm btn-outline-primary">
+                                    <i class="fas fa-plus me-1"></i>طلب إجازة جديد
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- التدريب -->
+                    <div class="employee-card">
+                        <div class="card-body">
+                            <h5 class="mb-4">برامج التدريب</h5>
+                            <div class="training-card">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div>
+                                        <h6 class="mb-1">دورة التسويق الرقمي</h6>
+                                        <small class="text-muted">للفريق التسويقي</small>
+                                    </div>
+                                    <span class="badge bg-success">جارية</span>
+                                </div>
+                                <div class="mt-2">
+                                    <small><i class="fas fa-user-graduate me-1"></i>12 مشارك</small>
+                                    <div class="mt-1">
+                                        <small class="text-muted"><i class="fas fa-calendar me-1"></i>تنتهي في 30/10</small>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="training-card">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div>
+                                        <h6 class="mb-1">ورشة خدمة العملاء</h6>
+                                        <small class="text-muted">لجميع الموظفين</small>
+                                    </div>
+                                    <span class="badge bg-primary">قادمة</span>
+                                </div>
+                                <div class="mt-2">
+                                    <small><i class="fas fa-user-graduate me-1"></i>24 مشارك</small>
+                                    <div class="mt-1">
+                                        <small class="text-muted"><i class="fas fa-calendar me-1"></i>تبدأ في 25/10</small>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="training-card">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div>
+                                        <h6 class="mb-1">دورة إدارة المشاريع</h6>
+                                        <small class="text-muted">للمدراء والمشرفين</small>
+                                    </div>
+                                    <span class="badge bg-secondary">مكتملة</span>
+                                </div>
+                                <div class="mt-2">
+                                    <small><i class="fas fa-user-graduate me-1"></i>8 مشاركين</small>
+                                    <div class="mt-1">
+                                        <small class="text-muted"><i class="fas fa-calendar me-1"></i>انتهت في 05/10</small>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="text-center mt-3">
+                                <a href="training.html" class="btn btn-sm btn-outline-success">
+                                    <i class="fas fa-graduation-cap me-1"></i>عرض جميع البرامج
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- مودال تفاصيل الموظف -->
+    <div class="modal fade" id="employeeDetailsModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">تفاصيل الموظف - أحمد البلوشي</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-4 text-center">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" 
+                                 class="employee-avatar mb-3" alt="أحمد" style="width: 120px; height: 120px;">
+                            <h5>أحمد البلوشي</h5>
+                            <p class="text-muted">مدير إنتاج</p>
+                            <span class="badge bg-success">نشط</span>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label"><strong>البريد الإلكتروني</strong></label>
+                                    <p>ahmed@montaji.com</p>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label"><strong>رقم الهاتف</strong></label>
+                                    <p>+968 9123 4567</p>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label"><strong>القسم</strong></label>
+                                    <p><span class="department-tag bg-primary text-white">الإنتاج</span></p>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label"><strong>تاريخ التعيين</strong></label>
+                                    <p>15/03/2022</p>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label"><strong>المسمى الوظيفي</strong></label>
+                                    <p>مدير إنتاج</p>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label"><strong>الراتب الأساسي</strong></label>
+                                    <p>800 ر.ع</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <h6>معلومات الأداء</h6>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label"><strong>معدل الأداء</strong></label>
+                                    <div class="d-flex align-items-center">
+                                        <div class="performance-meter" style="width: 100px;">
+                                            <div class="progress-bar bg-success" style="width: 92%"></div>
+                                        </div>
+                                        <span class="ms-2">92%</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label"><strong>معدل الحضور</strong></label>
+                                    <div class="d-flex align-items-center">
+                                        <div class="performance-meter" style="width: 100px;">
+                                            <div class="progress-bar bg-success" style="width: 88%"></div>
+                                        </div>
+                                        <span class="ms-2">88%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label"><strong>آخر تقييم</strong></label>
+                                <p>موظف متميز، يتمتع بمهارات قيادية عالية وإنتاجية ممتازة.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+                    <button type="button" class="btn btn-primary">طباعة الملف</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- مودال إضافة موظف -->
+    <div class="modal fade" id="addEmployeeModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">إضافة موظف جديد</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addEmployeeForm">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">الاسم الأول</label>
+                                <input type="text" class="form-control" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">اسم العائلة</label>
+                                <input type="text" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">البريد الإلكتروني</label>
+                            <input type="email" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">رقم الهاتف</label>
+                            <input type="tel" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">القسم</label>
+                            <select class="form-select" required>
+                                <option value="">اختر القسم</option>
+                                <option value="sales">المبيعات</option>
+                                <option value="production">الإنتاج</option>
+                                <option value="marketing">التسويق</option>
+                                <option value="customer-service">خدمة العملاء</option>
+                                <option value="management">الإدارة</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">المسمى الوظيفي</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">تاريخ التعيين</label>
+                            <input type="date" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">الراتب الأساسي</label>
+                            <input type="number" class="form-control" min="0" step="0.01" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+                    <button type="button" class="btn btn-primary" onclick="submitEmployeeForm()">إضافة الموظف</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- الفوتر -->
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2023 منتجي. جميع الحقوق محفوظة.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-white-50 text-decoration-none me-3">مساعدة</a>
+                    <a href="#" class="text-white-50 text-decoration-none">اتصل بنا</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- مكتبات JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    
+    <script>
+        // تصدير الموظفين
+        function exportEmployees() {
+            alert('سيتم تصدير قائمة الموظفين بصيغة Excel');
+            // هنا يمكنك إضافة منطق التصدير الفعلي
+        }
+
+        // تصدير سجلات الحضور
+        function exportAttendance() {
+            alert('سيتم تصدير سجلات الحضور بصيغة Excel');
+            // هنا يمكنك إضافة منطق التصدير الفعلي
+        }
+
+        // إرسال نموذج الموظف
+        function submitEmployeeForm() {
+            const form = document.getElementById('addEmployeeForm');
+            if (form.checkValidity()) {
+                alert('تم إضافة الموظف بنجاح!');
+                bootstrap.Modal.getInstance(document.getElementById('addEmployeeModal')).hide();
+                form.reset();
+            } else {
+                form.reportValidity();
+            }
+        }
+
+        // البحث عن الموظفين
+        const searchInput = document.querySelector('input[type="text"]');
+        if (searchInput) {
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                const rows = document.querySelectorAll('tbody tr');
+                
+                rows.forEach(row => {
+                    const text = row.textContent.toLowerCase();
+                    if (text.includes(searchTerm)) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+            });
+        }
+
+        // تصفية حسب القسم
+        const departmentFilter = document.querySelector('select.form-select');
+        if (departmentFilter) {
+            departmentFilter.addEventListener('change', function() {
+                const selectedDepartment = this.value;
+                const rows = document.querySelectorAll('tbody tr');
+                
+                rows.forEach(row => {
+                    const departmentCell = row.querySelector('td:nth-child(2)');
+                    if (departmentCell) {
+                        const department = departmentCell.textContent.toLowerCase();
+                        if (selectedDepartment === '' || department.includes(selectedDepartment)) {
+                            row.style.display = '';
+                        } else {
+                            row.style.display = 'none';
+                        }
+                    }
+                });
+            });
+        }
+
+        // توليد جدول الحضور
+        function generateAttendanceTable() {
+            const employees = [
+                'أحمد البلوشي',
+                'فاطمة الشكيلية',
+                'سالم الشقصي',
+                'نورة الفارسية',
+                'محمد الحوسني'
+            ];
+            
+            const statuses = ['حاضر', 'متأخر', 'غائب'];
+            const colors = {
+                'حاضر': 'success',
+                'متأخر': 'warning',
+                'غائب': 'danger'
+            };
+            
+            const tableBody = document.querySelector('.table-sm tbody');
+            if (tableBody) {
+                employees.forEach(employee => {
+                    const row = document.createElement('tr');
+                    const nameCell = document.createElement('td');
+                    nameCell.textContent = employee;
+                    row.appendChild(nameCell);
+                    
+                    for (let i = 1; i <= 10; i++) {
+                        const status = statuses[Math.floor(Math.random() * statuses.length)];
+                        const color = colors[status];
+                        const cell = document.createElement('td');
+                        cell.innerHTML = `<span class="attendance-badge bg-${color}">${status}</span>`;
+                        row.appendChild(cell);
+                    }
+                    
+                    tableBody.appendChild(row);
+                });
+            }
+        }
+
+        // تهيئة الصفحة
+        document.addEventListener('DOMContentLoaded', function() {
+            generateAttendanceTable();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الإلكترونيات - منتجي</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .category-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                        url('https://images.unsplash.com/photo-1498049794561-7780e7231661?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        .filter-sidebar {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .product-card {
+            border: none;
+            border-radius: 15px;
+            transition: all 0.3s;
+            overflow: hidden;
+        }
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        .product-img {
+            height: 200px;
+            object-fit: cover;
+        }
+        .price-tag {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: #dc3545;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- شريط التنقل -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-leaf me-2"></i>منتجي
+            </a>
+            <div class="d-flex align-items-center">
+                <a href="cart.html" class="btn btn-light position-relative me-3">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">3</span>
+                </a>
+                <a href="entrepreneurship-hub.html" class="btn btn-outline-light">
+                    <i class="fas fa-rocket me-1"></i>مركز ريادة الأعمال
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- عنوان الفئة -->
+    <section class="category-header">
+        <div class="container">
+            <h1 class="display-4 fw-bold mb-3">الإلكترونيات</h1>
+            <p class="lead mb-0">اكتشف أحدث الأجهزة الإلكترونية من رواد أعمال عمانيين</p>
+        </div>
+    </section>
+
+    <!-- محتوى الصفحة -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <!-- الشريط الجانبي للتصفية -->
+                <div class="col-lg-3 mb-4">
+                    <div class="filter-sidebar sticky-top" style="top: 20px;">
+                        <h5 class="mb-4">تصفية المنتجات</h5>
+                        
+                        <!-- الفئة -->
+                        <div class="mb-4">
+                            <h6 class="mb-3">الفئة</h6>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="mobile">
+                                <label class="form-check-label" for="mobile">الهواتف والأجهزة الذكية</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="computers">
+                                <label class="form-check-label" for="computers">أجهزة الكمبيوتر</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="audio">
+                                <label class="form-check-label" for="audio">الأجهزة الصوتية</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="gaming">
+                                <label class="form-check-label" for="gaming">أجهزة الألعاب</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="accessories">
+                                <label class="form-check-label" for="accessories">ملحقات إلكترونية</label>
+                            </div>
+                        </div>
+                        
+                        <!-- السعر -->
+                        <div class="mb-4">
+                            <h6 class="mb-3">نطاق السعر</h6>
+                            <input type="range" class="form-range" min="0" max="1000" step="10" id="priceRange">
+                            <div class="d-flex justify-content-between">
+                                <span>0 ر.ع</span>
+                                <span>1000 ر.ع</span>
+                            </div>
+                        </div>
+                        
+                        <!-- البائع -->
+                        <div class="mb-4">
+                            <h6 class="mb-3">رائد الأعمال</h6>
+                            <select class="form-select">
+                                <option value="">جميع البائعين</option>
+                                <option value="1">شركة التقنية العمانية</option>
+                                <option value="2">إلكترونيات النخبة</option>
+                                <option value="3">تكنو عمان</option>
+                            </select>
+                        </div>
+                        
+                        <button class="btn btn-success w-100" onclick="applyFilters()">تطبيق التصفية</button>
+                    </div>
+                </div>
+                
+                <!-- المنتجات -->
+                <div class="col-lg-9">
+                    <!-- شريط البحث والترتيب -->
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <div class="w-50">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="ابحث عن منتج إلكتروني...">
+                                <button class="btn btn-success" type="button">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div>
+                            <select class="form-select">
+                                <option value="latest">الأحدث أولاً</option>
+                                <option value="price-low">السعر: من الأقل للأعلى</option>
+                                <option value="price-high">السعر: من الأعلى للأقل</option>
+                                <option value="rating">الأعلى تقييماً</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- شبكة المنتجات -->
+                    <div class="row g-4">
+                        <!-- منتج 1 -->
+                        <div class="col-md-4">
+                            <div class="card product-card h-100">
+                                <div class="position-relative">
+                                    <img src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                                         class="card-img-top product-img" alt="سماعات لاسلكية">
+                                    <div class="price-tag">45 ر.ع</div>
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">سماعات لاسلكية بلوتوث</h5>
+                                    <p class="card-text text-muted small">سماعات لاسلكية عالية الجودة مع بطارية تعمل لمدة 20 ساعة.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <span class="text-warning">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star-half-alt"></i>
+                                            </span>
+                                            <small class="text-muted">(48)</small>
+                                        </div>
+                                        <span class="badge bg-success">متوفر</span>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-transparent">
+                                    <div class="d-grid">
+                                        <button class="btn btn-outline-success add-to-cart" 
+                                                data-product="سماعات لاسلكية بلوتوث" 
+                                                data-price="45">
+                                            <i class="fas fa-shopping-cart me-2"></i>أضف للسلة
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- منتج 2 -->
+                        <div class="col-md-4">
+                            <div class="card product-card h-100">
+                                <div class="position-relative">
+                                    <img src="https://images.unsplash.com/photo-1580910051074-3eb694886505?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                                         class="card-img-top product-img" alt="شاحن متنقل">
+                                    <div class="price-tag">25 ر.ع</div>
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">شاحن متنقل 10000mAh</h5>
+                                    <p class="card-text text-muted small">شاحن متنقل سريع يشحن 3 أجهزة في نفس الوقت.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <span class="text-warning">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                            </span>
+                                            <small class="text-muted">(36)</small>
+                                        </div>
+                                        <span class="badge bg-warning text-dark">آخر 5 قطع</span>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-transparent">
+                                    <div class="d-grid">
+                                        <button class="btn btn-outline-success add-to-cart" 
+                                                data-product="شاحن متنقل 10000mAh" 
+                                                data-price="25">
+                                            <i class="fas fa-shopping-cart me-2"></i>أضف للسلة
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- منتج 3 -->
+                        <div class="col-md-4">
+                            <div class="card product-card h-100">
+                                <div class="position-relative">
+                                    <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                                         class="card-img-top product-img" alt="ساعة ذكية">
+                                    <div class="price-tag">120 ر.ع</div>
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">ساعة ذكية رياضية</h5>
+                                    <p class="card-text text-muted small">ساعة ذكية بتقنيات متقدمة لتتبع الصحة واللياقة البدنية.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <span class="text-warning">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                            </span>
+                                            <small class="text-muted">(62)</small>
+                                        </div>
+                                        <span class="badge bg-success">متوفر</span>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-transparent">
+                                    <div class="d-grid">
+                                        <button class="btn btn-outline-success add-to-cart" 
+                                                data-product="ساعة ذكية رياضية" 
+                                                data-price="120">
+                                            <i class="fas fa-shopping-cart me-2"></i>أضف للسلة
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- المزيد من المنتجات -->
+                        <div class="col-md-4">
+                            <div class="card product-card h-100">
+                                <div class="position-relative">
+                                    <img src="https://images.unsplash.com/photo-1498049794561-7780e7231661?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                                         class="card-img-top product-img" alt="لوحة مفاتيح">
+                                    <div class="price-tag">35 ر.ع</div>
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">لوحة مفاتيح ميكانيكية</h5>
+                                    <p class="card-text text-muted small">لوحة مفاتيح ميكانيكية بإضاءة RGB للألعاب.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <span class="text-warning">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star-half-alt"></i>
+                                            </span>
+                                            <small class="text-muted">(41)</small>
+                                        </div>
+                                        <span class="badge bg-success">متوفر</span>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-transparent">
+                                    <div class="d-grid">
+                                        <button class="btn btn-outline-success add-to-cart" 
+                                                data-product="لوحة مفاتيح ميكانيكية" 
+                                                data-price="35">
+                                            <i class="fas fa-shopping-cart me-2"></i>أضف للسلة
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <div class="card product-card h-100">
+                                <div class="position-relative">
+                                    <img src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                                         class="card-img-top product-img" alt="كاميرا ويب">
+                                    <div class="price-tag">55 ر.ع</div>
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">كاميرا ويب 4K</h5>
+                                    <p class="card-text text-muted small">كاميرا ويب بدقة 4K مع ميكروفون مدمج لإلغاء الضوضاء.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <span class="text-warning">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                            </span>
+                                            <small class="text-muted">(28)</small>
+                                        </div>
+                                        <span class="badge bg-success">متوفر</span>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-transparent">
+                                    <div class="d-grid">
+                                        <button class="btn btn-outline-success add-to-cart" 
+                                                data-product="كاميرا ويب 4K" 
+                                                data-price="55">
+                                            <i class="fas fa-shopping-cart me-2"></i>أضف للسلة
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <div class="card product-card h-100">
+                                <div class="position-relative">
+                                    <img src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                                         class="card-img-top product-img" alt="حامل هاتف">
+                                    <div class="price-tag">15 ر.ع</div>
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">حامل هاتف ذكي للسيارة</h5>
+                                    <p class="card-text text-muted small">حامل هاتف ذكي للسيارة مع شحن لاسلكي سريع.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <span class="text-warning">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                            </span>
+                                            <small class="text-muted">(19)</small>
+                                        </div>
+                                        <span class="badge bg-warning text-dark">آخر 10 قطع</span>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-transparent">
+                                    <div class="d-grid">
+                                        <button class="btn btn-outline-success add-to-cart" 
+                                                data-product="حامل هاتف ذكي للسيارة" 
+                                                data-price="15">
+                                            <i class="fas fa-shopping-cart me-2"></i>أضف للسلة
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- الترقيم الصفحي -->
+                    <nav class="mt-5">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1">السابق</a>
+                            </li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">التالي</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- الفوتر -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2023 منتجي. جميع الحقوق محفوظة.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-white-50 text-decoration-none me-3">سياسة الخصوصية</a>
+                    <a href="#" class="text-white-50 text-decoration-none">شروط الاستخدام</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // إضافة المنتج للسلة
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                const productName = this.getAttribute('data-product');
+                const productPrice = this.getAttribute('data-price');
+                
+                // هنا يمكنك إضافة المنتج إلى localStorage
+                alert(`تمت إضافة ${productName} إلى سلة التسوق بسعر ${productPrice} ر.ع`);
+                
+                // تحديث عداد السلة
+                updateCartCount();
+            });
+        });
+
+        // تحديث عداد السلة
+        function updateCartCount() {
+            const cartBadge = document.querySelector('.badge.bg-danger');
+            if (cartBadge) {
+                const currentCount = parseInt(cartBadge.textContent);
+                cartBadge.textContent = currentCount + 1;
+            }
+        }
+
+        // تطبيق التصفية
+        function applyFilters() {
+            alert('تم تطبيق التصفيات بنجاح!');
+            // هنا يمكنك إضافة منطق التصفية الفعلي
+        }
+
+        // البحث الفوري
+        const searchInput = document.querySelector('input[type="text"]');
+        if (searchInput) {
+            searchInput.addEventListener('input', function() {
+                if (this.value.length > 2) {
+                    // هنا يمكنك إضافة البحث الفوري
+                    console.log('بحث عن:', this.value);
+                }
+            });
+        }
+
+        // تغيير الترتيب
+        const sortSelect = document.querySelector('.form-select');
+        if (sortSelect) {
+            sortSelect.addEventListener('change', function() {
+                // هنا يمكنك إضافة منطق إعادة ترتيب المنتجات
+                console.log('تم تغيير الترتيب إلى:', this.value);
+            });
+        }
+    </script>
+</body>
+</html>
