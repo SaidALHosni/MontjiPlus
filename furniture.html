@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الأثاث العماني - منتجي</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #28a745;
+            --secondary: #20c997;
+            --accent: #8b4513;
+        }
+        
+        body {
+            font-family: 'Cairo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+        }
+        
+        .category-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                        url('https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .filter-sidebar {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+        
+        .product-card {
+            border: none;
+            border-radius: 15px;
+            transition: all 0.3s;
+            overflow: hidden;
+            height: 100%;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .product-img {
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .price-tag {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--accent);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        .entrepreneur-badge {
+            background: var(--primary);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            display: inline-block;
+        }
+        
+        .category-tag {
+            background: #f8f9fa;
+            color: var(--accent);
+            border: 1px solid #dee2e6;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .category-tag:hover, .category-tag.active {
+            background: var(--accent);
+            color: white;
+        }
+        
+        .featured-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- شريط التنقل -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">
+                <i class="fas fa-leaf me-2"></i>منتجي
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">الرئيسية</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="furniture.html">الأثاث</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="handicrafts.html">المشغولات اليدوية</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="food-products.html">المنتجات الغذائية</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="traditional-products.html">المنتجات التقليدية</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="entrepreneurship-hub.html">ريادة الأعمال</a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <a href="cart.html" class="btn btn-light cart-icon me-3">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">3</span>
+                    </a>
+                    <a href="login.html" class="btn btn-outline-light">
+                        <i class="fas fa-sign-in-alt me-1"></i>تسجيل الدخول
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- عنوان الفئة -->
+    <section class="category-header">
+        <div class="container">
+            <h1 class="display-3 fw-bold mb-3">الأثاث العماني</h1>
+            <p class="lead mb-0">جمال التراث وروعة التصميم في كل قطعة أثاث</p>
+            <div class="mt-4">
+                <a href="#products" class="btn btn-warning btn-lg me-2">
+                    <i class="fas fa-shopping-bag me-2"></i>تسوق الآن
+                </a>
+                <a href="#entrepreneurs" class="btn btn-outline-light btn-lg">
+                    <i class="fas fa-users me-2"></i>تعرف على الحرفيين
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- محتوى الصفحة -->
+    <section class="py-5" id="products">
+        <div class="container">
+            <div class="row">
+                <!-- الشريط الجانبي للتصفية -->
+                <div class="col-lg-3 mb-4">
+                    <div class="filter-sidebar sticky-top" style="top: 20px;">
+                        <h5 class="mb-4">تصفية المنتجات</h5>
+                        
+                        <!-- البحث -->
+                        <div class="mb-4">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="ابحث عن أثاث...">
+                                <button class="btn btn-success" type="button">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- الفئات -->
+                        <div class="mb-4">
+                            <h6 class="mb-3">فئات الأثاث</h6>
+                            <div class="d-flex flex-wrap gap-2">
+                                <span class="category-tag active" onclick="filterByCategory('all')">الكل</span>
+                                <span class="category-tag" onclick="filterByCategory('living-room')">أثاث صالة</span>
+                                <span class="category-tag" onclick="filterByCategory('bedroom')">أثاث غرف نوم</span>
+                                <span class="category-tag" onclick="filterByCategory('dining')">طاولات طعام</span>
+                                <span class="category-tag" onclick="filterByCategory('office')">أثاث مكتبي</span>
+                                <span class="category-tag" onclick="filterByCategory('traditional')">تقليدي</span>
+                                <span class="category-tag" onclick="filterByCategory('modern')">عصري</span>
+                            </div>
+                        </div>
+                        
+                        <!-- المادة -->
+                        <div class="mb-4">
+                            <h6 class="mb-3">نوع الخشب</h6>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="wood-oak">
+                                <label class="form-check-label" for="wood-oak">خشب السنديان</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="wood-walnut">
+                                <label class="form-check-label" for="wood-walnut">خشب الجوز</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="wood-teak">
+                                <label class="form-check-label" for="wood-teak">خشب الساج</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="wood-mahogany">
+                                <label class="form-check-label" for="wood-mahogany">خشب الماهوجني</label>
+                            </div>
+                        </div>
+                        
+                        <!-- السعر -->
+                        <div class="mb-4">
+                            <h6 class="mb-3">نطاق السعر (ريال عماني)</h6>
+                            <input type="range" class="form-range" min="0" max="1000" step="50" id="priceRange">
+                            <div class="d-flex justify-content-between">
+                                <span>0</span>
+                                <span>1000</span>
+                            </div>
+                        </div>
+                        
+                        <!-- البائع -->
+                        <div class="mb-4">
+                            <h6 class="mb-3">رائد الأعمال</h6>
+                            <select class="form-select">
+                                <option value="">جميع البائعين</option>
+                                <option value="1">ورشة النجارة الفنية</option>
+                                <option value="2">أثاث النخبة العماني</option>
+                                <option value="3">مصنع الأثاث التقليدي</option>
+                            </select>
+                        </div>
+                        
+                        <button class="btn btn-success w-100" onclick="applyFilters()">
+                            <i class="fas fa-filter me-2"></i>تطبيق التصفية
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- المنتجات -->
+                <div class="col-lg-9">
+                    <!-- شريط الترتيب -->
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h4 class="mb-0">أثاث عالي الجودة من حرفيين عمانيين</h4>
+                        <select class="form-select w-auto">
+                            <option value="latest">الأحدث أولاً</option>
+                            <option value="price-low">السعر: من الأقل للأعلى</option>
+                            <option value="price-high">السعر: من الأعلى للأقل</option>
+                            <option value="rating">الأعلى تقييماً</option>
+                        </select>
+                    </div>
+                    
+                    <!-- شبكة المنتجات -->
+                    <div class="row g-4" id="productsGrid">
+                        <!-- منتج 1 -->
+                        <div class="col-md-4 product-item" data-category="traditional living-room">
+                            <div class="card product-card">
+                                <div class="position-relative">
+                                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                                         class="card-img-top product-img" alt="مجلس عماني تقليدي">
+                                    <div class="price-tag">450 ر.ع</div>
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">مجلس عماني تقليدي</h5>
+                                    <p class="card-text text-muted small">مجلس خشبي تقليدي بتصميم عماني أصيل، مصنوع من خشب الساج العالي الجودة.</p>
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <div>
+                                            <span class="text-warning">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star-half-alt"></i>
+                                            </span>
+                                            <small class="text-muted">(42)</small>
+                                        </div>
+                                        <span class="entrepreneur-badge">ورشة النجارة الفنية</span>
+                                    </div>
+                                    <button class="btn btn-outline-success w-100 add-to-cart" 
+                                            data-product="مجلس عماني تقليدي" 
+                                            data-price="450">
+                                        <i class="fas fa-shopping-cart me-2"></i>أضف للسلة
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- منتج 2 -->
+                        <div class="col-md-4 product-item" data-category="bedroom modern">
+                            <div class="card product-card">
+                                <div class="position-relative">
+                                    <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                                         class="card-img-top product-img" alt="سرير خشبي عصري">
+                                    <div class="price-tag">380 ر.ع</div>
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">سرير خشبي عصري</h5>
+                                    <p class="card-text text-muted small">سرير خشبي بتصميم عصري مع تخزين ذكي، مصنوع من خشب الجوز المعالج.</p>
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <div>
+                                            <span class="text-warning">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                            </span>
+                                            <small class="text-muted">(28)</small>
+                                        </div>
+                                        <span class="entrepreneur-badge">أثاث النخبة العماني</span>
+                                    </div>
+                                    <button class="btn btn-outline-success w-100 add-to-cart" 
+                                            data-product="سرير خشبي عصري" 
+                                            data-price="380">
+                                        <i class="fas fa-shopping-cart me-2"></i>أضف للسلة
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- منتج 3 -->
+                        <div class="col-md-4 product-item" data-category="dining traditional">
+                            <div class="card product-card">
+                                <div class="position-relative">
+                                    <img src="https://images.unsplash.com/photo-1567016376408-0226e4d0c1ea?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                                         class="card-img-top product-img" alt="طاولة طعام عمانية">
+                                    <div class="price-tag">520 ر.ع</div>
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">طاولة طعام عمانية</h5>
+                                    <p class="card-text text-muted small">طاولة طعام تقليدية بتصميم عماني فريد، تتسع لـ 8 أشخاص، من خشب الماهوجني.</p>
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <div>
+                                            <span class="text-warning">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                            </span>
+                                            <small class="text-muted">(35)</small>
+                                        </div>
+                                        <span class="entrepreneur-badge">مصنع الأثاث التقليدي</span>
+                                    </div>
+                                    <button class="btn btn-outline-success w-100 add-to-cart" 
+                                            data-product="طاولة طعام عمانية" 
+                                            data-price="520">
+                                        <i class="fas fa-shopping-cart me-2"></i>أضف للسلة
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- منتج 4 -->
+                        <div class="col-md-4 product-item" data-category="office modern">
+                            <div class="card product-card">
+                                <div class="position-relative">
+                                    <img src="https://images.unsplash.com/photo-1517502884422-41eaead166d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                                         class="card-img-top product-img" alt="مكتب خشبي فاخر">
+                                    <div class="price-tag">290 ر.ع</div>
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">مكتب خشبي فاخر</h5>
+                                    <p class="card-text text-muted small">مكتب عمل خشبي بتصميم عصري ووظيفي، مع مساحة تخزين منظمة.</p>
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <div>
+                                            <span class="text-warning">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star-half-alt"></i>
+                                            </span>
+                                            <small class="text-muted">(19)</small>
+                                        </div>
+                                        <span class="entrepreneur-badge">ورشة النجارة الفنية</span>
+                                    </div>
+                                    <button class="btn btn-outline-success w-100 add-to-cart" 
+                                            data-product="مكتب خشبي فاخر" 
+                                            data-price="290">
+                                        <i class="fas fa-shopping-cart me-2"></i>أضف للسلة
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- منتج 5 -->
+                        <div class="col-md-4 product-item" data-category="living-room modern">
+                            <div class="card product-card">
+                                <div class="position-relative">
+                                    <img src="https://images.unsplash.com/photo-1540574163026-643ea20ade25?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                                         class="card-img-top product-img" alt="كنبة خشبية عصرية">
+                                    <div class="price-tag">680 ر.ع</div>
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">كنبة خشبية عصرية</h5>
+                                    <p class="card-text text-muted small">مجموعة كنبات خشبية بتصميم عصري مع فراش مريح وألوان متناسقة.</p>
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <div>
+                                            <span class="text-warning">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                            </span>
+                                            <small class="text-muted">(47)</small>
+                                        </div>
+                                        <span class="entrepreneur-badge">أثاث النخبة العماني</span>
+                                    </div>
+                                    <button class="btn btn-outline-success w-100 add-to-cart" 
+                                            data-product="كنبة خشبية عصرية" 
+                                            data-price="680">
+                                        <i class="fas fa-shopping-cart me-2"></i>أضف للسلة
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- منتج 6 -->
+                        <div class="col-md-4 product-item" data-category="traditional bedroom">
+                            <div class="card product-card">
+                                <div class="position-relative">
+                                    <img src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                                         class="card-img-top product-img" alt="خزانة ملابس تقليدية">
+                                    <div class="price-tag">420 ر.ع</div>
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">خزانة ملابس تقليدية</h5>
+                                    <p class="card-text text-muted small">خزانة ملابس خشبية بتصميم عماني تقليدي مع تفاصيل نحتية يدوية رائعة.</p>
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <div>
+                                            <span class="text-warning">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                            </span>
+                                            <small class="text-muted">(31)</small>
+                                        </div>
+                                        <span class="entrepreneur-badge">مصنع الأثاث التقليدي</span>
+                                    </div>
+                                    <button class="btn btn-outline-success w-100 add-to-cart" 
+                                            data-product="خزانة ملابس تقليدية" 
+                                            data-price="420">
+                                        <i class="fas fa-shopping-cart me-2"></i>أضف للسلة
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- الترقيم الصفحي -->
+                    <nav class="mt-5">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1">السابق</a>
+                            </li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">التالي</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم الحرفيين -->
+    <section class="featured-section" id="entrepreneurs">
+        <div class="container">
+            <h2 class="text-center mb-5">تعرف على حرفيين الأثاث في منتجي</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-body text-center">
+                            <img src="https://randomuser.me/api/portraits/men/54.jpg" 
+                                 class="rounded-circle mb-3" width="100" height="100" alt="أحمد البلوشي">
+                            <h4 class="mb-2">أحمد البلوشي</h4>
+                            <p class="text-muted mb-3">مالك "ورشة النجارة الفنية"</p>
+                            <p class="mb-3">"أتوارث حرفة النجارة عن أجدادي. في منتجي، وجدت منصة تعرف العالم على إبداعاتي."</p>
+                            <div class="d-flex justify-content-center gap-2 mb-3">
+                                <span class="badge bg-success">35 منتج</span>
+                                <span class="badge bg-warning text-dark">4.8 ★</span>
+                                <span class="badge bg-info">5 سنوات</span>
+                            </div>
+                            <a href="#" class="btn btn-outline-success">عرض منتجاته</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-body text-center">
+                            <img src="https://randomuser.me/api/portraits/men/67.jpg" 
+                                 class="rounded-circle mb-3" width="100" height="100" alt="سالم الشقصي">
+                            <h4 class="mb-2">سالم الشقصي</h4>
+                            <p class="text-muted mb-3">مؤسس "أثاث النخبة العماني"</p>
+                            <p class="mb-3">"دمجت بين التصميم العماني التقليدي والأسلوب العصري. منتجي ساعدتني في الوصول لعملاء جدد."</p>
+                            <div class="d-flex justify-content-center gap-2 mb-3">
+                                <span class="badge bg-success">42 منتج</span>
+                                <span class="badge bg-warning text-dark">4.9 ★</span>
+                                <span class="badge bg-info">3 سنوات</span>
+                            </div>
+                            <a href="#" class="btn btn-outline-success">عرض منتجاته</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-body text-center">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" 
+                                 class="rounded-circle mb-3" width="100" height="100" alt="محمد الحوسني">
+                            <h4 class="mb-2">محمد الحوسني</h4>
+                            <p class="text-muted mb-3">مدير "مصنع الأثاث التقليدي"</p>
+                            <p class="mb-3">"نسعى للحفاظ على التراث العماني في الأثاث. منتجي وفرت لنا فرصة التصدير لدول الخليج."</p>
+                            <div class="d-flex justify-content-center gap-2 mb-3">
+                                <span class="badge bg-success">58 منتج</span>
+                                <span class="badge bg-warning text-dark">5.0 ★</span>
+                                <span class="badge bg-info">8 سنوات</span>
+                            </div>
+                            <a href="#" class="btn btn-outline-success">عرض منتجاته</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- الفوتر -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2023 منتجي. جميع الحقوق محفوظة.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="index.html" class="text-white-50 text-decoration-none me-3">الرئيسية</a>
+                    <a href="about.html" class="text-white-50 text-decoration-none">عن منتجي</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // تحديث عداد السلة
+        function updateCartCount() {
+            const cartCount = document.querySelector('.cart-count');
+            if (cartCount) {
+                const savedCount = localStorage.getItem('cartCount') || 0;
+                cartCount.textContent = savedCount;
+            }
+        }
+
+        // إضافة المنتج للسلة
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                const productName = this.getAttribute('data-product');
+                const productPrice = this.getAttribute('data-price');
+                
+                // تحديث عداد السلة
+                const cartCount = document.querySelector('.cart-count');
+                const currentCount = parseInt(cartCount.textContent);
+                cartCount.textContent = currentCount + 1;
+                localStorage.setItem('cartCount', cartCount.textContent);
+                
+                // رسالة تأكيد
+                alert(`تمت إضافة "${productName}" إلى سلة التسوق بسعر ${productPrice} ريال عماني`);
+            });
+        });
+
+        // تصفية المنتجات حسب الفئة
+        function filterByCategory(category) {
+            // تحديث حالة الأزرار
+            document.querySelectorAll('.category-tag').forEach(tag => {
+                tag.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // تصفية المنتجات
+            const products = document.querySelectorAll('.product-item');
+            
+            if (category === 'all') {
+                products.forEach(product => {
+                    product.style.display = 'block';
+                });
+            } else {
+                products.forEach(product => {
+                    const productCategories = product.getAttribute('data-category');
+                    if (productCategories.includes(category)) {
+                        product.style.display = 'block';
+                    } else {
+                        product.style.display = 'none';
+                    }
+                });
+            }
+        }
+
+        // تطبيق التصفية
+        function applyFilters() {
+            alert('تم تطبيق التصفيات بنجاح!');
+            // هنا يمكنك إضافة منطق التصفية المتقدم
+        }
+
+        // البحث الفوري
+        const searchInput = document.querySelector('input[type="text"]');
+        if (searchInput) {
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                const products = document.querySelectorAll('.product-item');
+                
+                products.forEach(product => {
+                    const productText = product.textContent.toLowerCase();
+                    if (productText.includes(searchTerm)) {
+                        product.style.display = 'block';
+                    } else {
+                        product.style.display = 'none';
+                    }
+                });
+            });
+        }
+
+        // تغيير الترتيب
+        const sortSelect = document.querySelector('.form-select');
+        if (sortSelect) {
+            sortSelect.addEventListener('change', function() {
+                // هنا يمكنك إضافة منطق إعادة ترتيب المنتجات
+                console.log('تم تغيير الترتيب إلى:', this.value);
+            });
+        }
+
+        // تهيئة الصفحة
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartCount();
+        });
+    </script>
+</body>
+</html>

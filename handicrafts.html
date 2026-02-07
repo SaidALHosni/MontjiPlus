@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المشغولات اليدوية العمانية - منتجي</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #28a745;
+            --secondary: #20c997;
+            --accent: #d4af37;
+        }
+        
+        body {
+            font-family: 'Cairo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+        }
+        
+        .category-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                        url('https://images.unsplash.com/photo-1583574924103-3af5d3a2d6fc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .product-card {
+            border: none;
+            border-radius: 15px;
+            transition: all 0.3s;
+            overflow: hidden;
+            height: 100%;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .product-img {
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .price-tag {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--accent);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        .craftsmanship-badge {
+            background: var(--accent);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            display: inline-block;
+        }
+        
+        .craft-type {
+            background: #f8f9fa;
+            color: var(--accent);
+            border: 1px solid #dee2e6;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .craft-type:hover, .craft-type.active {
+            background: var(--accent);
+            color: white;
+        }
+        
+        .artisan-story {
+            background: linear-gradient(135deg, #fffaf0 0%, #f5f5dc 100%);
+            border-radius: 15px;
+            padding: 30px;
+            border-right: 5px solid var(--accent);
+        }
+        
+        .featured-section {
+            background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- شريط التنقل -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">
+                <i class="fas fa-leaf me-2"></i>منتجي
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">الرئيسية</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="furniture.html">الأثاث</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="handicrafts.html">المشغولات اليدوية</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="food-products.html">المنتجات الغذائية</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="traditional-products.html">المنتجات التقليدية</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="entrepreneurship-hub.html">ريادة الأعمال</a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <a href="cart.html" class="btn btn-light cart-icon me-3">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">3</span>
+                    </a>
+                    <a href="login.html" class="btn btn-outline-light">
+                        <i class="fas fa-sign-in-alt me-1"></i>تسجيل الدخول
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- عنوان الفئة -->
+    <section class="category-header">
+        <div class="container">
+            <h1 class="display-3 fw-bold mb-3">المشغولات اليدوية العمانية</h1>
+            <p class="lead mb-0">إبداعات يدوية تحكي قصة تراثنا العريق</p>
+            <div class="mt-4">
+                <a href="#products" class="btn btn-warning btn-lg me-2">
+                    <i class="fas fa-shopping-bag me-2"></i>تسوق الآن
+                </a>
+                <a href="#artisans" class="btn btn-outline-light btn-lg">
+                    <i class="fas fa-hands me-2"></i>تعرف على الحرفيين
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- محتوى الصفحة -->
+    <section class="py-5" id="products">
+        <div class="container">
+            <!-- أنواع المشغولات -->
+            <div class="text-center mb-5">
+                <h3 class="mb-4">أنواع المشغولات اليدوية</h3>
+                <div class="d-flex flex-wrap justify-content-center gap-3">
+                    <span class="craft-type active" onclick="filterByType('all')">الكل</span>
+                    <span class="craft-type" onclick="filterByType('pottery')">الفخاريات</span>
+                    <span class="craft-type" onclick="filterByType('textiles')">المنسوجات</span>
+                    <span class="craft-type" onclick="filterByType('silverware')">الفضيات</span>
+                    <span class="craft-type" onclick="filterByType('wood-carving')">النحت على الخشب</span>
+                    <span class="craft-type" onclick="filterByType('basketry')">السلال والحصير</span>
+                    <span class="craft-type" onclick="filterByType('leather')">المصنوعات الجلدية</span>
+                </div>
+            </div>
+            
+            <!-- شريط البحث والترتيب -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div class="w-50">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="ابحث عن مشغولات يدوية...">
+                        <button class="btn btn-success" type="button">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+                <select class="form-select w-auto">
+                    <option value="latest">الأحدث أولاً</option>
+                    <option value="price-low">السعر: من الأقل للأعلى</option>
+                    <option value="price-high">السعر: من الأعلى للأقل</option>
+                    <option value="rating">الأعلى تقييماً</option>
+                </select>
+            </div>
+            
+            <!-- شبكة المنتجات -->
+            <div class="row g-4" id="productsGrid">
+                <!-- منتج 1 -->
+                <div class="col-md-4 product-item" data-type="silverware">
+                    <div class="card product-card">
+                        <div class="position-relative">
+                            <img src="https://images.unsplash.com/photo-1583574924103-3af5d3a2d6fc?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                                 class="card-img-top product-img" alt="خنجر عماني فضي">
+                            <div class="price-tag">85 ر.ع</div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">خنجر عماني فضي</h5>
+                            <p class="card-text text-muted small">خنجر تقليدي عماني (خنجر) مصنوع من الفضة المنقوشة يدوياً، مع غمد جلدي مطرز.</p>
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div>
+                                    <span class="text-warning">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star-half-alt"></i>
+                                    </span>
+                                    <small class="text-muted">(56)</small>
+                                </div>
+                                <span class="craftsmanship-badge">فضيات عمان</span>
+                            </div>
+                            <button class="btn btn-outline-success w-100 add-to-cart" 
+                                    data-product="خنجر عماني فضي" 
+                                    data-price="85">
+                                <i class="fas fa-shopping-cart me-2"></i>أضف للسلة
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- منتج 2 -->
+                <div class="col-md-4 product-item" data-type="pottery">
+                    <div class="card product-card">
+                        <div class="position-relative">
+                            <img src="https://images.unsplash.com/photo-1574732011388-8e9d1ef52d6a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                                 class="card-img-top product-img" alt="مجموعة فخاريات عمانية">
+                            <div class="price-tag">45 ر.ع</div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">مجموعة فخاريات عمانية</h5>
+                            <p class="card-text text-muted small">مجموعة من الأواني الفخارية التقليدية الملونة، مصنوعة يدوياً من الطين العماني.</p>
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div>
+                                    <span class="text-warning">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                    </span>
+                                    <small class="text-muted">(42)</small>
+                                </div>
+                                <span class="craftsmanship-badge">فخار بهلا</span>
+                            </div>
+                            <button class="btn btn-outline-success w-100 add-to-cart" 
+                                    data-product="مجموعة فخاريات عمانية" 
+                                    data-price="45">
+                                <i class="fas fa-shopping-cart me-2"></i>أضف للسلة
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- منتج 3 -->
+                <div class="col-md-4 product-item" data-type="textiles">
+                    <div class="card product-card">
+                        <div class="position-relative">
+                            <img src="https://images.unsplash.com/photo-1542332213-9b5a5a3fad38?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                                 class="card-img-top product-img" alt="سجادة عمانية مطرزة">
+                            <div class="price-tag">120 ر.ع</div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">سجادة عمانية مطرزة</h5>
+                            <p class="card-text text-muted small">سجادة صوفية يدوية الصنع، بمطرزات عمانية تقليدية وألوان زاهية.</p>
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div>
+                                    <span class="text-warning">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </span>
+                                    <small class="text-muted">(38)</small>
+                                </div>
+                                <span class="craftsmanship-badge">نسيج عمان</span>
+                            </div>
+                            <button class="btn btn-outline-success w-100 add-to-cart" 
+                                    data-product="سجادة عمانية مطرزة" 
+                                    data-price="120">
+                                <i class="fas fa-shopping-cart me-2"></i>أضف للسلة
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- منتج 4 -->
+                <div class="col-md-4 product-item" data-type="wood-carving">
+                    <div class="card product-card">
+                        <div class="position-relative">
+                            <img src="https://images.unsplash.com/photo-1603092202161-6e4f1c1d4175?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                                 class="card-img-top product-img" alt="لوحة خشبية منحوتة">
+                            <div class="price-tag">65 ر.ع</div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">لوحة خشبية منحوتة</h5>
+                            <p class="card-text text-muted small">لوحة خشبية منحوتة يدوياً بتصميمات عمانية تقليدية، مثالية للديكور المنزلي.</p>
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div>
+                                    <span class="text-warning">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star-half-alt"></i>
+                                    </span>
+                                    <small class="text-muted">(29)</small>
+                                </div>
+                                <span class="craftsmanship-badge">نحت الخشب</span>
+                            </div>
+                            <button class="btn btn-outline-success w-100 add-to-cart" 
+                                    data-product="لوحة خشبية منحوتة" 
+                                    data-price="65">
+                                <i class="fas fa-shopping-cart me-2"></i>أضف للسلة
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- منتج 5 -->
+                <div class="col-md-4 product-item" data-type="basketry">
+                    <div class="card product-card">
+                        <div class="position-relative">
+                            <img src="https://images.unsplash.com/photo-1597677203866-8b74c7c7eb83?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                                 class="card-img-top product-img" alt="سلة نخيل تقليدية">
+                            <div class="price-tag">25 ر.ع</div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">سلة نخيل تقليدية</h5>
+                            <p class="card-text text-muted small">سلة مصنوعة يدوياً من سعف النخيل، بتصميم عملي وجمالي، مثالية للاستخدام المنزلي.</p>
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div>
+                                    <span class="text-warning">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                    </span>
+                                    <small class="text-muted">(47)</small>
+                                </div>
+                                <span class="craftsmanship-badge">سعفيات عمان</span>
+                            </div>
+                            <button class="btn btn-outline-success w-100 add-to-cart" 
+                                    data-product="سلة نخيل تقليدية" 
+                                    data-price="25">
+                                <i class="fas fa-shopping-cart me-2"></i>أضف للسلة
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- منتج 6 -->
+                <div class="col-md-4 product-item" data-type="leather">
+                    <div class="card product-card">
+                        <div class="position-relative">
+                            <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                                 class="card-img-top product-img" alt="محفظة جلدية مطرزة">
+                            <div class="price-tag">35 ر.ع</div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">محفظة جلدية مطرزة</h5>
+                            <p class="card-text text-muted small">محفظة جلدية يدوية الصنع، بمطرزات عمانية تقليدية وتصميم أنيق وعملي.</p>
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div>
+                                    <span class="text-warning">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </span>
+                                    <small class="text-muted">(33)</small>
+                                </div>
+                                <span class="craftsmanship-badge">جلديات عمان</span>
+                            </div>
+                            <button class="btn btn-outline-success w-100 add-to-cart" 
+                                    data-product="محفظة جلدية مطرزة" 
+                                    data-price="35">
+                                <i class="fas fa-shopping-cart me-2"></i>أضف للسلة
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- الترقيم الصفحي -->
+            <nav class="mt-5">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1">السابق</a>
+                    </li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">التالي</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </section>
+
+    <!-- قسم الحرفيين -->
+    <section class="featured-section" id="artisans">
+        <div class="container">
+            <h2 class="text-center mb-5">حكايات حرفيين منتجي</h2>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="artisan-story">
+                        <div class="d-flex align-items-start mb-4">
+                            <img src="https://randomuser.me/api/portraits/women/45.jpg" 
+                                 class="rounded-circle me-3" width="80" height="80" alt="فاطمة الشكيلية">
+                            <div>
+                                <h4 class="mb-1">فاطمة الشكيلية</h4>
+                                <p class="text-muted mb-2">حرفية في التطريز والمنسوجات</p>
+                                <span class="badge bg-warning">30 سنة خبرة</span>
+                            </div>
+                        </div>
+                        <p class="mb-4">
+                            "أتوارث حرفة التطريز عن أمي وجدتي. كل غرزة تحكي قصة، وكل لون يعبر عن جزء من تراثنا.
+                            من خلال منتجي، أصبح بإمكاني مشاركة إبداعاتي مع العالم والحفاظ على هذا التراث الجميل."
+                        </p>
+                        <div class="d-flex justify-content-between">
+                            <small><i class="fas fa-map-marker-alt me-1"></i> صلالة، عمان</small>
+                            <small><i class="fas fa-star text-warning me-1"></i> 4.9 تقييم</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="artisan-story">
+                        <div class="d-flex align-items-start mb-4">
+                            <img src="https://randomuser.me/api/portraits/men/54.jpg" 
+                                 class="rounded-circle me-3" width="80" height="80" alt="سالم الشقصي">
+                            <div>
+                                <h4 class="mb-1">سالم الشقصي</h4>
+                                <p class="text-muted mb-2">حرفي في صناعة الفخار</p>
+                                <span class="badge bg-warning">25 سنة خبرة</span>
+                            </div>
+                        </div>
+                        <p class="mb-4">
+                            "أعمل مع الطين منذ كان عمري 12 سنة. كل قطعة فخارية تخرج من يدي تحمل جزءاً من روحي.
+                            منتجي ساعدتني في الوصول لعملاء يقدرون الفن اليدوي، ومكنتني من تحويل هوايتي إلى مصدر رزق."
+                        </p>
+                        <div class="d-flex justify-content-between">
+                            <small><i class="fas fa-map-marker-alt me-1"></i> بهلا، عمان</small>
+                            <small><i class="fas fa-star text-warning me-1"></i> 4.8 تقييم</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- دعوة للانضمام -->
+    <section class="py-5 bg-light">
+        <div class="container text-center">
+            <h2 class="mb-4">هل أنت حرفي أو صانع يدوي؟</h2>
+            <p class="lead mb-4" style="max-width: 700px; margin: 0 auto;">
+                انضم إلى مجتمع الحرفيين في منتجي وشارك إبداعاتك مع العالم.
+                نوفر لك منصة لعرض منتجاتك، خدمات شحن وتوصيل، ودعم تسويقي متكامل.
+            </p>
+            <a href="register-entrepreneur.html" class="btn btn-success btn-lg">
+                <i class="fas fa-user-plus me-2"></i>انضم كحرفي
+            </a>
+        </div>
+    </section>
+
+    <!-- الفوتر -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2023 منتجي. جميع الحقوق محفوظة.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="index.html" class="text-white-50 text-decoration-none me-3">الرئيسية</a>
+                    <a href="about.html" class="text-white-50 text-decoration-none">عن منتجي</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // تحديث عداد السلة
+        function updateCartCount() {
+            const cartCount = document.querySelector('.cart-count');
+            if (cartCount) {
+                const savedCount = localStorage.getItem('cartCount') || 0;
+                cartCount.textContent = savedCount;
+            }
+        }
+
+        // إضافة المنتج للسلة
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                const productName = this.getAttribute('data-product');
+                const productPrice = this.getAttribute('data-price');
+                
+                // تحديث عداد السلة
+                const cartCount = document.querySelector('.cart-count');
+                const currentCount = parseInt(cartCount.textContent);
+                cartCount.textContent = currentCount + 1;
+                localStorage.setItem('cartCount', cartCount.textContent);
+                
+                // رسالة تأكيد
+                alert(`تمت إضافة "${productName}" إلى سلة التسوق بسعر ${productPrice} ريال عماني`);
+            });
+        });
+
+        // تصفية المنتجات حسب النوع
+        function filterByType(type) {
+            // تحديث حالة الأزرار
+            document.querySelectorAll('.craft-type').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // تصفية المنتجات
+            const products = document.querySelectorAll('.product-item');
+            
+            if (type === 'all') {
+                products.forEach(product => {
+                    product.style.display = 'block';
+                });
+            } else {
+                products.forEach(product => {
+                    const productType = product.getAttribute('data-type');
+                    if (productType === type) {
+                        product.style.display = 'block';
+                    } else {
+                        product.style.display = 'none';
+                    }
+                });
+            }
+        }
+
+        // البحث الفوري
+        const searchInput = document.querySelector('input[type="text"]');
+        if (searchInput) {
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                const products = document.querySelectorAll('.product-item');
+                
+                products.forEach(product => {
+                    const productText = product.textContent.toLowerCase();
+                    if (productText.includes(searchTerm)) {
+                        product.style.display = 'block';
+                    } else {
+                        product.style.display = 'none';
+                    }
+                });
+            });
+        }
+
+        // تهيئة الصفحة
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartCount();
+        });
+    </script>
+</body>
+</html>
