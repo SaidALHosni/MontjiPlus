@@ -9,11 +9,14 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <style>
         :root {
             --primary: #28a745;
             --secondary: #20c997;
             --accent: #17a2b8;
+            --home-business: #ff6b6b;
             --dark: #1a1a2e;
             --light: #f8f9fa;
         }
@@ -23,7 +26,7 @@
             background-color: #f8f9fa;
         }
 
-        /* تصميم جديد للهيرو */
+        /* تصميم الهيرو المتحرك */
         .hero-section {
             background: linear-gradient(135deg, 
                 rgba(40, 167, 69, 0.9) 0%, 
@@ -35,6 +38,7 @@
             padding: 100px 0;
             position: relative;
             overflow: hidden;
+            transition: transform 0.3s ease-out;
         }
 
         .hero-section::before {
@@ -53,13 +57,193 @@
             z-index: 1;
         }
 
-        .hero-tagline {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            opacity: 0.9;
+        /* تحسينات للهيرو المتحرك */
+        .hero-animated-text {
+            height: 120px;
+            position: relative;
+            margin: 20px 0;
         }
 
-        /* تصاميم بطاقات الفئات */
+        .animated-text-wrapper {
+            position: relative;
+            height: 100%;
+        }
+
+        .animated-text {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            font-size: 3.5rem;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .animated-text.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .text-item {
+            background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+            padding: 0 10px;
+            border-radius: 10px;
+        }
+
+        .hero-tagline-container {
+            height: 140px;
+            position: relative;
+            margin: 30px 0;
+        }
+
+        .tagline-wrapper {
+            position: relative;
+            height: 100%;
+        }
+
+        .hero-tagline {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            opacity: 0;
+            transform: translateX(30px);
+            transition: all 0.8s ease 0.2s;
+        }
+
+        .hero-tagline.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .hero-image-container {
+            height: 450px;
+            position: relative;
+        }
+
+        .hero-image-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .hero-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .hero-image.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+
+        .hero-buttons {
+            position: relative;
+            height: 60px;
+            overflow: hidden;
+        }
+
+        .hero-btn {
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+            white-space: nowrap;
+        }
+
+        .hero-btn.active {
+            opacity: 1;
+            transform: translateY(0);
+            position: relative;
+        }
+
+        .hero-indicators {
+            margin-top: 20px;
+        }
+
+        .indicator-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .indicator-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: scale(1.1);
+        }
+
+        .indicator-btn.active {
+            background: white;
+            color: var(--primary);
+            border-color: white;
+            transform: scale(1.1);
+        }
+
+        .bg-purple {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        /* تأثيرات الحركة */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .hero-image .rounded-circle {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* قسم الفئات المستهدفة - شبكة 2x2 */
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        @media (max-width: 992px) {
+            .audience-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* تصاميم بطاقات الفئات المعدلة */
         .audience-card {
             border: none;
             border-radius: 20px;
@@ -69,7 +253,10 @@
             transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
-            margin-bottom: 20px;
+            min-height: 320px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .audience-card::before {
@@ -102,9 +289,82 @@
             color: white;
         }
 
+        .audience-card.home-business {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%);
+            color: white;
+            grid-column: span 2;
+        }
+
+        @media (max-width: 992px) {
+            .audience-card.home-business {
+                grid-column: span 1;
+            }
+        }
+
         .audience-icon {
             font-size: 3rem;
             margin-bottom: 20px;
+        }
+
+        /* قسم المشاريع المنزلية */
+        .home-business-section {
+            background: linear-gradient(135deg, #fff5f5 0%, #fff0f0 100%);
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .home-business-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.1) 0%, rgba(255, 142, 83, 0.1) 100%);
+            border-radius: 50%;
+            transform: translate(150px, -150px);
+        }
+
+        .home-business-section::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.1) 0%, rgba(255, 142, 83, 0.1) 100%);
+            border-radius: 50%;
+            transform: translate(-100px, 100px);
+        }
+
+        .home-business-category {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s;
+            height: 100%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border-top: 5px solid var(--home-business);
+        }
+
+        .home-business-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(255, 107, 107, 0.15);
+        }
+
+        .category-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 2rem;
         }
 
         /* مسار الرحلة */
@@ -179,6 +439,18 @@
         .product-img {
             height: 200px;
             object-fit: cover;
+        }
+
+        .home-product-tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--home-business);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
         }
 
         .cart-icon {
@@ -268,6 +540,65 @@
         .footer-links a:hover {
             color: white;
         }
+
+        /* تحسينات للشاشات الصغيرة */
+        @media (max-width: 992px) {
+            .hero-animated-text {
+                height: 100px;
+            }
+            
+            .animated-text {
+                font-size: 2.5rem;
+            }
+            
+            .hero-tagline-container {
+                height: 180px;
+            }
+            
+            .hero-image-container {
+                height: 350px;
+                margin-top: 30px;
+            }
+            
+            .hero-buttons {
+                height: auto;
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .hero-btn {
+                position: relative;
+                opacity: 0;
+                transform: translateY(10px);
+                width: 100%;
+            }
+            
+            .hero-btn.active {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .animated-text {
+                font-size: 2rem;
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-tagline-container {
+                height: 220px;
+            }
+            
+            .indicator-btn {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .hero-section {
+                padding: 60px 0;
+            }
+        }
     </style>
 </head>
 
@@ -308,17 +639,24 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="productsDropdown" role="button"
                             data-bs-toggle="dropdown">
-                            المنتجات
+                            المشاريع المنزلية
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="electronics.html">
-                                <i class="fas fa-laptop me-2"></i>الإلكترونيات
+                            <li><a class="dropdown-item" href="home-food.html">
+                                <i class="fas fa-utensils me-2"></i>الأطعمة المنزلية
                             </a></li>
-                            <li><a class="dropdown-item" href="handicrafts.html">
+                            <li><a class="dropdown-item" href="home-handicrafts.html">
                                 <i class="fas fa-hands me-2"></i>المشغولات اليدوية
                             </a></li>
-                            <li><a class="dropdown-item" href="food-products.html">
-                                <i class="fas fa-utensils me-2"></i>المنتجات الغذائية
+                            <li><a class="dropdown-item" href="home-cosmetics.html">
+                                <i class="fas fa-spa me-2"></i>مستحضرات التجميل
+                            </a></li>
+                            <li><a class="dropdown-item" href="home-fashion.html">
+                                <i class="fas fa-tshirt me-2"></i>الملابس والأزياء
+                            </a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="home-business-guide.html">
+                                <i class="fas fa-book me-2"></i>دليل المشاريع المنزلية
                             </a></li>
                         </ul>
                     </li>
@@ -350,33 +688,156 @@
         </div>
     </nav>
 
-    <!-- قسم الهيرو الجديد مع الرسائل التحفيزية -->
+    <!-- قسم الهيرو المتحرك -->
     <section class="hero-section">
         <div class="container">
             <div class="hero-content">
                 <div class="row align-items-center">
                     <div class="col-lg-7">
-                        <h1 class="display-3 fw-bold mb-4">نحوّل أفكارك إلى مشاريع ناجحة</h1>
-                        <p class="hero-tagline lead">
-                            من الشباب الطموحين إلى الشركات الناشئة،
-                            نقدم أدوات ذكية لتحويل الأفكار إلى مشاريع حقيقية باستخدام الذكاء الاصطناعي،
-                            مع حلول متكاملة للتطوير، البيع الإلكتروني، وإدارة الأعمال.
-                        </p>
-                        <div class="d-flex flex-wrap gap-3">
-                            <a href="#journey" class="btn btn-light btn-lg px-4 py-3">
-                                <i class="fas fa-play-circle me-2"></i>ابدأ رحلتك الآن
+                        <!-- العنوان المتحرك -->
+                        <div class="hero-title-container mb-4">
+                            <h1 class="display-3 fw-bold mb-2">نحوّل</h1>
+                            <div class="hero-animated-text">
+                                <div class="animated-text-wrapper">
+                                    <span class="animated-text active" data-index="0">
+                                        <span class="text-item">مشروعك المنزلي</span>
+                                        <i class="fas fa-home ms-2"></i>
+                                    </span>
+                                    <span class="animated-text" data-index="1">
+                                        <span class="text-item">فكرتك الريادية</span>
+                                        <i class="fas fa-lightbulb ms-2"></i>
+                                    </span>
+                                    <span class="animated-text" data-index="2">
+                                        <span class="text-item">مشروعك الناشئ</span>
+                                        <i class="fas fa-rocket ms-2"></i>
+                                    </span>
+                                    <span class="animated-text" data-index="3">
+                                        <span class="text-item">متجرك الإلكتروني</span>
+                                        <i class="fas fa-store ms-2"></i>
+                                    </span>
+                                    <span class="animated-text" data-index="4">
+                                        <span class="text-item">طموحك الشبابي</span>
+                                        <i class="fas fa-users ms-2"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <h1 class="display-3 fw-bold mt-2">إلى واقع ناجح</h1>
+                        </div>
+
+                        <!-- الرسالة الوصفية المتحركة -->
+                        <div class="hero-tagline-container">
+                            <div class="tagline-wrapper">
+                                <p class="lead hero-tagline active" data-index="0">
+                                    <strong>من بيتك.. ابدأ مشروعك</strong><br>
+                                    حوّل هوايتك في الطبخ، الحلويات، أو المشغولات اليدوية 
+                                    إلى مشروع منزلي ناجح يدر عليك دخلًا مستمرًا.
+                                </p>
+                                <p class="lead hero-tagline" data-index="1">
+                                    <strong>من فكرة إلى مشروع قابل للنمو</strong><br>
+                                    استخدم أدواتنا الذكية لتطوير فكرتك، إنشاء خطة عمل، 
+                                    وإطلاق مشروعك الريادي بثقة واحترافية.
+                                </p>
+                                <p class="lead hero-tagline" data-index="2">
+                                    <strong>ارتقِ بمشروعك الناشئ</strong><br>
+                                    أدوات متقدمة للإدارة، التسويق، والتوسع لتحويل 
+                                    شركتك الناشئة إلى شركة رائدة في السوق.
+                                </p>
+                                <p class="lead hero-tagline" data-index="3">
+                                    <strong>أنشئ متجرك الإلكتروني في دقائق</strong><br>
+                                    بدون خبرة برمجية، أنشئ متجرك المتكامل وابدأ البيع 
+                                    محلياً وعالمياً بنظام دفع وشحن متكامل.
+                                </p>
+                                <p class="lead hero-tagline" data-index="4">
+                                    <strong>لطموح الشباب لا حدود</strong><br>
+                                    نوفر لك المسار الكامل من التدريب إلى التمويل 
+                                    لتحويل طموحك إلى مشروع حقيقي وناجح.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- الأزرار -->
+                        <div class="hero-buttons d-flex flex-wrap gap-3">
+                            <a href="#home-business" class="btn btn-light btn-lg px-4 py-3 hero-btn active" data-index="0">
+                                <i class="fas fa-home me-2"></i>ابدأ مشروعك المنزلي
+                            </a>
+                            <a href="ai-business-idea.html" class="btn btn-light btn-lg px-4 py-3 hero-btn" data-index="1">
+                                <i class="fas fa-rocket me-2"></i>ابدأ مشروعك الريادي
+                            </a>
+                            <a href="startups.html" class="btn btn-light btn-lg px-4 py-3 hero-btn" data-index="2">
+                                <i class="fas fa-building me-2"></i>طور شركتك الناشئة
+                            </a>
+                            <a href="ecommerce.html" class="btn btn-light btn-lg px-4 py-3 hero-btn" data-index="3">
+                                <i class="fas fa-store me-2"></i>أنشئ متجرك الإلكتروني
+                            </a>
+                            <a href="youth.html" class="btn btn-light btn-lg px-4 py-3 hero-btn" data-index="4">
+                                <i class="fas fa-users me-2"></i>لطلاب وخريجي الجامعات
                             </a>
                             <a href="ai-business-idea.html" class="btn btn-outline-light btn-lg px-4 py-3">
                                 <i class="fas fa-robot me-2"></i>جرب مساعد الذكاء الاصطناعي
                             </a>
                         </div>
+
+                        <!-- مؤشرات التبديل -->
+                        <div class="hero-indicators mt-4">
+                            <div class="d-flex justify-content-center gap-2">
+                                <button class="indicator-btn active" data-index="0" title="المشاريع المنزلية">
+                                    <i class="fas fa-home"></i>
+                                </button>
+                                <button class="indicator-btn" data-index="1" title="ريادة الأعمال">
+                                    <i class="fas fa-lightbulb"></i>
+                                </button>
+                                <button class="indicator-btn" data-index="2" title="الشركات الناشئة">
+                                    <i class="fas fa-rocket"></i>
+                                </button>
+                                <button class="indicator-btn" data-index="3" title="المتجر الإلكتروني">
+                                    <i class="fas fa-store"></i>
+                                </button>
+                                <button class="indicator-btn" data-index="4" title="الشباب الطموحين">
+                                    <i class="fas fa-users"></i>
+                                </button>
+                            </div>
+                        </div>
                     </div>
+                    
                     <div class="col-lg-5">
-                        <div class="position-relative">
-                            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
-                                 alt="ريادة الأعمال" class="img-fluid rounded-3 shadow-lg">
-                            <div class="position-absolute top-0 start-0 translate-middle bg-warning text-dark p-3 rounded-circle">
-                                <i class="fas fa-lightbulb fa-2x"></i>
+                        <div class="hero-image-container position-relative">
+                            <!-- الصور المتحركة -->
+                            <div class="hero-image-wrapper">
+                                <div class="hero-image active" data-index="0">
+                                    <img src="https://images.unsplash.com/photo-1580894732444-8ecded7900cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                                         alt="المشاريع المنزلية" class="img-fluid rounded-3 shadow-lg">
+                                    <div class="position-absolute top-0 start-0 translate-middle bg-warning text-dark p-3 rounded-circle">
+                                        <i class="fas fa-home fa-2x"></i>
+                                    </div>
+                                </div>
+                                <div class="hero-image" data-index="1">
+                                    <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                                         alt="ريادة الأعمال" class="img-fluid rounded-3 shadow-lg">
+                                    <div class="position-absolute top-0 start-0 translate-middle bg-primary text-white p-3 rounded-circle">
+                                        <i class="fas fa-lightbulb fa-2x"></i>
+                                    </div>
+                                </div>
+                                <div class="hero-image" data-index="2">
+                                    <img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                                         alt="الشركات الناشئة" class="img-fluid rounded-3 shadow-lg">
+                                    <div class="position-absolute top-0 start-0 translate-middle bg-success text-white p-3 rounded-circle">
+                                        <i class="fas fa-rocket fa-2x"></i>
+                                    </div>
+                                </div>
+                                <div class="hero-image" data-index="3">
+                                    <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                                         alt="المتجر الإلكتروني" class="img-fluid rounded-3 shadow-lg">
+                                    <div class="position-absolute top-0 start-0 translate-middle bg-info text-white p-3 rounded-circle">
+                                        <i class="fas fa-store fa-2x"></i>
+                                    </div>
+                                </div>
+                                <div class="hero-image" data-index="4">
+                                    <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                                         alt="الشباب الطموحين" class="img-fluid rounded-3 shadow-lg">
+                                    <div class="position-absolute top-0 start-0 translate-middle bg-purple text-white p-3 rounded-circle">
+                                        <i class="fas fa-users fa-2x"></i>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -385,51 +846,218 @@
         </div>
     </section>
 
-    <!-- الفئات المستهدفة -->
+    <!-- الفئات المستهدفة - شبكة 2x2 -->
     <section class="py-5">
         <div class="container">
             <h2 class="text-center mb-5">منتجي لكل شريحة</h2>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="audience-card youth">
-                        <div class="audience-icon">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <h3 class="mb-3">للشباب</h3>
-                        <p class="mb-4" style="font-size: 1.1rem;">
-                            <strong>عندك فكرة؟ خلّيها مشروع.</strong><br>
-                            منصتنا تساعدك تحوّل فكرتك إلى واقع باستخدام الذكاء الاصطناعي،
-                            من تطوير الفكرة، إلى فتح متجر إلكتروني، وإدارة مشروعك بخطوات سهلة وواضحة.
-                        </p>
-                        <a href="#youth" class="btn btn-outline-light">ابدأ كشاب طموح</a>
+            <div class="audience-grid">
+                <!-- الشباب -->
+                <div class="audience-card youth">
+                    <div class="audience-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="mb-3">للشباب الطموحين</h3>
+                    <p class="mb-4">
+                        <strong>عندك فكرة؟ خلّيها مشروع.</strong><br>
+                        نوفر لك مساراً كاملاً من الفكرة إلى التنفيذ، مع أدوات ذكية 
+                        وتدريبات عملية تناسب وقتك ومهاراتك.
+                    </p>
+                    <div class="mt-auto">
+                        <a href="#youth" class="btn btn-outline-light">ابدأ رحلتك</a>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="audience-card entrepreneurs">
-                        <div class="audience-icon">
-                            <i class="fas fa-user-tie"></i>
-                        </div>
-                        <h3 class="mb-3">لروّاد الأعمال</h3>
-                        <p class="mb-4" style="font-size: 1.1rem;">
-                            <strong>حوّل أفكارك إلى مشاريع قابلة للنمو</strong><br>
-                            نقدّم أدوات ذكية تعتمد على الذكاء الاصطناعي لتطوير الفكرة،
-                            إنشاء نافذة بيع إلكترونية، وإدارة المشروع بكفاءة من مكان واحد.
-                        </p>
-                        <a href="#entrepreneurs" class="btn btn-outline-light">ابدأ كرائد أعمال</a>
+
+                <!-- رواد الأعمال -->
+                <div class="audience-card entrepreneurs">
+                    <div class="audience-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3 class="mb-3">لروّاد الأعمال</h3>
+                    <p class="mb-4">
+                        <strong>حوّل أفكارك إلى مشاريع قابلة للنمو</strong><br>
+                        أدوات متقدمة، تحليلات ذكية، ومنصة متكاملة لإدارة 
+                        وتوسعة مشروعك بكفاءة عالية.
+                    </p>
+                    <div class="mt-auto">
+                        <a href="#entrepreneurs" class="btn btn-outline-light">طور مشروعك</a>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="audience-card startups">
-                        <div class="audience-icon">
-                            <i class="fas fa-building"></i>
+
+                <!-- الشركات الناشئة -->
+                <div class="audience-card startups">
+                    <div class="audience-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3 class="mb-3">للشركات الناشئة</h3>
+                    <p class="mb-4">
+                        <strong>ابنِ شركتك الناشئة بشكل أذكى</strong><br>
+                        حلول متكاملة للتحقق من الفكرة، إطلاق منصات رقمية، 
+                        وإدارة العمليات بقرارات مدعومة بالبيانات.
+                    </p>
+                    <div class="mt-auto">
+                        <a href="#startups" class="btn btn-outline-light">انطلق بشركتك</a>
+                    </div>
+                </div>
+
+                <!-- المشاريع المنزلية -->
+                <div class="audience-card home-business">
+                    <div class="audience-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3 class="mb-3">للمشاريع المنزلية</h3>
+                    <p class="mb-4" style="font-size: 1.1rem;">
+                        <strong>من بيتك.. ابدأ مشروعك الناجح</strong><br>
+                        سواء طبخ، حلويات، مشغولات يدوية، أو منتجات تجميل،
+                        نوفر لك كل ما تحتاجه لبدء مشروع منزلي ناجح
+                        من التخطيط إلى البيع والتسويق.
+                    </p>
+                    <div class="mt-auto">
+                        <a href="#home-business" class="btn btn-outline-light">ابدأ من بيتك</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم المشاريع المنزلية -->
+    <section class="home-business-section" id="home-business">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="mb-3">المشاريع المنزلية الناجحة</h2>
+                <p class="lead" style="max-width: 800px; margin: 0 auto;">
+                    ابدأ مشروعك من المنزل بأقل التكاليف وأعلى العوائد.
+                    اختر مجال شغفك وابدأ رحلتك الريادية.
+                </p>
+            </div>
+
+            <div class="row g-4">
+                <!-- الأطعمة المنزلية -->
+                <div class="col-md-3">
+                    <div class="home-business-category">
+                        <div class="category-icon">
+                            <i class="fas fa-utensils"></i>
                         </div>
-                        <h3 class="mb-3">للشركات الناشئة</h3>
-                        <p class="mb-4" style="font-size: 1.1rem;">
-                            <strong>ابنِ شركتك الناشئة بشكل أذكى</strong><br>
-                            نقدّم حلولاً ذكية للتحقق من الفكرة، إطلاق منصات رقمية،
-                            وإدارة العمليات واتخاذ قرارات مدعومة بالبيانات للنمو والتوسع بثقة.
+                        <h4 class="mb-3">الأطعمة المنزلية</h4>
+                        <p class="text-muted mb-4">
+                            أطباق عمانية تقليدية، حلويات، معجنات، 
+                            ومشروبات منزلية بجودة عالية
                         </p>
-                        <a href="#startups" class="btn btn-outline-light">ابدأ كشركة ناشئة</a>
+                        <a href="home-food.html" class="btn btn-outline-danger">
+                            <i class="fas fa-arrow-left me-2"></i>استعرض المشاريع
+                        </a>
+                    </div>
+                </div>
+
+                <!-- المشغولات اليدوية -->
+                <div class="col-md-3">
+                    <div class="home-business-category">
+                        <div class="category-icon">
+                            <i class="fas fa-hands"></i>
+                        </div>
+                        <h4 class="mb-3">المشغولات اليدوية</h4>
+                        <p class="text-muted mb-4">
+                            أشغال إبرة، خياطة، تطريز، فنون تقليدية، 
+                            وديكورات منزلية مبتكرة
+                        </p>
+                        <a href="home-handicrafts.html" class="btn btn-outline-danger">
+                            <i class="fas fa-arrow-left me-2"></i>استعرض المشاريع
+                        </a>
+                    </div>
+                </div>
+
+                <!-- مستحضرات التجميل -->
+                <div class="col-md-3">
+                    <div class="home-business-category">
+                        <div class="category-icon">
+                            <i class="fas fa-spa"></i>
+                        </div>
+                        <h4 class="mb-3">مستحضرات التجميل</h4>
+                        <p class="text-muted mb-4">
+                            كريمات طبيعية، صابون، زيوت، وعطور 
+                            مصنوعة من مواد طبيعية
+                        </p>
+                        <a href="home-cosmetics.html" class="btn btn-outline-danger">
+                            <i class="fas fa-arrow-left me-2"></i>استعرض المشاريع
+                        </a>
+                    </div>
+                </div>
+
+                <!-- الملابس والأزياء -->
+                <div class="col-md-3">
+                    <div class="home-business-category">
+                        <div class="category-icon">
+                            <i class="fas fa-tshirt"></i>
+                        </div>
+                        <h4 class="mb-3">الملابس والأزياء</h4>
+                        <p class="text-muted mb-4">
+                            أزياء تقليدية، ملابس مطرزة، إكسسوارات، 
+                            وتصاميم عصرية فريدة
+                        </p>
+                        <a href="home-fashion.html" class="btn btn-outline-danger">
+                            <i class="fas fa-arrow-left me-2"></i>استعرض المشاريع
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- مزايا المشاريع المنزلية -->
+            <div class="row mt-5 pt-5">
+                <div class="col-lg-8 mx-auto">
+                    <div class="card border-0 shadow-lg">
+                        <div class="card-body p-5">
+                            <h3 class="text-center mb-4">لماذا المشاريع المنزلية مع منتجي؟</h3>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="d-flex mb-4">
+                                        <div class="flex-shrink-0">
+                                            <i class="fas fa-check-circle text-success fa-2x me-3"></i>
+                                        </div>
+                                        <div>
+                                            <h5>بدون تكاليف كبيرة</h5>
+                                            <p class="text-muted mb-0">ابدأ بميزانية صغيرة وتوسع تدريجياً</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex mb-4">
+                                        <div class="flex-shrink-0">
+                                            <i class="fas fa-check-circle text-success fa-2x me-3"></i>
+                                        </div>
+                                        <div>
+                                            <h5>مرونة في الوقت</h5>
+                                            <p class="text-muted mb-0">اعمل حسب وقتك وقدراتك</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex mb-4">
+                                        <div class="flex-shrink-0">
+                                            <i class="fas fa-check-circle text-success fa-2x me-3"></i>
+                                        </div>
+                                        <div>
+                                            <h5>دعم وتسويق متكامل</h5>
+                                            <p class="text-muted mb-0">نوفر لك كل أدوات التسويق والبيع</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex mb-4">
+                                        <div class="flex-shrink-0">
+                                            <i class="fas fa-check-circle text-success fa-2x me-3"></i>
+                                        </div>
+                                        <div>
+                                            <h5>تدريب وإرشاد مستمر</h5>
+                                            <p class="text-muted mb-0">دورات وورش عمل متخصصة</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-center mt-4">
+                                <a href="home-business-guide.html" class="btn btn-danger btn-lg">
+                                    <i class="fas fa-download me-2"></i>حمّل دليل المشاريع المنزلية المجاني
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -516,22 +1144,25 @@
     <section class="py-5" id="products">
         <div class="container">
             <div class="d-flex justify-content-between align-items-center mb-4">
-                <h2>منتجات رواد أعمالنا المميزة</h2>
-                <a href="food-products.html" class="btn btn-outline-success">
-                    <i class="fas fa-arrow-left me-2"></i>عرض جميع المنتجات
+                <h2>منتجات منزلية مميزة</h2>
+                <a href="home-food.html" class="btn btn-outline-danger">
+                    <i class="fas fa-arrow-left me-2"></i>عرض جميع المنتجات المنزلية
                 </a>
             </div>
             <div class="row">
                 <!-- منتج 1 -->
                 <div class="col-md-4 mb-4">
                     <div class="card product-card h-100">
-                        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-                            class="card-img-top product-img" alt="وجبة عمانية">
+                        <div class="position-relative">
+                            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                                class="card-img-top product-img" alt="وجبة عمانية">
+                            <span class="home-product-tag">مشروع منزلي</span>
+                        </div>
                         <div class="card-body">
                             <div class="d-flex align-items-center mb-3">
                                 <img src="https://randomuser.me/api/portraits/men/32.jpg" 
                                      class="rounded-circle me-2" width="30" height="30" alt="البائع">
-                                <small class="text-muted">أحمد البلوشي - رائد أعمال</small>
+                                <small class="text-muted">أحمد البلوشي - مشروع منزلي</small>
                             </div>
                             <h5 class="card-title">وجبة عمانية تقليدية</h5>
                             <p class="card-text text-muted">وجبة كاملة من الأرز واللحم مع الخضار والتوابل العمانية الخاصة.</p>
@@ -549,13 +1180,16 @@
                 <!-- منتج 2 -->
                 <div class="col-md-4 mb-4">
                     <div class="card product-card h-100">
-                        <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-                            class="card-img-top product-img" alt="سلطة عمانية">
+                        <div class="position-relative">
+                            <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                                class="card-img-top product-img" alt="سلطة عمانية">
+                            <span class="home-product-tag">مشروع منزلي</span>
+                        </div>
                         <div class="card-body">
                             <div class="d-flex align-items-center mb-3">
                                 <img src="https://randomuser.me/api/portraits/women/45.jpg" 
                                      class="rounded-circle me-2" width="30" height="30" alt="البائعة">
-                                <small class="text-muted">فاطمة الشكيلية - رائدة أعمال</small>
+                                <small class="text-muted">فاطمة الشكيلية - مشروع منزلي</small>
                             </div>
                             <h5 class="card-title">سلطة عمانية</h5>
                             <p class="card-text text-muted">سلطة طازجة مكونة من خضروات موسمية مع تتبيلة عمانية سرية.</p>
@@ -573,13 +1207,16 @@
                 <!-- منتج 3 -->
                 <div class="col-md-4 mb-4">
                     <div class="card product-card h-100">
-                        <img src="https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-                            class="card-img-top product-img" alt="حلويات عمانية">
+                        <div class="position-relative">
+                            <img src="https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                                class="card-img-top product-img" alt="حلويات عمانية">
+                            <span class="home-product-tag">مشروع منزلي</span>
+                        </div>
                         <div class="card-body">
                             <div class="d-flex align-items-center mb-3">
                                 <img src="https://randomuser.me/api/portraits/women/32.jpg" 
                                      class="rounded-circle me-2" width="30" height="30" alt="البائعة">
-                                <small class="text-muted">نورة الفارسية - رائدة أعمال</small>
+                                <small class="text-muted">نورة الفارسية - مشروع منزلي</small>
                             </div>
                             <h5 class="card-title">حلويات عمانية</h5>
                             <p class="card-text text-muted">تشكيلة من الحلويات العمانية التقليدية المصنوعة يدوياً.</p>
@@ -603,16 +1240,16 @@
             <h2 class="text-center mb-5">إنجازات مجتمع منتجي</h2>
             <div class="row text-center">
                 <div class="col-md-3 mb-4">
-                    <div class="stat-number">2,458+</div>
+                    <div class="stat-number">3,200+</div>
                     <p class="text-white-50">مشروع ناشئ</p>
                 </div>
                 <div class="col-md-3 mb-4">
-                    <div class="stat-number">45,670+</div>
-                    <p class="text-white-50">طلب مكتمل</p>
+                    <div class="stat-number">1,850+</div>
+                    <p class="text-white-50">مشروع منزلي</p>
                 </div>
                 <div class="col-md-3 mb-4">
-                    <div class="stat-number">15.2M+</div>
-                    <p class="text-white-50">ريال عماني مبيعات</p>
+                    <div class="stat-number">58,420+</div>
+                    <p class="text-white-50">طلب مكتمل</p>
                 </div>
                 <div class="col-md-3 mb-4">
                     <div class="stat-number">98%</div>
@@ -660,15 +1297,15 @@
                                  class="rounded-circle me-3" width="60" height="60" alt="فاطمة">
                             <div>
                                 <h5 class="mb-1">فاطمة الشكيلية</h5>
-                                <p class="text-muted mb-0">متجر التمور العمانية</p>
+                                <p class="text-muted mb-0">مشروع أطعمة منزلية</p>
                             </div>
                         </div>
                         <p class="mb-4">
-                            "لم أكن أعرف كيف أبدأ مشروعي، لكن مساعد الذكاء الاصطناعي ساعدني في وضع خطة عمل متكاملة.
-                            اليوم متجري الإلكتروني يبيع منتجاتي في جميع أنحاء الخليج."
+                            "بدأت من مطبخي الصغير، والآن لدي مشروع أطعمة عمانية يخدم أكثر من 200 عميل شهرياً.
+                            منتجي ساعدتني في التسويق والبيع والتوصيل."
                         </p>
                         <div class="d-flex justify-content-between">
-                            <span class="badge bg-success">5 موظفين</span>
+                            <span class="badge bg-success">200+ عميل</span>
                             <span class="text-warning">
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
@@ -686,15 +1323,15 @@
                                  class="rounded-circle me-3" width="60" height="60" alt="محمد">
                             <div>
                                 <h5 class="mb-1">محمد الحوسني</h5>
-                                <p class="text-muted mb-0">شركة أثاث النخبة</p>
+                                <p class="text-muted mb-0">مشروع مشغولات يدوية</p>
                             </div>
                         </div>
                         <p class="mb-4">
-                            "منصتكم لم تكن فقط منصة بيع، بل مدرسة تعلمت منها إدارة الأعمال.
-                            التقارير الذكية ساعدتني في اتخاذ قرارات تضاعفت معها أرباحي."
+                            "من هواية إلى مشروع ناجح. منتجي وفرت لي منصة لعرض منتجاتي اليدوية
+                            ووصلتني بعملاء من كل أنحاء السلطنة."
                         </p>
                         <div class="d-flex justify-content-between">
-                            <span class="badge bg-warning">تصدير 3 دول</span>
+                            <span class="badge bg-warning">3 موظفين</span>
                             <span class="text-warning">
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
@@ -714,12 +1351,13 @@
         <div class="container">
             <h2 class="display-5 fw-bold mb-4">جاهز تبدأ رحلتك الريادية؟</h2>
             <p class="lead mb-5" style="max-width: 700px; margin: 0 auto;">
-                لا تنتظر أكثر! انضم إلى مجتمع رواد الأعمال الناجحين في عمان.
+                سواء مشروع كبير أو مشروع منزلي صغير،
+                انضم إلى مجتمع رواد الأعمال الناجحين في عمان.
                 ابدأ الآن مجاناً وتمتع بخصم 50% على أول 6 أشهر.
             </p>
             <div class="d-flex flex-wrap justify-content-center gap-3">
-                <a href="register-entrepreneur.html" class="cta-button">
-                    <i class="fas fa-rocket me-2"></i>ابدأ مشروعك الآن
+                <a href="register-home-business.html" class="cta-button">
+                    <i class="fas fa-home me-2"></i>ابدأ مشروعك المنزلي
                 </a>
                 <a href="ai-business-idea.html" class="btn btn-outline-light btn-lg">
                     <i class="fas fa-robot me-2"></i>جرب مساعد الذكاء الاصطناعي
@@ -739,7 +1377,7 @@
                     <h4 class="mb-4">
                         <i class="fas fa-leaf me-2"></i>منتجي
                     </h4>
-                    <p>نحوّل أفكارك إلى مشاريع ناجحة. منصة عمانية متكاملة لدعم ريادة الأعمال والتجارة الإلكترونية.</p>
+                    <p>نحوّل أفكارك إلى مشاريع ناجحة. منصة عمانية متكاملة لدعم ريادة الأعمال والمشاريع المنزلية.</p>
                     <div class="social-icons mt-3">
                         <a href="#" class="text-white me-3"><i class="fab fa-facebook-f fa-lg"></i></a>
                         <a href="#" class="text-white me-3"><i class="fab fa-twitter fa-lg"></i></a>
@@ -752,22 +1390,22 @@
                     <ul class="list-unstyled footer-links">
                         <li class="mb-2"><a href="index.html">الرئيسية</a></li>
                         <li class="mb-2"><a href="entrepreneurship-hub.html">ريادة الأعمال</a></li>
-                        <li class="mb-2"><a href="electronics.html">المنتجات</a></li>
+                        <li class="mb-2"><a href="#home-business">المشاريع المنزلية</a></li>
                         <li class="mb-2"><a href="success-stories.html">قصص نجاح</a></li>
                         <li><a href="about.html">عن منتجي</a></li>
                     </ul>
                 </div>
-                <div class="col-lg-2 col-md-6 mb-4">
-                    <h5 class="mb-4">الخدمات</h5>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5 class="mb-4">المشاريع المنزلية</h5>
                     <ul class="list-unstyled footer-links">
-                        <li class="mb-2"><a href="ai-business-idea.html">مخطط الأعمال الذكي</a></li>
-                        <li class="mb-2"><a href="training-courses.html">الدورات التدريبية</a></li>
-                        <li class="mb-2"><a href="consultation.html">الاستشارات</a></li>
-                        <li class="mb-2"><a href="logistics.html">اللوجستيات</a></li>
-                        <li><a href="dashboard.html">لوحة التحكم</a></li>
+                        <li class="mb-2"><a href="home-food.html">الأطعمة المنزلية</a></li>
+                        <li class="mb-2"><a href="home-handicrafts.html">المشغولات اليدوية</a></li>
+                        <li class="mb-2"><a href="home-cosmetics.html">مستحضرات التجميل</a></li>
+                        <li class="mb-2"><a href="home-fashion.html">الملابس والأزياء</a></li>
+                        <li><a href="home-business-guide.html">الدليل الشامل</a></li>
                     </ul>
                 </div>
-                <div class="col-lg-4 mb-4">
+                <div class="col-lg-3 mb-4">
                     <h5 class="mb-4">اتصل بنا</h5>
                     <p><i class="fas fa-map-marker-alt me-2"></i> مسقط، سلطنة عمان</p>
                     <p><i class="fas fa-phone me-2"></i> +968 1234 5678</p>
@@ -795,29 +1433,160 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        // دالة لإضافة منتج إلى السلة
-        document.querySelectorAll('.add-to-cart').forEach(button => {
-            button.addEventListener('click', function () {
-                const productName = this.getAttribute('data-product');
-                const productPrice = this.getAttribute('data-price');
-
-                // هنا يمكنك إضافة الكود لحفظ المنتج في localStorage أو إرساله إلى الخادم
-                alert(`تمت إضافة ${productName} إلى سلة التسوق بسعر ${productPrice} ر.ع`);
-
-                // تحديث عداد السلة
-                updateCartCount();
-            });
-        });
-
-        // تحديث عداد السلة
-        function updateCartCount() {
-            const cartCount = document.querySelector('.cart-count');
-            const currentCount = parseInt(cartCount.textContent);
-            cartCount.textContent = currentCount + 1;
-        }
-
-        // تهيئة الصفحة
+        // كود الهيرو المتحرك
         document.addEventListener('DOMContentLoaded', function() {
+            const heroElements = {
+                texts: document.querySelectorAll('.animated-text'),
+                taglines: document.querySelectorAll('.hero-tagline'),
+                images: document.querySelectorAll('.hero-image'),
+                buttons: document.querySelectorAll('.hero-btn'),
+                indicators: document.querySelectorAll('.indicator-btn')
+            };
+
+            let currentIndex = 0;
+            const totalSlides = heroElements.texts.length;
+            let autoSlideInterval;
+
+            // تهيئة جميع العناصر
+            function initializeSlides() {
+                heroElements.texts.forEach((text, index) => {
+                    text.classList.remove('active');
+                });
+                heroElements.taglines.forEach((tagline, index) => {
+                    tagline.classList.remove('active');
+                });
+                heroElements.images.forEach((image, index) => {
+                    image.classList.remove('active');
+                });
+                heroElements.buttons.forEach((button, index) => {
+                    button.classList.remove('active');
+                });
+                heroElements.indicators.forEach((indicator, index) => {
+                    indicator.classList.remove('active');
+                });
+            }
+
+            // عرض الشريحة المحددة
+            function showSlide(index) {
+                initializeSlides();
+                
+                heroElements.texts[index].classList.add('active');
+                heroElements.taglines[index].classList.add('active');
+                heroElements.images[index].classList.add('active');
+                heroElements.buttons[index].classList.add('active');
+                heroElements.indicators[index].classList.add('active');
+                
+                currentIndex = index;
+            }
+
+            // الانتقال للشريحة التالية
+            function nextSlide() {
+                let nextIndex = (currentIndex + 1) % totalSlides;
+                showSlide(nextIndex);
+            }
+
+            // بدء التشغيل التلقائي
+            function startAutoSlide() {
+                autoSlideInterval = setInterval(nextSlide, 5000); // التبديل كل 5 ثواني
+            }
+
+            // إيقاف التشغيل التلقائي
+            function stopAutoSlide() {
+                clearInterval(autoSlideInterval);
+            }
+
+            // إضافة أحداث النقر للمؤشرات
+            heroElements.indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', () => {
+                    stopAutoSlide();
+                    showSlide(index);
+                    startAutoSlide();
+                });
+                
+                // إضافة tooltip للمؤشرات
+                indicator.addEventListener('mouseenter', () => {
+                    const title = indicator.getAttribute('title');
+                    if (title) {
+                        indicator.setAttribute('data-bs-toggle', 'tooltip');
+                        indicator.setAttribute('data-bs-placement', 'top');
+                        indicator.setAttribute('data-bs-title', title);
+                        new bootstrap.Tooltip(indicator);
+                    }
+                });
+            });
+
+            // إضافة أحداث لأزرار الـ CTA
+            heroElements.buttons.forEach((button, index) => {
+                button.addEventListener('mouseenter', () => {
+                    stopAutoSlide();
+                });
+                
+                button.addEventListener('mouseleave', () => {
+                    startAutoSlide();
+                });
+            });
+
+            // إضافة أحداث لصور الهيرو
+            heroElements.images.forEach((image, index) => {
+                image.addEventListener('mouseenter', () => {
+                    stopAutoSlide();
+                });
+                
+                image.addEventListener('mouseleave', () => {
+                    startAutoSlide();
+                });
+            });
+
+            // بدء العرض
+            showSlide(0);
+            startAutoSlide();
+
+            // إعادة تشغيل العرض التلقائي عندما يعود المستخدم للتبويب
+            document.addEventListener('visibilitychange', function() {
+                if (document.hidden) {
+                    stopAutoSlide();
+                } else {
+                    startAutoSlide();
+                }
+            });
+
+            // تأثير Parallax
+            const heroSection = document.querySelector('.hero-section');
+            heroSection.addEventListener('mousemove', (e) => {
+                const { clientX, clientY } = e;
+                const { width, height } = heroSection.getBoundingClientRect();
+                
+                const x = (clientX / width - 0.5) * 10;
+                const y = (clientY / height - 0.5) * 10;
+                
+                heroSection.style.transform = `perspective(1000px) rotateY(${x}deg) rotateX(${-y}deg)`;
+            });
+            
+            heroSection.addEventListener('mouseleave', () => {
+                heroSection.style.transform = 'perspective(1000px) rotateY(0) rotateX(0)';
+            });
+
+            // كود السلة
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', function () {
+                    const productName = this.getAttribute('data-product');
+                    const productPrice = this.getAttribute('data-price');
+
+                    alert(`تمت إضافة ${productName} إلى سلة التسوق بسعر ${productPrice} ر.ع`);
+
+                    // تحديث عداد السلة
+                    updateCartCount();
+                });
+            });
+
+            // تحديث عداد السلة
+            function updateCartCount() {
+                const cartCount = document.querySelector('.cart-count');
+                const currentCount = parseInt(cartCount.textContent);
+                cartCount.textContent = currentCount + 1;
+                localStorage.setItem('cartCount', cartCount.textContent);
+            }
+
             // تحديث العداد عند تحميل الصفحة
             const cartCount = document.querySelector('.cart-count');
             if (cartCount) {
@@ -842,38 +1611,27 @@
             }, observerOptions);
             
             // مراقبة العناصر
-            document.querySelectorAll('.audience-card, .journey-step, .product-card, .testimonial-card').forEach(element => {
+            document.querySelectorAll('.audience-card, .home-business-category, .journey-step, .product-card, .testimonial-card').forEach(element => {
                 observer.observe(element);
             });
-            
-            // حفظ عدد المنتجات في السلة
-            document.querySelectorAll('.add-to-cart').forEach(button => {
-                button.addEventListener('click', function() {
-                    setTimeout(() => {
-                        const cartCount = document.querySelector('.cart-count');
-                        localStorage.setItem('cartCount', cartCount.textContent);
-                    }, 100);
-                });
-            });
-        });
 
-        // تأثير التمرير السلس
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
+            // تأثير التمرير السلس
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
             });
         });
     </script>
 </body>
-
 </html>
