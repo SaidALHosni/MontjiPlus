@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عن منتجي - منصة ريادة الأعمال العمانية</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #28a745;
+            --secondary: #20c997;
+        }
+        
+        body {
+            font-family: 'Cairo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+        }
+        
+        .about-hero {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .mission-card {
+            border: none;
+            border-radius: 15px;
+            padding: 40px 30px;
+            text-align: center;
+            height: 100%;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .mission-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .team-card {
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding: 20px;
+            margin-bottom: 30px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            right: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .timeline-item:nth-child(1)::before { content: '2018'; }
+        .timeline-item:nth-child(2)::before { content: '2019'; }
+        .timeline-item:nth-child(3)::before { content: '2020'; }
+        .timeline-item:nth-child(4)::before { content: '2021'; }
+        .timeline-item:nth-child(5)::before { content: '2022'; }
+        .timeline-item:nth-child(6)::before { content: '2023'; }
+    </style>
+</head>
+<body>
+    <!-- شريط التنقل -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">
+                <i class="fas fa-leaf me-2"></i>منتجي
+            </a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">الرئيسية</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="about.html">عن منتجي</a></li>
+                    <li class="nav-item"><a class="nav-link" href="entrepreneurship-hub.html">ريادة الأعمال</a></li>
+                    <li class="nav-item"><a class="nav-link" href="electronics.html">المنتجات</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">اتصل بنا</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- قسم البطل -->
+    <section class="about-hero">
+        <div class="container">
+            <h1 class="display-3 fw-bold mb-4">عن منتجي</h1>
+            <p class="lead mb-0">منصة عمانية رائدة لتحويل الأفكار إلى مشاريع ناجحة</p>
+        </div>
+    </section>
+
+    <!-- رؤيتنا ورسالتنا -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="mission-card bg-primary text-white">
+                        <i class="fas fa-eye fa-3x mb-4"></i>
+                        <h3 class="mb-3">رؤيتنا</h3>
+                        <p>أن نكون المنصة الرائدة في تمكين رواد الأعمال العمانيين، وأن نساهم في بناء اقتصاد وطني قائم على الابتكار والإبداع والاستدامة.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="mission-card bg-success text-white">
+                        <i class="fas fa-bullseye fa-3x mb-4"></i>
+                        <h3 class="mb-3">رسالتنا</h3>
+                        <p>توفير بيئة متكاملة تدعم رواد الأعمال من الفكرة إلى النجاح، من خلال أدوات ذكية وخدمات متكاملة وشراكات استراتيجية.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قصة منتجي -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">قصة منتجي</h2>
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4">
+                    <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                         class="img-fluid rounded-3 shadow" alt="ريادة الأعمال">
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <h3 class="mb-4">من فكرة إلى واقع</h3>
+                    <p class="lead mb-4">بدأت رحلة منتجي في عام 2018 كفكرة بسيطة: كيف يمكننا مساعدة المواهب العمانية في تحويل أفكارهم إلى مشاريع ناجحة؟</p>
+                    <p>لاحظنا أن العديد من المبدعين والحرفيين والمزارعين في عمان يواجهون تحديات في الوصول إلى الأسواق، إدارة أعمالهم، وتسويق منتجاتهم. ومن هنا ولدت فكرة إنشاء منصة متكاملة تجمع بين التجارة الإلكترونية وخدمات ريادة الأعمال.</p>
+                    <p>اليوم، منتجي هي أكبر منصة لريادة الأعمال في سلطنة عمان، تضم أكثر من 2,000 رائد أعمال، وتخدم آلاف العملاء في جميع أنحاء السلطنة.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- محطات رحلتنا -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">محطات رحلتنا</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>بداية الرحلة</h4>
+                    <p>إطلاق النسخة الأولى من المنصة مع 50 رائد أعمال فقط، متخصصة في المنتجات التقليدية.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>التوسع الأول</h4>
+                    <p>إضافة خدمات التوصيل والتخزين، والوصول إلى 500 رائد أعمال.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>منصة متكاملة</h4>
+                    <p>إطلاق خدمات التدريب والاستشارات، وإضافة أدوات إدارة الأعمال.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>الثورة التقنية</h4>
+                    <p>دمج الذكاء الاصطناعي في المنصة، وإطلاق مساعد الأعمال الذكي.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>التوسع الإقليمي</h4>
+                    <p>بدء التصدير لدول الخليج، والوصول إلى 1,500 رائد أعمال.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>الريادة</h4>
+                    <p>تصبح منتجي المنصة الرائدة لريادة الأعمال في عمان بأكثر من 2,000 رائد أعمال.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- فريق العمل -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">فريق قيادة منتجي</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="team-card">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                             class="card-img-top" alt="المدير التنفيذي">
+                        <div class="card-body text-center">
+                            <h4 class="mb-2">أحمد البلوشي</h4>
+                            <p class="text-muted mb-3">المدير التنفيذي والمؤسس</p>
+                            <p>مهندس برمجيات سابق في شركة عالمية، حاصل على ماجستير في ريادة الأعمال من جامعة السلطان قابوس.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="team-card">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                             class="card-img-top" alt="مديرة العمليات">
+                        <div class="card-body text-center">
+                            <h4 class="mb-2">فاطمة الشكيلية</h4>
+                            <p class="text-muted mb-3">مديرة العمليات</p>
+                            <p>خبرة 10 سنوات في إدارة المشاريع والتجارة الإلكترونية، متخصصة في تطوير الأعمال الصغيرة والمتوسطة.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="team-card">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                             class="card-img-top" alt="مدير التقنية">
+                        <div class="card-body text-center">
+                            <h4 class="mb-2">سالم الشقصي</h4>
+                            <p class="text-muted mb-3">مدير التقنية والابتكار</p>
+                            <p>خبير في الذكاء الاصطناعي وتطوير المنصات الرقمية، قاد فريق تطوير مساعد الأعمال الذكي.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- إحصائيات -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">منتجي في أرقام</h2>
+            <div class="row text-center">
+                <div class="col-md-3 mb-4">
+                    <h2 class="display-4 text-success fw-bold">2,458+</h2>
+                    <p class="text-muted">رائد أعمال نشط</p>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h2 class="display-4 text-success fw-bold">45,670+</h2>
+                    <p class="text-muted">طلب مكتمل</p>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h2 class="display-4 text-success fw-bold">15.2M+</h2>
+                    <p class="text-muted">ريال عماني مبيعات</p>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h2 class="display-4 text-success fw-bold">98%</h2>
+                    <p class="text-muted">رضا العملاء</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- دعوة للانضمام -->
+    <section class="py-5 bg-success text-white text-center">
+        <div class="container">
+            <h2 class="mb-4">كن جزءاً من رحلتنا</h2>
+            <p class="lead mb-4">سواء كنت رائد أعمال، مستثمر، أو شريك استراتيجي، يمكنك المشاركة في بناء مستقبل ريادة الأعمال في عمان.</p>
+            <div class="d-flex flex-wrap justify-content-center gap-3">
+                <a href="register-entrepreneur.html" class="btn btn-light btn-lg">
+                    <i class="fas fa-user-plus me-2"></i>انضم كرائد أعمال
+                </a>
+                <a href="contact.html" class="btn btn-outline-light btn-lg">
+                    <i class="fas fa-handshake me-2"></i>كن شريكاً
+                </a>
+                <a href="careers.html" class="btn btn-outline-light btn-lg">
+                    <i class="fas fa-briefcase me-2"></i>انضم لفريقنا
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- الفوتر -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2023 منتجي. جميع الحقوق محفوظة.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="index.html" class="text-white-50 text-decoration-none me-3">الرئيسية</a>
+                    <a href="privacy-policy.html" class="text-white-50 text-decoration-none me-3">الخصوصية</a>
+                    <a href="terms.html" class="text-white-50 text-decoration-none">الشروط</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
